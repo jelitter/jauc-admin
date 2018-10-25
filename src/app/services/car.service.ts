@@ -17,21 +17,28 @@ export class CarService {
     this.carList.push({
       name: car.name,
       plate: car.plate,
-      lat: 0,
-      lon: 0
+      lat: car.lat || randomFromInterval(-90, 90),
+      lon: car.lon || randomFromInterval(-180, 180)
     });
   }
 
   updateCar(car: Car) {
+    console.log('updating car');
+    console.log(car);
+
     this.carList.update(car.$key, {
       name: car.name,
       plate: car.plate,
-      lat: car.lat || 0,
-      lon: car.lon || 0
+      lat: car.lat || randomFromInterval(-90, 90),
+      lon: car.lon || randomFromInterval(-180, 180)
     });
   }
 
   deleteCar($key: string) {
     this.carList.remove($key);
   }
+}
+
+function randomFromInterval(min, max) {
+  return (Math.random() * (max - min + 1) + min).toFixed(6);
 }
