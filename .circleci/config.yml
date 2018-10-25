@@ -26,7 +26,7 @@ jobs: # a collection of steps
           command: npm run build
       - run: # run tests
           name: angular test
-          command: npm run test -- --single-run --no-progress --browser=ChromeHeadlessCI
+          command: npm run test -- --browsers=ChromeHeadless --code-coverage --watch=false
       # No end to end testing setup for now
       #- run:
       #    name: E2E test run
