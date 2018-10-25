@@ -1,6 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
 
 import { CarsComponent } from './cars.component';
+
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+
+@Component({ selector: 'jauc-car', template: '' })
+class MockCarComponent {}
+
+@Component({ selector: 'jauc-car-list', template: '' })
+class MockCarListComponent {}
 
 describe('CarsComponent', () => {
   let component: CarsComponent;
@@ -8,9 +18,9 @@ describe('CarsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CarsComponent ]
-    })
-    .compileComponents();
+      declarations: [CarsComponent, MockCarComponent, MockCarListComponent],
+      imports: [MatCardModule, MatGridListModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
