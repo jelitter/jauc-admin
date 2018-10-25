@@ -1,14 +1,14 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CarComponent } from "./car.component";
-import { MatCardModule } from "@angular/material/card";
+import { CarComponent } from './car.component';
+import { MatCardModule } from '@angular/material/card';
 
-describe("CarComponent", () => {
+describe('CarComponent', () => {
   let component: CarComponent;
   let fixture: ComponentFixture<CarComponent>;
 
   beforeEach(async(() => {
-    //TODO Uncoment when ready to test
+    // TODO Uncoment when ready to test
     // TestBed.configureTestingModule({
     //   declarations: [CarComponent],
     //   imports: [MatCardModule]
@@ -16,14 +16,16 @@ describe("CarComponent", () => {
   }));
 
   beforeEach(() => {
-    //TODO Uncoment when ready to test
-    //fixture = TestBed.createComponent(CarComponent);
-    //component = fixture.componentInstance;
-    //fixture.detectChanges();
+    // TODO Uncoment when ready to test
+    // fixture = TestBed.createComponent(CarComponent);
+    fixture = null;
+    // component = fixture.componentInstance;
+    component = null;
+    // fixture.detectChanges();
   });
 
-  it("PLACEHOLDER should create", () => {
-    //TODO Change assertion when ready to test
+  it('PLACEHOLDER should create', () => {
+    // TODO Change assertion when ready to test
     expect(true).toBeTruthy();
   });
 });

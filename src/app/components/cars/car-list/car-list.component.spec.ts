@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CarListComponent } from "./car-list.component";
+import { CarListComponent } from './car-list.component';
 
-describe("CarListComponent", () => {
+describe('CarListComponent', () => {
   let component: CarListComponent;
   let fixture: ComponentFixture<CarListComponent>;
 
@@ -13,14 +13,16 @@ describe("CarListComponent", () => {
   }));
 
   beforeEach(() => {
-    //TODO Uncomment when ready to test
-    //fixture = TestBed.createComponent(CarListComponent);
-    //component = fixture.componentInstance;
-    //fixture.detectChanges();
+    // TODO Uncomment when ready to test
+    // fixture = TestBed.createComponent(CarListComponent);
+    fixture = null;
+    // component = fixture.componentInstance;
+    component = null;
+    // fixture.detectChanges();
   });
 
-  it("PLACEHOLDER should create", () => {
-    //TODO Change assertion when ready to test
+  it('PLACEHOLDER should create', () => {
+    // TODO Change assertion when ready to test
     expect(true).toBeTruthy();
   });
 });
