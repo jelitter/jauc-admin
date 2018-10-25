@@ -66,13 +66,15 @@
       <br>
 
       <button mat-raised-button color="primary" [disabled]="!carService.selectedCar.name || !carService.selectedCar.plate"
-        class="btn btn-success" type="submit">Add
+        class="btn btn-success" type="submit">{{ carService.selectedCar.$key ? 'Update' : 'Add' }}
       </button>
       <span></span>
       <button mat-button color="primary" [disabled]="!carService.selectedCar.name && !carService.selectedCar.plate"
         (click)="resetForm(carForm)">
         Reset
       </button>
+
+      <!-- <pre class="container">{{ carService.selectedCar.$key }}</pre> -->
 
     </form>
   </mat-card-content>

@@ -1,0 +1,44 @@
+version: 2 # use CircleCI 2.0
+jobs: # a collection of steps
+  build: # runs not using Workflows must have a `build` job as entry point
+    working_directory: ~/tmp # directory where steps will run
+    docker: # run the steps with Docker
+      - image: circleci/node:8-browsers
+    steps: # a collection of executable commands
+      - checkout # special step to check out source code to working directory
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+      - restore_cache: # special step to restore the dependency cache
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache: # special step to save the dependency cache
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: angular lint
+          command: npm run lint
+      - run: # create an angular build (no prod)
+          name: angular build
+          command: npm run build
+      - run: # run tests
+          name: angular test
+          command: npm run test -- --browsers=ChromeHeadless --code-coverage --watch=false
+      # No end to end testing setup for now
+      #- run:
+      #    name: E2E test run
+      #    command: npm run e2e -- --no-progress --config=protractor-ci.conf.js
+      #- run: # run coverage report
+      #    name: code-coverage
+      #    command: "./node_modules/.bin/nyc report --reporter=text-lcov"
+      - store_artifacts: # special step to save test results as as artifact
+          path: test-results.xml
+          prefix: tests
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
+      - store_test_results: # special step to upload test results for display in Test Summary
+          path: test-results.xml
