@@ -1,16 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { Component } from "@angular/core";
 
-import { CarsComponent } from './cars.component';
+import { CarsComponent } from "./cars.component";
 
-describe('CarsComponent', () => {
+import { MatCardModule } from "@angular/material/card";
+import { MatGridListModule } from "@angular/material/grid-list";
+
+describe("CarsComponent", () => {
   let component: CarsComponent;
   let fixture: ComponentFixture<CarsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CarsComponent ]
-    })
-    .compileComponents();
+      declarations: [CarsComponent, MockCarComponent, MockCarListComponent],
+      imports: [MatCardModule, MatGridListModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +23,13 @@ describe('CarsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
+
+@Component({ selector: "jauc-car", template: "" })
+class MockCarComponent {}
+
+@Component({ selector: "jauc-car-list", template: "" })
+class MockCarListComponent {}
