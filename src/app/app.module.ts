@@ -28,7 +28,8 @@ import { CarComponent } from './components/cars/car/car.component';
 import { CarListComponent } from './components/cars/car-list/car-list.component';
 
 // Services
-import { CarService } from './services/car.service';
+import { CarService } from './services/car/car.service';
+import { BookingService } from './services/booking/booking.service';
 
 @NgModule({
   declarations: [AppComponent, CarsComponent, CarComponent, CarListComponent],
@@ -53,7 +54,7 @@ import { CarService } from './services/car.service';
     MatPaginatorModule,
     MatSortModule
   ],
-  providers: [CarService],
+  providers: [CarService, BookingService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
