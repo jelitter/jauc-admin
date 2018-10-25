@@ -8,8 +8,7 @@
         <tr>
           <th>Name</th>
           <th>Plate</th>
-          <th>Lat</th>
-          <th>Lon</th>
+          <th>Location</th>
           <th class="text-center m-0 fit"></th>
         </tr>
       </thead>
@@ -17,8 +16,8 @@
         <tr *ngFor="let car of carList">
           <td>{{ car.name }}</td>
           <td>{{ car.plate }}</td>
-          <td>{{ car.lat }}</td>
-          <td>{{ car.lon }}</td>
+          <td class="locs"><span class="location-badge">{{ car.location?.lat }}</span><span class="location-badge">{{
+              car.location?.lon }}</span></td>
           <td class="text-center m-0 fit">
             <button class="btn btn-primary text-white" (click)="onEdit(car)">
               <i class="far fa-edit"></i>
