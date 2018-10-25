@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Car } from '../../models/car';
-import {Location} from '../../models/location'
+import {Location} from '../../models/location';
 import * as shared from '../../shared/js/shared';
 
 @Injectable()
@@ -17,12 +17,12 @@ export class CarService {
 
   addCar(car: Car) {
     const newLat = shared.randomFromInterval(-90, 90);
-    const newLon = shared.randomFromInterval(-180,180);
+    const newLon = shared.randomFromInterval(-180, 180);
 
     this.carList.push({
       name: car.name,
       plate: car.plate,
-      location: car.location || new Location(newLat,newLon)
+      location: car.location || new Location(newLat, newLon)
     });
   }
 
