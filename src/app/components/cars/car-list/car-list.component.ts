@@ -20,7 +20,7 @@ export class CarListComponent implements OnInit {
       .subscribe(item => {
         this.carList = [];
         item.forEach(element => {
-          let c = element.payload.toJSON();
+          const c = element.payload.toJSON();
           c['$key'] = element.key;
           this.carList.push(c as Car);
         });
