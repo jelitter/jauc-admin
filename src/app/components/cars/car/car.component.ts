@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
-import { CarService } from '../../../services/car.service';
-import { Car } from '../../../models/car';
 import { ToastrService } from 'ngx-toastr';
+import { CarService } from 'src/app/services/car/car.service';
+import { Car } from 'src/app/models/car';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {

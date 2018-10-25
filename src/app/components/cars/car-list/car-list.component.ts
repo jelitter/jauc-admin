@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CarService } from '../../../services/car.service';
-import { Car } from '../../../models/car';
 import { ToastrService } from 'ngx-toastr';
+import { CarService } from 'src/app/services/car/car.service';
+import { Car } from 'src/app/models/car';
 
 @Component({
   selector: 'jauc-car-list',
