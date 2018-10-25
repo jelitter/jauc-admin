@@ -26,7 +26,11 @@ jobs: # a collection of steps
           command: npm run build
       - run: # run tests
           name: angular test
-          command: npm run test --single-run
+          command: npm run test -- --single-run --no-progress --browser=ChromeHeadlessCI
+      # No end to end testing setup for now
+      #- run:
+      #    name: E2E test run
+      #    command: npm run e2e -- --no-progress --config=protractor-ci.conf.js
       - run: # run coverage report
           name: code-coverage
           command: "./node_modules/.bin/nyc report --reporter=text-lcov"
