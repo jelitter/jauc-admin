@@ -23,9 +23,6 @@ export class CarService {
   }
 
   updateCar(car: Car) {
-    console.log('updating car');
-    console.log(car);
-
     this.carList.update(car.$key, {
       name: car.name,
       plate: car.plate,
