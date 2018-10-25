@@ -26,7 +26,7 @@ jobs: # a collection of steps
           command: npm run build
       - run: # run tests
           name: angular test
-          command: npm run test
+          command: npm run test --single-run
       - run: # run coverage report
           name: code-coverage
           command: "./node_modules/.bin/nyc report --reporter=text-lcov"
