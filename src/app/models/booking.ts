@@ -1,5 +1,5 @@
-import { Review } from "./review";
-import { Location } from "./location";
+import { Review } from './review';
+import { Location } from './location';
 
 export class Booking {
 
