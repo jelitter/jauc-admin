@@ -32,50 +32,72 @@
   </div>
 </div> -->
 
-<mat-card>
-  <mat-card-title>
-    Add Car
-  </mat-card-title>
-  <mat-card-content>
-    <form class="example-form" #carForm="ngForm" (ngSubmit)="onSubmit(carForm)">
-      <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="carService.selectedCar.$key">
-      <mat-form-field>
-        <input matInput placeholder="Car Name" [errorStateMatcher]="matcher" name="name" #name="ngModel" [(ngModel)]="carService.selectedCar.name">
-        <!-- <mat-hint>Car Name</mat-hint> -->
-        <mat-error *ngIf="carNameFormControl.hasError('carNameFormControl') && !carNameFormControl.hasError('required')">
-          Please enter a car name
-        </mat-error>
-        <mat-error *ngIf="carNameFormControl.hasError('required')">
-          Car Name is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
+<div class="row" style="min-height: 400px;">
+  <div class="col col-auto">
+    <mat-card>
+      <mat-card-title>
+        Add Car
+      </mat-card-title>
+      <form class="example-form" #carForm="ngForm" (ngSubmit)="onSubmit(carForm)">
+        <mat-card-content>
+          <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="carService.selectedCar.$key">
+          <mat-form-field>
+            <input matInput placeholder="Car Name" [errorStateMatcher]="matcher" name="name" #name="ngModel"
+              [(ngModel)]="carService.selectedCar.name">
+            <!-- <mat-hint>Car Name</mat-hint> -->
+            <mat-error *ngIf="carNameFormControl.hasError('carNameFormControl') && !carNameFormControl.hasError('required')">
+              Please enter a car name
+            </mat-error>
+            <mat-error *ngIf="carNameFormControl.hasError('required')">
+              Car Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
 
-      <br>
+          <br>
 
-      <mat-form-field>
-        <input matInput placeholder="Car Plate" [errorStateMatcher]="matcher" name="plate" #name="ngModel" [(ngModel)]="carService.selectedCar.plate">
-        <!-- <mat-hint>Car Plate</mat-hint> -->
-        <mat-error *ngIf="carPlateFormControl.hasError('carPlateFormControl') && !carPlateFormControl.hasError('required')">
-          Please enter a car plate
-        </mat-error>
-        <mat-error *ngIf="carPlateFormControl.hasError('required')">
-          Car Plate is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Car Plate" [errorStateMatcher]="matcher" name="plate" #name="ngModel"
+              [(ngModel)]="carService.selectedCar.plate">
+            <!-- <mat-hint>Car Plate</mat-hint> -->
+            <mat-error *ngIf="carPlateFormControl.hasError('carPlateFormControl') && !carPlateFormControl.hasError('required')">
+              Please enter a car plate
+            </mat-error>
+            <mat-error *ngIf="carPlateFormControl.hasError('required')">
+              Car Plate is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
 
-      <br>
+          <br>
 
-      <button mat-raised-button color="primary" [disabled]="!carService.selectedCar.name || !carService.selectedCar.plate"
-        class="btn btn-success" type="submit">{{ carService.selectedCar.$key ? 'Update' : 'Add' }}
-      </button>
-      <span></span>
-      <button mat-button color="primary" [disabled]="!carService.selectedCar.name && !carService.selectedCar.plate"
-        (click)="resetForm(carForm)">
-        Reset
-      </button>
+          <!-- <button mat-raised-button color="primary" [disabled]="!carService.selectedCar.name || !carService.selectedCar.plate"
+            class="btn btn-success" type="submit">{{ carService.selectedCar.$key ? 'Update' : 'Add' }}
+          </button>
+          <span></span>
+          <button mat-button color="primary" [disabled]="!carService.selectedCar.name && !carService.selectedCar.plate"
+            (click)="resetForm(carForm)">
+            Reset
+          </button> -->
 
-      <!-- <pre class="container">{{ carService.selectedCar.$key }}</pre> -->
+          <!-- <pre class="container">{{ carService.selectedCar.$key }}</pre> -->
 
-    </form>
-  </mat-card-content>
-</mat-card>
+        </mat-card-content>
+        <mat-card-footer style="margin-left:1px; margin-bottom:1px;">
+          <button mat-raised-button color="primary" [disabled]="!carService.selectedCar.name || !carService.selectedCar.plate"
+            class="btn btn-success" type="submit">{{ carService.selectedCar.$key ? 'Update' : 'Add' }}
+          </button>
+          <span></span>
+          <button mat-button color="primary" [disabled]="!carService.selectedCar.name && !carService.selectedCar.plate"
+            (click)="resetForm(carForm)">
+            Reset
+          </button>
+        </mat-card-footer>
+      </form>
+
+    </mat-card>
+  </div>
+  <div class="col">
+    <mat-card style="height:100%;">
+      <div id="track-map"></div>
+    </mat-card>
+  </div>
+</div>

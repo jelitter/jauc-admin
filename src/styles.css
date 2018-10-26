@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 /* @import '~@angular/material/prebuilt-themes/indigo-pink.css'; */
+@import '../node_modules/leaflet/dist/leaflet.css';
 @import '../node_modules/ngx-toastr/toastr.css';
 
 html,
@@ -9,4 +10,12 @@ body {
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
+}
+
+#track-map {
+  height: 100%;
+}
+
+.clearfix {
+  overflow: auto;
 }
