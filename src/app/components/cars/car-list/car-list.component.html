@@ -19,10 +19,12 @@
           <td class="locs"><span class="location-badge">{{ car.location?.lat }}</span><span class="location-badge">{{
               car.location?.lon }}</span></td>
           <td class="text-center m-0 fit">
-            <button class="btn btn-primary text-white" (click)="onEdit(car)">
+            <button class="btn btn-primary text-white"
+                    (click)="onEdit(car)">
               <i class="far fa-edit"></i>
             </button>
-            <button class="btn btn-danger text-white" (click)="onDelete(car)">
+            <button class="btn btn-danger text-white"
+                    (click)="onDelete(car)">
               <i class="fas fa-trash-alt"></i>
             </button>
           </td>
@@ -34,38 +36,3 @@
     JAUC cars
   </div>
 </div>
-
-<!-- <div class="mat-elevation-z8">
-
-  <table mat-table [dataSource]="carList" matSort>
-
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-      <mat-cell *matCellDef="let car"> {{car.name}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="plate">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Plate </mat-header-cell>
-      <mat-cell *matCellDef="let car"> {{car.plate}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="lat">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Lat </mat-header-cell>
-      <mat-cell *matCellDef="let car"> {{car.lat}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="lon">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Lon </mat-header-cell>
-      <mat-cell *matCellDef="let car"> {{car.lon}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="actions">
-      <mat-header-cell> Actions </mat-header-cell>
-      <mat-cell *matCellDef="let car"> <button>Hey</button> </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-</div> -->
