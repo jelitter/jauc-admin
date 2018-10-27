@@ -3,7 +3,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 // Angular
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
@@ -38,6 +38,7 @@ import { LoginComponent, LoginDialogComponent } from './components/login/login.c
 // Services
 import { CarService } from './services/car/car.service';
 import { BookingService } from './services/booking/booking.service';
+import { UserService } from './services/user/user.service';
 
 @NgModule({
     declarations: [AppComponent, CarsComponent, CarComponent, CarListComponent, LoginComponent, LoginDialogComponent],
@@ -67,7 +68,7 @@ import { BookingService } from './services/booking/booking.service';
         ReactiveFormsModule,
         ToastrModule.forRoot(),
     ],
-    providers: [CarService, BookingService],
+    providers: [Title, CarService, BookingService, UserService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
