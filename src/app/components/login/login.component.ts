@@ -1,6 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
+import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 
 @Component({
     selector: 'jauc-login',
@@ -20,19 +21,5 @@ export class LoginComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             console.log('The dialog was closed');
         });
-    }
-}
-
-@Component({
-    selector: 'jauc-login-dialog',
-    templateUrl: './dialog/login-dialog.html',
-    styleUrls: ['./login.component.css'],
-})
-export class LoginDialogComponent {
-    constructor(public dialogRef: MatDialogRef<LoginDialogComponent>, @Inject(MAT_DIALOG_DATA) public data) {}
-
-    loginWithGoogle(): void {
-        this.data.user.loginWithGoogle();
-        // this.dialogRef.close();
     }
 }

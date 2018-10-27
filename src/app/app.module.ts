@@ -5,7 +5,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 // Angular Material
 import { MatButtonModule } from '@angular/material/button';
@@ -33,7 +33,8 @@ import { AppComponent } from './app.component';
 import { CarComponent } from './components/cars/car/car.component';
 import { CarListComponent } from './components/cars/car-list/car-list.component';
 import { CarsComponent } from './components/cars/cars.component';
-import { LoginComponent, LoginDialogComponent } from './components/login/login.component';
+import { LoginComponent } from './components/login/login.component';
+import { LoginDialogComponent } from './components/login/login-dialog/login-dialog.component';
 
 // Services
 import { CarService } from './services/car/car.service';
@@ -41,6 +42,7 @@ import { BookingService } from './services/booking/booking.service';
 import { UserService } from './services/user/user.service';
 
 @NgModule({
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [AppComponent, CarsComponent, CarComponent, CarListComponent, LoginComponent, LoginDialogComponent],
     entryComponents: [LoginDialogComponent],
     imports: [
