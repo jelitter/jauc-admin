@@ -40,6 +40,7 @@ import { LoginDialogComponent } from './components/login/login-dialog/login-dial
 import { CarService } from './services/car/car.service';
 import { BookingService } from './services/booking/booking.service';
 import { UserService } from './services/user/user.service';
+import { MapService } from './services/map/map.service';
 
 @NgModule({
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -70,7 +71,7 @@ import { UserService } from './services/user/user.service';
         ReactiveFormsModule,
         ToastrModule.forRoot(),
     ],
-    providers: [Title, CarService, BookingService, UserService],
+    providers: [Title, CarService, BookingService, UserService, MapService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
