@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Car } from 'src/app/models/car';
 import { ToastrService } from 'ngx-toastr';
 import { CarService } from 'src/app/services/car/car.service';
 import { MapService } from 'src/app/services/map/map.service';
-
-import { Car } from 'src/app/models/car';
-import L from 'leaflet';
-import { environment } from './../../../../environments/environment';
 
 @Component({
     selector: 'jauc-car-list',
@@ -14,15 +11,10 @@ import { environment } from './../../../../environments/environment';
 })
 export class CarListComponent implements OnInit {
     carList: Car[];
-    // carMarkerList: Array<any>;
-    // map: any;
-    // icon: any;
 
     constructor(private carService: CarService, private toastr: ToastrService, private map: MapService) {}
 
     ngOnInit() {
-        // this.toastr.toastrConfig;
-
         this.map.initializeMap();
         this.carService
             .getCars()
@@ -35,18 +27,7 @@ export class CarListComponent implements OnInit {
                     this.carList.push(c as Car);
                 });
                 this.map.loadCars();
-
-                this.toastr.success(
-                    'Click on the <b>Edit</b> button on a car to show it on the map',
-                    'Welcome to the Admin Panel',
-                    {
-                        timeOut: 10000,
-                        enableHtml: true,
-                        progressBar: true,
-                        positionClass: 'toast-top-center',
-                        closeButton: true,
-                    }
-                );
+                this.welcomeToast();
             });
     }
 
@@ -69,5 +50,19 @@ export class CarListComponent implements OnInit {
             }
             this.map.center();
         }, 200);
+    }
+
+    welcomeToast() {
+        this.toastr.success(
+            'Click on the <b>Edit</b> button on a car to show it on the map',
+            'Welcome to the Admin Panel',
+            {
+                timeOut: 10000,
+                enableHtml: true,
+                progressBar: true,
+                positionClass: 'toast-top-center',
+                closeButton: true,
+            }
+        );
     }
 }

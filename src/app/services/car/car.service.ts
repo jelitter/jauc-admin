@@ -36,7 +36,6 @@ export class CarService {
         this.carList.update(car.$key, updatedCar);
     }
 
-    // deleteCar($key: string) {
     deleteCar(car: Car) {
         this.carList.remove(car.$key);
     }

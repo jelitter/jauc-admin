@@ -21,7 +21,6 @@ export class MapService implements OnInit {
 
     ngOnInit(): void {
         this.carMarkerList = [];
-        // this.loadCars();
     }
 
     loadCars() {
@@ -44,11 +43,7 @@ export class MapService implements OnInit {
 
     initializeMap() {
         const { mapboxKey } = environment.mapbox;
-
-        const shadowIcon = '/marker-shadow.png';
-
         this.icon = L.icon({
-            // iconUrl: '/assets/location.png',
             iconUrl: '/assets/car.png',
             iconSize: [32, 32],
             iconAnchor: [16, 16],
@@ -63,25 +58,12 @@ export class MapService implements OnInit {
         });
 
         L.tileLayer(url, {
-            // attribution:
-            //   'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            attribution:
+                'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             maxZoom: 18,
             id: 'mapbox.streets',
             accessToken: mapboxKey,
         }).addTo(this.map);
-
-        //   const mainPopup = L.popup({ autoClose: true })
-        //       .setLatLng([this.defaultLat, this.defaultLon])
-        //       .setContent(
-        //           `
-        //   <h4>Welcome to the Admin Panel</h4>
-        //   <p>Click on the <b>Edit</b> button on a car to show it on the map.
-        // `
-        //       )
-        //       .openOn(this.map);
-        //   setTimeout(() => {
-        //       mainPopup.closePopup();
-        //   }, 2000);
     }
 
     center() {
@@ -95,8 +77,6 @@ export class MapService implements OnInit {
                 c.marker.bindPopup(`<b>${c.car.name}</b><br>${c.car.plate}`);
                 c.marker.addTo(this.map);
             } else {
-                // c.marker.setLatLng(c.car.location.lat, c.car.location.lon);
-
                 c.marker.remove();
                 c.marker = L.marker([c.car.location.lat, c.car.location.lon], { icon: this.icon, riseOnHover: true });
                 console.log('marker moved');
@@ -107,6 +87,7 @@ export class MapService implements OnInit {
     openPopup(car: any): any {
         this.carMarkerList.find(cm => cm.car.$key === car.$key).marker.openPopup();
     }
+
     panTo(car: Car) {
         this.map.panTo([car.location.lat, car.location.lon]);
     }

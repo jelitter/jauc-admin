@@ -39,7 +39,6 @@ export class CarComponent implements OnInit {
             this.carService.updateCar(carForm.value);
             this.toastr.success('Car Updated', '🚗 Success!');
         }
-
         this.resetForm(carForm);
     }
 
