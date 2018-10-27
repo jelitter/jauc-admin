@@ -33,15 +33,15 @@ import { AppComponent } from './app.component';
 import { CarComponent } from './components/cars/car/car.component';
 import { CarListComponent } from './components/cars/car-list/car-list.component';
 import { CarsComponent } from './components/cars/cars.component';
-import { LoginComponent, LoginDialog } from './components/login/login.component';
+import { LoginComponent, LoginDialogComponent } from './components/login/login.component';
 
 // Services
 import { CarService } from './services/car/car.service';
 import { BookingService } from './services/booking/booking.service';
 
 @NgModule({
-    declarations: [AppComponent, CarsComponent, CarComponent, CarListComponent, LoginComponent, LoginDialog],
-    entryComponents: [LoginDialog],
+    declarations: [AppComponent, CarsComponent, CarComponent, CarListComponent, LoginComponent, LoginDialogComponent],
+    entryComponents: [LoginDialogComponent],
     imports: [
         AngularFireAuthModule,
         AngularFireDatabaseModule,

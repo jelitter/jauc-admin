@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
     ngOnInit() {}
 
     openDialog(): void {
-        const dialogRef = this.dialog.open(LoginDialog, {
+        const dialogRef = this.dialog.open(LoginDialogComponent, {
             data: { user: this.user },
         });
 
@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
     templateUrl: './dialog/login-dialog.html',
     styleUrls: ['./login.component.css'],
 })
-export class LoginDialog {
-    constructor(public dialogRef: MatDialogRef<LoginDialog>, @Inject(MAT_DIALOG_DATA) public data) {}
+export class LoginDialogComponent {
+    constructor(public dialogRef: MatDialogRef<LoginDialogComponent>, @Inject(MAT_DIALOG_DATA) public data) {}
 
     loginWithGoogle(): void {
         this.data.user.loginWithGoogle();
