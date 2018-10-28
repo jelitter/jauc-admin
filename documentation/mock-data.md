@@ -26,3 +26,28 @@ Therefore, another npm command can start up both at the same time.
 ```
  > $ npm run serve:mock
 ```
+
+### Add mock data
+
+To /mock/data.json add to the main object.
+```
+"my-url": {
+        "data": "something"
+    }
+```
+
+### IT DOESN'T WORK! :c
+
+1. Did you download the packages again?
+```
+ > $ npm i
+```
+
+2. `ng serve --proxy-config is invalid`!
+Yeah well, this is on Angular - don't ask me why...
+You can run each individual command in a separate shell like so:
+```
+ > $ npm run mock
+ >
+ > $ ng serve --proxy-config ./mock/proxy.conf.json
+```
