@@ -21,7 +21,7 @@ When you run the following command, the server will start serving the JSON on ht
  > $ npm run mock
 ```
 
-However, that is usually not quite as helpful as we need to tell Angular to check this path.
+However, that is usually not quite as helpful as we need to tell Angular to check this other port :3000
 Therefore, another npm command can start up both at the same time.
 ```
  > $ npm run serve:mock

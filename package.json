@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "mock": "./node_modules/.bin/json-server --watch ./mock/data.json",
-    "serve:proxy": "ng serve --proxy-config ./mock/proxy.conf.json",
+    "serve:proxy": "ng serve --proxy-config ./mock/proxy.conf.json",
     "serve:mock": "./node_modules/.bin/concurrently --kill-others \"npm run mock\" \"npm run serve:proxy\""
   },
   "engines": {
