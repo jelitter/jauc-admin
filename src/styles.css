@@ -10,6 +10,12 @@ body {
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
+
+  --color-prim: #79d8bf;
+  --color-sec: #79cccd;
+  --color-confirm: #65c97d;
+  --color-cancel: #BC3333;
+  --color-muted: #527f7f;
 }
 
 #track-map {
