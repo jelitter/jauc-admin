@@ -1,17 +1,8 @@
 {
     "extends": "../tslint.json",
     "rules": {
-        "directive-selector": [
-            true,
-            "attribute",
-            "jauc",
-            "camelCase"
-        ],
-        "component-selector": [
-            true,
-            "element",
-            "jauc",
-            "kebab-case"
-        ]
+        "directive-selector": [true, "attribute", "jauc", "camelCase"],
+        "component-selector": [true, "element", "jauc", "kebab-case"],
+        "indent": [true, "spaces", 4]
     }
 }
