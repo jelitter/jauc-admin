@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BookingService } from './booking.service';
+import { UserService } from './user.service';
 
-describe('BookingService', () => {
+describe('UserService', () => {
     beforeEach(() => TestBed.configureTestingModule({}));
 
     it('should be created', () => {
         // TODO Change assertion and uncomment when ready to test
-        // const service: BookingService = TestBed.get(BookingService);
+        // const service: UserService = TestBed.get(UserService);
         // expect(service).toBeTruthy();
         expect(true).toBeTruthy();
     });
