@@ -1,0 +1,20 @@
+<div id="login-menu"
+     mat-dialog-actions>
+  <span>
+    <button [mat-dialog-close]
+            class="btn btn-login btn-primary btn-lg"
+            color="accent"
+            (click)="data.user.loginWithGoogle()">
+      Login with Google
+    </button>
+  </span>
+  <span><button class="btn btn-login btn-primary btn-lg"
+            color="accent"
+            disabled>Login with Facebook</button></span>
+  <span><button class="btn btn-login btn-primary btn-lg"
+            color="accent"
+            disabled>Login with Twitter</button></span>
+  <span><button class="btn btn-login btn-primary btn-lg"
+            color="accent"
+            disabled>Login with a stick</button></span>
+</div>

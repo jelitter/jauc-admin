@@ -1,17 +1,10 @@
-<!-- <nav class="navbar navbar-dark bg-dark">
-  <a href="" class="navbar-brand">ngCars</a>
-</nav> -->
-
 <mat-toolbar color="primary">
   <h1 id="page-title">{{title}}</h1>
   <span class="example-fill-remaining-space"></span>
-  <span>
-    <mat-icon class="example-tab-icon">account_circle</mat-icon>
-    <span>Admin</span>
-  </span>
+  <jauc-login></jauc-login>
 </mat-toolbar>
 
-<mat-tab-group color="primary">
+<mat-tab-group color="primary" *ngIf="user.uid | async as uid">
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">directions_car</mat-icon>
@@ -20,7 +13,7 @@
     <jauc-cars></jauc-cars>
   </mat-tab>
 
-  <mat-tab>
+  <!-- <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">event_note</mat-icon>
       Bookings
@@ -75,7 +68,7 @@
         <button mat-button>SHARE</button>
       </mat-card-actions>
     </mat-card>
-  </mat-tab>
+  </mat-tab> -->
 </mat-tab-group>
 
 <!-- <jauc-cars></jauc-cars> -->
