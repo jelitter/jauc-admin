@@ -1,5 +1,8 @@
 <div id="login-menu"
      mat-dialog-actions>
+  <h3 class="btn-login">
+    Choose a login method
+  </h3>
   <span>
     <button [mat-dialog-close]
             class="btn btn-login btn-primary btn-lg"
@@ -8,13 +11,26 @@
       Login with Google
     </button>
   </span>
-  <span><button class="btn btn-login btn-primary btn-lg"
+  <span>
+    <button [mat-dialog-close]
+            class="btn btn-login btn-secondary btn-lg"
             color="accent"
-            disabled>Login with Facebook</button></span>
-  <span><button class="btn btn-login btn-primary btn-lg"
+            disabled>
+      Login with email
+    </button>
+  </span>
+  <span>
+    <button class="btn btn-login btn-secondary btn-lg"
             color="accent"
-            disabled>Login with Twitter</button></span>
-  <span><button class="btn btn-login btn-primary btn-lg"
+            disabled>
+      Login with Facebook
+    </button>
+  </span>
+  <span>
+    <button class="btn btn-login btn-secondary btn-lg"
             color="accent"
-            disabled>Login with a stick</button></span>
+            disabled>
+      Login with Twitter
+    </button>
+  </span>
 </div>
