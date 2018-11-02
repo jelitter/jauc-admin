@@ -1,7 +1,18 @@
 #login-menu {
-  align-items: stretch;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
+    align-items: stretch;
+    padding: 15px;
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    grid-gap: 15px;
+    max-height: calc(100vh - 3em);
+    height: auto;
+    margin-bottom: 0px;
+}
+
+.btn-login {
+    width: 100%;
+}
+
+.btn-login:disabled {
+    cursor: not-allowed;
 }
