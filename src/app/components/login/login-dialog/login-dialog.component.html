@@ -1,20 +1,17 @@
-<div id="login-menu"
-     mat-dialog-actions>
+<div id="login-menu" mat-dialog-actions>
+  <span id="login-menu__user-image">
+    <img src="">
+  </span>
   <span>
     <button [mat-dialog-close]
-            class="btn btn-login btn-primary btn-lg"
-            color="accent"
+            class="btn btn-login btn-lg"
             (click)="data.user.loginWithGoogle()">
       Login with Google
     </button>
   </span>
-  <span><button class="btn btn-login btn-primary btn-lg"
-            color="accent"
-            disabled>Login with Facebook</button></span>
-  <span><button class="btn btn-login btn-primary btn-lg"
-            color="accent"
-            disabled>Login with Twitter</button></span>
-  <span><button class="btn btn-login btn-primary btn-lg"
-            color="accent"
-            disabled>Login with a stick</button></span>
+  <span>
+    <button class="btn btn-login btn-lg" disabled>
+      Login with Email
+    </button>
+  </span>
 </div>

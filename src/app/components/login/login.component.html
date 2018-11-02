@@ -38,8 +38,6 @@
 </span>
 <ng-template #login>
   <span *ngIf="!uid">
-    <button class="btn btn-primary ml-2"
-            color="accent"
-            (click)="openDialog()">Login</button>
+    <a (click)="openDialog()">Login</a>
   </span>
 </ng-template>

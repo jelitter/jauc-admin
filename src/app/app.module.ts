@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 // Angular Material
 import { MatButtonModule } from '@angular/material/button';
@@ -35,43 +36,75 @@ import { CarListComponent } from './components/cars/car-list/car-list.component'
 import { CarsComponent } from './components/cars/cars.component';
 import { LoginComponent } from './components/login/login.component';
 import { LoginDialogComponent } from './components/login/login-dialog/login-dialog.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 // Services
 import { CarService } from './services/car/car.service';
 import { BookingService } from './services/booking/booking.service';
 import { UserService } from './services/user/user.service';
 import { MapService } from './services/map/map.service';
+import { HeaderAreaComponent } from './header-area/header-area.component';
+import { CarListTemplateComponent } from './components/car-list-template/car-list-template.component';
+import { LoginTemplateComponent } from './components/login-template/login-template.component';
+
+const appRoutes: Routes = [
+  { path: 'login', component: LoginTemplateComponent },
+  { path: 'vehicles/:id', component: CarComponent },
+  {
+    path: 'vehicles',
+    component: CarListTemplateComponent,
+    data: { title: 'Car List' },
+  },
+  {
+    path: '',
+    redirectTo: '/vehicles',
+    pathMatch: 'full',
+  },
+  { path: '**', component: PageNotFoundComponent },
+];
 
 @NgModule({
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    declarations: [AppComponent, CarsComponent, CarComponent, CarListComponent, LoginComponent, LoginDialogComponent],
-    entryComponents: [LoginDialogComponent],
-    imports: [
-        AngularFireAuthModule,
-        AngularFireDatabaseModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        BrowserAnimationsModule,
-        BrowserModule,
-        FormsModule,
-        MatButtonModule,
-        MatCardModule,
-        MatChipsModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        MatGridListModule,
-        MatIconModule,
-        MatInputModule,
-        MatMenuModule,
-        MatPaginatorModule,
-        MatSelectModule,
-        MatSortModule,
-        MatTableModule,
-        MatTabsModule,
-        MatToolbarModule,
-        ReactiveFormsModule,
-        ToastrModule.forRoot(),
-    ],
-    providers: [Title, CarService, BookingService, UserService, MapService],
-    bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  declarations: [
+    AppComponent,
+    CarsComponent,
+    CarComponent,
+    CarListComponent,
+    LoginComponent,
+    LoginDialogComponent,
+    PageNotFoundComponent,
+    HeaderAreaComponent,
+    CarListTemplateComponent,
+    LoginTemplateComponent,
+  ],
+  entryComponents: [LoginDialogComponent],
+  imports: [
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    BrowserAnimationsModule,
+    BrowserModule,
+    FormsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatChipsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    RouterModule.forRoot(appRoutes),
+  ],
+  providers: [Title, CarService, BookingService, UserService, MapService],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

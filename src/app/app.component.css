@@ -1,5 +1,35 @@
-.example-fill-remaining-space {
-  /* This fills the remaining space, by using flexbox. 
-     Every toolbar row uses a flexbox row layout. */
-  flex: 1 1 auto;
+.page-wrapper {
+  width: 100%;
+  height: 100%;
+
+  background: var(--color-prim);
+  background: -moz-linear-gradient(-45deg, var(--color-prim) 0%, var(--color-sec) 100%);
+  background: -webkit-linear-gradient(-45deg, var(--color-prim) 0%, var(--color-sec) 100%);
+  background: linear-gradient(135deg, var(--color-prim) 0%, var(--color-sec) 100%);
+}
+
+/*
+ * Header
+ */
+header {
+  display: flex;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+}
+header:nth-child(n) {
+  justify-content: space-between;
+  padding: 2em;
+}
+/*
+ * Header Typography
+ */
+header h1,
+header h2,
+header h3,
+header h4 {
+  font-size: 1.4em;
+  margin: 0;
+}
+header * a {
+  font-size: 1.4em;
 }
