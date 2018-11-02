@@ -32,11 +32,15 @@ export class CarComponent implements OnInit {
     }
 
     onSubmit(carForm: NgForm) {
+        const { key } = carForm.value;
+
         if (carForm.value.$key == null) {
             this.carService.addCar(carForm.value);
             this.toastr.success('Car Added', '🚗 Success!');
         } else {
-            this.carService.updateCar(carForm.value);
+            const car = this.carService.updateCar(carForm.value);
+            this.mapService.panTo(car);
+            this.mapService.openPopup(car);
             this.toastr.success('Car Updated', '🚗 Success!');
         }
         this.resetForm(carForm);

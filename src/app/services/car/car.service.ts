@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import {
+    AngularFireDatabase,
+    AngularFireList,
+    DatabaseSnapshot,
+    AngularFireAction,
+    AngularFireObject,
+} from '@angular/fire/database';
 import { Car } from '../../models/car';
 import { Location } from '../../models/location';
 import 'rxjs/add/operator/take';
 import { randomCorkCoords } from '../../shared/js/shared';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class CarService {
@@ -26,7 +33,7 @@ export class CarService {
         });
     }
 
-    updateCar(car: Car) {
+    updateCar(car: Car): Car {
         const { lat, lon } = randomCorkCoords();
         const updatedCar = {
             name: car.name,
@@ -34,6 +41,7 @@ export class CarService {
             location: new Location(lat, lon),
         };
         this.carList.update(car.$key, updatedCar);
+        return { $key: car.$key, ...updatedCar };
     }
 
     deleteCar(car: Car) {

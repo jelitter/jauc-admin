@@ -14,9 +14,9 @@ export class CarListComponent implements OnInit {
 
     constructor(private carService: CarService, private toastr: ToastrService, private map: MapService) {}
 
-    ngOnInit() {
+    async ngOnInit() {
         this.map.initializeMap();
-        this.carService
+        await this.carService
             .getCars()
             .snapshotChanges()
             .subscribe(item => {
@@ -26,15 +26,15 @@ export class CarListComponent implements OnInit {
                     c['$key'] = element.key;
                     this.carList.push(c as Car);
                 });
-                this.map.loadCars();
-                this.welcomeToast();
             });
+        await this.map.loadCars();
+        await this.welcomeToast();
     }
 
     onEdit(car: Car) {
         this.carService.selectedCar = Object.assign({}, car); // disabling double data binding
-        this.map.panTo(this.carService.selectedCar);
-        this.map.openPopup(this.carService.selectedCar);
+        this.map.panTo(car);
+        this.map.openPopup(car);
     }
 
     onDelete(car: Car) {
@@ -42,6 +42,7 @@ export class CarListComponent implements OnInit {
         this.map.openPopup(car);
         setTimeout(() => {
             if (confirm(`💀 Are you sure to remove '${car.name}'? `)) {
+                this.map.closePopup(car);
                 this.carService.deleteCar(car);
                 this.map.removeCar(car);
                 this.toastr.success('Car removed', '🚗 Success!');
