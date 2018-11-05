@@ -1,11 +1,13 @@
-<mat-card id="login-form">
-  <span id="login-form__user-image-container">
+<mat-card id="login-form" class="mat-elevation-z4">
+
+  <p>Well hello there, glad you found your way here.</p>
+
+  <span class="login-form__user-image-container">
     <img src="https://picsum.photos/200" class="login-form__user-image">
   </span>
+
   <span>
-    <button [mat-dialog-close]
-            class="btn btn-login btn-lg"
-            (click)="data.user.loginWithGoogle()">
+    <button class="btn btn-login btn-lg" (click)="loginWithGoogle()">
       Login with Google
     </button>
   </span>
@@ -14,4 +16,5 @@
       Login with Email
     </button>
   </span>
+
 </mat-card>

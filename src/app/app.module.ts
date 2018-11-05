@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
-import { ActivatedRoute, RouterModule, Routes } from '@angular/router';
 
 // Angular Material
 import { MatButtonModule } from '@angular/material/button';
@@ -28,6 +27,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 // Components
 import { AppComponent } from './app.component';
@@ -48,15 +48,8 @@ import { BookingService } from './services/booking/booking.service';
 import { UserService } from './services/user/user.service';
 import { MapService } from './services/map/map.service';
 
-const appRoutes: Routes = [
-  { path: 'login', component: LoginTemplateComponent },
-  { path: 'vehicles', component: CarListTemplateComponent, children: [
-    { path: ':id', component: CarComponent },
-    { path: ':id/edit', component: CarEditComponent },
-  ]},
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent },
-];
+// Router
+import { RoutesModule } from './routes.module';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -64,6 +57,7 @@ const appRoutes: Routes = [
     AppComponent,
     CarsComponent,
     CarComponent,
+    CarEditComponent,
     CarListComponent,
     LoginComponent,
     LoginDialogComponent,
@@ -71,7 +65,6 @@ const appRoutes: Routes = [
     HeaderAreaComponent,
     CarListTemplateComponent,
     LoginTemplateComponent,
-    CarEditComponent,
   ],
   entryComponents: [LoginDialogComponent],
   imports: [
@@ -97,10 +90,17 @@ const appRoutes: Routes = [
     MatTabsModule,
     MatToolbarModule,
     ReactiveFormsModule,
+    RoutesModule,
     ToastrModule.forRoot(),
-    RouterModule.forRoot(appRoutes, { enableTracing: true }), // DEBUG: Tracing
   ],
-  providers: [Title, CarService, BookingService, UserService, MapService],
+  providers: [
+    Title,
+    CarService,
+    BookingService,
+    UserService,
+    MapService,
+    AngularFirestore,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
-import { MatDialog } from '@angular/material';
-import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 
 @Component({
     selector: 'jauc-nav-anchor-login',
@@ -9,17 +7,8 @@ import { LoginDialogComponent } from './login-dialog/login-dialog.component';
     styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-    constructor(public user: UserService, public dialog: MatDialog) {}
+    constructor(public user: UserService) {}
 
     ngOnInit() {}
 
-    openDialog(): void {
-        const dialogRef = this.dialog.open(LoginDialogComponent, {
-            data: { user: this.user },
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
-        });
-    }
 }

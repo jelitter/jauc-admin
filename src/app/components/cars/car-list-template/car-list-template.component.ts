@@ -1,5 +1,7 @@
 import { UserService } from 'src/app/services/user/user.service';
+import { User } from 'src/app/models/user';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'jauc-car-list-template',
@@ -7,10 +9,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./car-list-template.component.css'],
 })
 export class CarListTemplateComponent implements OnInit {
-  uid = null;
+  user: Observable<User>;
 
   constructor(userService: UserService) {
-    this.uid = userService.uid;
+    this.user = userService.user;
   }
 
   ngOnInit() {}

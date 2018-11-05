@@ -1,5 +1,7 @@
+import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'jauc-login-template',
@@ -8,10 +10,10 @@ import { Component } from '@angular/core';
 })
 export class LoginTemplateComponent {
 
-  uid = null;
+  user: Observable<User>;
 
   constructor(userService: UserService) {
-    this.uid = userService.uid;
+    this.user = userService.user;
   }
 
 }
