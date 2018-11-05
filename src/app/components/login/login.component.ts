@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 
 @Component({
-    selector: 'nav-anchor-login',
+    selector: 'jauc-nav-anchor-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css'],
 })

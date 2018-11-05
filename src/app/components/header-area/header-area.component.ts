@@ -3,7 +3,7 @@ import { UserService } from 'src/app/services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'header-area',
+  selector: 'jauc-header-area',
   templateUrl: './header-area.component.html',
   styleUrls: ['./header-area.component.css']
 })

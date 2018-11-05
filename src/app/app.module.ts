@@ -98,7 +98,7 @@ const appRoutes: Routes = [
     MatToolbarModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    RouterModule.forRoot(appRoutes, { enableTracing: true }), //DEBUG: Tracing
+    RouterModule.forRoot(appRoutes, { enableTracing: true }), // DEBUG: Tracing
   ],
   providers: [Title, CarService, BookingService, UserService, MapService],
   bootstrap: [AppComponent],
