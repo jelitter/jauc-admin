@@ -3,19 +3,37 @@
 @import '../node_modules/leaflet/dist/leaflet.css';
 @import '../node_modules/ngx-toastr/toastr.css';
 
+/*
+ * Typography
+ */
 html,
 body {
-  height: 100%;
+  width: 100%;
+  font-size: 16px;
 }
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
 
   --color-prim: #79cccd;
   --color-sec: #6acf96;
   --color-confirm: #65c97d;
   --color-cancel: #BC3333;
   --color-muted: #527f7f;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', serif;
+}
+h1 { font-size: 3em; }
+h2 { font-size: 2.4em; }
+h3 { font-size: 2em; }
+h4 { font-size: 1.6em; }
+h5 { font-size: 1.4em; }
+h6 { font-size: 1.2em; }
+
+p, a, span {
+  font-family: 'Roboto', sans-serif;
 }
 
 .background-primary {

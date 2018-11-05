@@ -5,8 +5,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
+import { ActivatedRoute, RouterModule, Routes } from '@angular/router';
 
 // Angular Material
 import { MatButtonModule } from '@angular/material/button';
@@ -32,10 +32,14 @@ import { AngularFireModule } from '@angular/fire';
 // Components
 import { AppComponent } from './app.component';
 import { CarComponent } from './components/cars/car/car.component';
-import { CarListComponent } from './components/cars/car-list/car-list.component';
 import { CarsComponent } from './components/cars/cars.component';
+import { CarListComponent } from './components/cars/car-list/car-list.component';
+import { CarListTemplateComponent } from './components/cars/car-list-template/car-list-template.component';
+import { CarEditComponent } from './components/cars/car-edit/car-edit.component';
+import { HeaderAreaComponent } from './components/header-area/header-area.component';
 import { LoginComponent } from './components/login/login.component';
 import { LoginDialogComponent } from './components/login/login-dialog/login-dialog.component';
+import { LoginTemplateComponent } from './components/login/login-template/login-template.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 // Services
@@ -43,23 +47,14 @@ import { CarService } from './services/car/car.service';
 import { BookingService } from './services/booking/booking.service';
 import { UserService } from './services/user/user.service';
 import { MapService } from './services/map/map.service';
-import { HeaderAreaComponent } from './header-area/header-area.component';
-import { CarListTemplateComponent } from './components/car-list-template/car-list-template.component';
-import { LoginTemplateComponent } from './components/login-template/login-template.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginTemplateComponent },
-  { path: 'vehicles/:id', component: CarComponent },
-  {
-    path: 'vehicles',
-    component: CarListTemplateComponent,
-    data: { title: 'Car List' },
-  },
-  {
-    path: '',
-    redirectTo: '/vehicles',
-    pathMatch: 'full',
-  },
+  { path: 'vehicles', component: CarListTemplateComponent, children: [
+    { path: ':id', component: CarComponent },
+    { path: ':id/edit', component: CarEditComponent },
+  ]},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];
 
@@ -76,6 +71,7 @@ const appRoutes: Routes = [
     HeaderAreaComponent,
     CarListTemplateComponent,
     LoginTemplateComponent,
+    CarEditComponent,
   ],
   entryComponents: [LoginDialogComponent],
   imports: [
@@ -102,7 +98,7 @@ const appRoutes: Routes = [
     MatToolbarModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { enableTracing: true }), //DEBUG: Tracing
   ],
   providers: [Title, CarService, BookingService, UserService, MapService],
   bootstrap: [AppComponent],

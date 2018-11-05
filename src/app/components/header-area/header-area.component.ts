@@ -1,15 +1,18 @@
+import { Title } from '@angular/platform-browser';
+import { UserService } from 'src/app/services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'jauc-header-area',
+  selector: 'header-area',
   templateUrl: './header-area.component.html',
   styleUrls: ['./header-area.component.css']
 })
-export class HeaderAreaComponent implements OnInit {
+export class HeaderAreaComponent {
 
-  constructor() { }
+  title = 'JAUC Admin Panel';
 
-  ngOnInit() {
+  constructor(public user: UserService, private titleService: Title) {
+    this.titleService.setTitle('JAUC Admin Panel');
   }
 
 }

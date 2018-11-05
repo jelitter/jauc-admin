@@ -1,20 +1,27 @@
 <div class="page-wrapper">
-  <header>
-    <h1>{{title}}</h1>
-    <jauc-login></jauc-login>
-  </header>
-
-  <router-outlet></router-outlet>
-
-  <mat-tab-group *ngIf="user.uid | async as uid">
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <mat-icon class="example-tab-icon">directions_car</mat-icon>
-        Cars
-      </ng-template>
-      <jauc-cars></jauc-cars>
-    </mat-tab>
-  </mat-tab-group>
-
+  <header-area></header-area>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
 </div>
 
+<footer>
+  <section>
+    <h5>Autobots</h5>
+    <p>Here is a description of what we do around here.</p>
+  </section>
+
+  <section>
+    <h5>Customer questions?</h5>
+    <p>Direct them to our <a>knowledge base</a>.</p>
+  </section>
+
+  <section>
+    <h5>Social Links here</h5>
+    <ul>
+      <li>Facebook</li>
+      <li>Twitter</li>
+      <li>Instagram</li>
+    </ul>
+  </section>
+</footer>

@@ -1,17 +1,17 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { UserService } from 'src/app/services/user/user.service';
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'jauc-login-dialog',
+    selector: 'login-form',
     templateUrl: './login-dialog.component.html',
     styleUrls: ['./login-dialog.component.css'],
 })
-export class LoginDialogComponent implements OnInit {
-    constructor(public dialogRef: MatDialogRef<LoginDialogComponent>, @Inject(MAT_DIALOG_DATA) public data) {}
-    ngOnInit(): void {}
+export class LoginDialogComponent {
+    constructor(userService: UserService) {}
+
+    service = UserService;
 
     loginWithGoogle(): void {
-        this.data.user.loginWithGoogle();
-        // this.dialogRef.close();
+        this.service.loginWithGoogle();
     }
 }

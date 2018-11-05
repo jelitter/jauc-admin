@@ -12,7 +12,7 @@ export class UserService {
     displayName;
     photoURL;
 
-    uid = this.afAuth.authState.pipe(
+    uid: Observable<String> = this.afAuth.authState.pipe(
         map(authState => {
             if (!authState) {
                 return null;

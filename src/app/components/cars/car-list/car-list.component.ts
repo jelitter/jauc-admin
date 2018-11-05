@@ -5,7 +5,7 @@ import { CarService } from 'src/app/services/car/car.service';
 import { MapService } from 'src/app/services/map/map.service';
 
 @Component({
-    selector: 'jauc-car-list',
+    selector: 'car-list',
     templateUrl: './car-list.component.html',
     styleUrls: ['./car-list.component.css'],
 })

@@ -1,0 +1,12 @@
+<h1>Car overview</h1>
+
+<mat-tab-group *ngIf="user.uid | async as uid">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">directions_car</mat-icon>
+            Cars
+        </ng-template>
+        <car-list></car-list>
+        <jauc-cars></jauc-cars>
+    </mat-tab>
+</mat-tab-group>
