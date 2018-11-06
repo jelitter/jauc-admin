@@ -10,10 +10,11 @@ import { Component, OnInit } from '@angular/core';
 export class LoginDialogComponent implements OnInit {
     service;
 
-    constructor(userService: UserService) {}
+    constructor(userService: UserService) {
+        this.service = userService;
+    }
 
     ngOnInit() {
-        this.service = UserService;
     }
 
     loginWithGoogle() {
