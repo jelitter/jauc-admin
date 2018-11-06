@@ -8,15 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class LoginDialogComponent implements OnInit {
-    user = null;
+    service;
 
-    constructor(userService: UserService) {
-        this.user = UserService;
+    constructor(userService: UserService) {}
+
+    ngOnInit() {
+        this.service = UserService;
     }
 
-    loginWithGoogle(): void {
-        this.user.loginWithGoogle();
+    loginWithGoogle() {
+        this.service.loginWithGoogle();
     }
-
-    ngOnInit() {}
 }

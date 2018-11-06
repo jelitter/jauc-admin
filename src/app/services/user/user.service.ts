@@ -11,8 +11,8 @@ import { User } from 'src/app/models/user';
   providedIn: 'root',
 })
 export class UserService {
-  user: Observable<User | null>;
-  error: String = null; // state is nice to reflect in a UI
+  public user: Observable<User | null>;
+  public error: String = null; // state is nice to reflect in a UI
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -20,7 +20,7 @@ export class UserService {
     private router: Router) {
         this.user = this.afAuth.authState.pipe(
             switchMap(user => {
-            if (user) {
+            if(user) {
                 return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
             } else {
                 return observableOf(null);
@@ -30,15 +30,15 @@ export class UserService {
     );
   }
 
-  loginWithGoogle() {
+  public loginWithGoogle() {
     const googleProvider = new auth.GoogleAuthProvider();
     this.afAuth.auth
       .signInWithPopup(googleProvider)
       .then(_ => this.goToRoute('/vehicles'))
-      .catch(error => (this.error = error));
+      .catch(error => this.error = error);
   }
 
-  logout() {
+  public logout() {
     this.afAuth.auth
       .signOut()
       .then(this.user = null)
@@ -46,7 +46,7 @@ export class UserService {
       .catch(error => (this.error = error));
   }
 
-  goToRoute(path) {
+  private goToRoute(path) {
     this.router.navigateByUrl(path);
   }
 }
