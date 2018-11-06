@@ -20,7 +20,7 @@ export class UserService {
     private router: Router) {
         this.user = this.afAuth.authState.pipe(
             switchMap(user => {
-            if(user) {
+            if (user) {
                 return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
             } else {
                 return observableOf(null);
