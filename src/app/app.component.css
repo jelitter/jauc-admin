@@ -19,7 +19,7 @@ main {
 
 footer {
   display: flex;
-  background: var(--color-muted);
+  background: var(--color-prim-muted);
   color: #FFF;
   justify-content: space-between;
 

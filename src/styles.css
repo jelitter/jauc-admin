@@ -16,10 +16,11 @@ body {
   margin: 0;
 
   --color-prim: #79cccd;
+  --color-prim-light: #e0f2f1;
+  --color-prim-muted: #527f7f;
   --color-sec: #6acf96;
   --color-confirm: #65c97d;
   --color-cancel: #BC3333;
-  --color-muted: #527f7f;
 }
 
 
@@ -45,8 +46,7 @@ button {
   background: var(--color-sec);
   padding: 1em;
   margin: 1em;
-  width: 80%;
-  max-width: 240px;
+  width: 240px;
 }
 
 /*

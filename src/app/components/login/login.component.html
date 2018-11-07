@@ -1,12 +1,13 @@
-<span *ngIf="user.uid | async as uid; else login">
-  <small class="badge badge-sm mr-2" *ngIf="user.isAdmin | async">(admin)</small>
-  <span *ngIf="user.displayName as displayName" class="mr-2">
+<span *ngIf="userService.authenticated; else login">
+  <small class="badge badge-sm mr-2" *ngIf="userService.currentUser.isAdmin | async">(admin)</small>
+  <span class="mr-2">
 
-    <span class="m-2">{{ displayName }}</span>
-    <!-- <span class="m-2"><small>{{ uid }}</small></span> -->
+    <span>busted</span>
+    <span class="m-2">{{ user.firstName }}</span>
+    <span class="m-2"><small>{{ user.uid }}</small></span>
 
   </span>
-  <span *ngIf="user.photoURL as photoURL; else defaultPic" class="m-2">
+  <span *ngIf="userService.currentUser.photoURL as photoURL; else defaultPic" class="m-2">
     <a mat-icon-button [matMenuTriggerFor]="menu">
       <img [src]="photoURL" alt="" class="figure-img img-fluid rounded">
     </a>
@@ -21,14 +22,12 @@
       <mat-icon>perm_identity</mat-icon>
       <span>Profile</span>
     </button>
-    <button mat-menu-item (click)="user.logout()">
+    <button mat-menu-item (click)="logout()">
       <mat-icon>power_settings_new</mat-icon>
       <span>Logout</span>
     </button>
   </mat-menu>
 </span>
 <ng-template #login>
-  <span *ngIf="!uid">
-    <a routerLink="/login" routerLinkActive="active">Login</a>
-  </span>
+  <a routerLink="/login" routerLinkActive="active">Login</a>
 </ng-template>

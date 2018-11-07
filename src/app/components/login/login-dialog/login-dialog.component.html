@@ -1,18 +1,26 @@
 <mat-card id="login-form" class="mat-elevation-z4">
+  <span *ngIf="userService.currentUser | async as user">
+      <h3>Welcome back {{user.displayName}}!</h3>
 
-  <p>Well hello there, glad you found your way here.</p>
+  </span>
+
+  <h3>Hi there!</h3>
+  <p>
+    We don't recognise you being here before.<br>
+    Please allow us to create an account for you by logging in with Google.
+  </p>
 
   <span class="login-form__user-image-container">
-    <img src="https://picsum.photos/200" class="login-form__user-image">
+    <img src="" class="login-form__user-image">
   </span>
 
   <span>
-    <button class="btn btn-login btn-lg" (click)="loginWithGoogle()">
+    <button matRipple (click)="loginWithGoogle()">
       Login with Google
     </button>
   </span>
   <span>
-    <button class="btn btn-login btn-lg" disabled>
+    <button disabled>
       Login with Email
     </button>
   </span>

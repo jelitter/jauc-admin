@@ -1,6 +1,5 @@
-import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -8,12 +7,10 @@ import { Observable } from 'rxjs';
   templateUrl: './login-template.component.html',
   styleUrls: ['./login-template.component.css']
 })
-export class LoginTemplateComponent {
+export class LoginTemplateComponent implements OnInit {
 
-  user: Observable<User>;
+  constructor(private userService: UserService) {}
 
-  constructor(userService: UserService) {
-    this.user = userService.user;
+  ngOnInit() {
   }
-
 }

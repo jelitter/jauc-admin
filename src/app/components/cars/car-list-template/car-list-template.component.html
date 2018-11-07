@@ -1,6 +1,11 @@
 <h1>Car overview</h1>
 
-<mat-tab-group *ngIf="user.uid | async as uid">
+<div *ngIf="userService.authenticated | async">
+    User is here. <br>
+    {{userService.currentUser.email}}
+</div>
+
+<mat-tab-group *ngIf="user$ | async as user">
     <mat-tab>
         <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">directions_car</mat-icon>Cars
