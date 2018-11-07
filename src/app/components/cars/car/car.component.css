@@ -1,0 +1,9 @@
+#form-and-map {
+    display: grid;
+    grid-template-rows: auto 360px;
+    grid-gap: 1em;
+}
+
+/* #form-and-map:nth-child(1) {
+    padding: 0 20% 0 20%;
+} */

@@ -32,6 +32,7 @@ export class CarListComponent implements OnInit {
     }
 
     onEdit(car: Car) {
+        this.map.closePopup(this.carService.selectedCar);
         this.carService.selectedCar = Object.assign({}, car); // disabling double data binding
         this.map.panTo(this.carService.selectedCar);
         this.map.openPopup(this.carService.selectedCar);
