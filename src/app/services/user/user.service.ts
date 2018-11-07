@@ -13,7 +13,7 @@ export class UserService {
   error: Object = null;
 
   constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router) {
-    afAuth.auth.onAuthStateChanged(auth => (this.authentication = auth));
+    afAuth.auth.onAuthStateChanged(authentication => (this.authentication = authentication));
   }
 
   get authenticated(): boolean {
