@@ -32,7 +32,10 @@ export class MapService implements OnInit {
                     const car: Car = <Car>element.payload.toJSON();
                     car['$key'] = element.key;
 
-                    let marker = L.marker([car.location.lat, car.location.lon], { icon: this.icon, riseOnHover: true });
+                    const marker = L.marker([car.location.lat, car.location.lon], {
+                        icon: this.icon,
+                        riseOnHover: true,
+                    });
                     marker.bindPopup(`<b>${car.name}</b><br>${car.plate}`);
                     marker.addTo(this.map);
 
@@ -106,14 +109,14 @@ export class MapService implements OnInit {
     }
 
     openPopup(car: Car): any {
-        let foundCar = this.carMarkerList.find(cm => cm.car.$key === car.$key);
+        const foundCar = this.carMarkerList.find(cm => cm.car.$key === car.$key);
         if (foundCar) {
             foundCar.marker.openPopup();
         }
     }
 
     closePopup(car: Car): any {
-        let foundCar = this.carMarkerList.find(cm => cm.car.$key === car.$key);
+        const foundCar = this.carMarkerList.find(cm => cm.car.$key === car.$key);
         if (foundCar) {
             foundCar.marker.remove();
         }
