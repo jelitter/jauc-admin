@@ -10,7 +10,7 @@ import { auth, User } from 'firebase';
 })
 export class UserService {
   user: Observable<User> = this.currentUser;
-  initialised: boolean = false;
+  initialised = false;
   error: Object = null;
 
   constructor(private afAuth: AngularFireAuth, private router: Router) {}
@@ -36,7 +36,7 @@ export class UserService {
   }
 
   isAuthenticated() {
-    return this.afAuth.authState.pipe(first()).toPromise()
+    return this.afAuth.authState.pipe(first()).toPromise();
   }
   private async loadState() {
     const userCred = await this.isAuthenticated();
