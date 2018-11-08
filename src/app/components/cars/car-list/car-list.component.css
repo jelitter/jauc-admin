@@ -1,28 +1,35 @@
 .table td.fit,
 .table th.fit {
-  white-space: nowrap;
-  width: 1%;
+    white-space: nowrap;
+    width: 1%;
 }
 
 td {
-  margin: 0;
-  vertical-align: middle;
+    margin: 0;
+    vertical-align: middle;
 }
 
 td .location-badge {
-  border: solid 1px lightgrey;
-  padding: 4px 8px;
-  font-family: monospace;
-  text-align: center;
+    border: solid 1px lightgrey;
+    padding: 4px 8px;
+    font-family: monospace;
+    text-align: center;
+}
+
+td.text-center div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 4px;
 }
 
 td.locs {
-  border-bottom: 0;
-  border-left: 0;
-  border-right: 0;
-  padding: 10px; 
-  vertical-align: middle;
-  display: grid;
-  grid-template-columns:120px 120px auto;
-  grid-gap: 10px;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+    padding: 10px;
+    vertical-align: middle;
+    display: grid;
+    grid-template-columns: 120px 120px auto;
+    grid-gap: 10px;
+    font-size: 0.8em;
 }
