@@ -1,28 +1,37 @@
 <mat-card id="login-form" class="mat-elevation-z4">
-  <span *ngIf="userService.currentUser | async as user">
-      <h3>Welcome back {{user.displayName}}!</h3>
+  <span *ngIf="(userService.user | async) as user; else newhere">
+    <h3>Welcome back {{user.displayName}}!</h3>
 
+    <p>We're glad to have you back, please proceed to the user area.</p>
+
+    <span class="login-form__user-image-container">
+      <img [src]="user.photoURL" class="login-form__user-image">
+    </span>
+
+    <a routerlink="/profile">Continue to the profile page</a>
+    <button (click)="logout()">Logout from account</button>
   </span>
 
-  <h3>Hi there!</h3>
-  <p>
-    We don't recognise you being here before.<br>
-    Please allow us to create an account for you by logging in with Google.
-  </p>
+  <ng-template #newhere>
+    <h3>Hi there!</h3>
+    <p>
+      We don't recognise you being here before.<br>
+      Please allow us to create an account for you by logging in with Google.
+    </p>
 
-  <span class="login-form__user-image-container">
-    <img src="" class="login-form__user-image">
-  </span>
+    <span class="login-form__user-image-container">
+      <img class="login-form__user-image">
+    </span>
 
-  <span>
-    <button matRipple (click)="loginWithGoogle()">
-      Login with Google
-    </button>
-  </span>
-  <span>
-    <button disabled>
-      Login with Email
-    </button>
-  </span>
-
+    <span>
+      <button matRipple (click)="loginWithGoogle()">
+        Login with Google
+      </button>
+    </span>
+    <span>
+      <button disabled>
+        Login with Email
+      </button>
+    </span>
+  </ng-template>
 </mat-card>

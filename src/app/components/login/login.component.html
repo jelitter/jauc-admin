@@ -1,20 +1,17 @@
-<span *ngIf="userService.authenticated; else login">
-  <small class="badge badge-sm mr-2" *ngIf="userService.currentUser.isAdmin | async">(admin)</small>
+<span *ngIf="(userService.user | async) as user; else login">
+  <!-->small class="badge badge-sm mr-2" *ngIf="userService.currentUser.isAdmin | async">(admin)</small-->
   <span class="mr-2">
-
-    <span>busted</span>
-    <span class="m-2">{{ user.firstName }}</span>
-    <span class="m-2"><small>{{ user.uid }}</small></span>
-
   </span>
-  <span *ngIf="userService.currentUser.photoURL as photoURL; else defaultPic" class="m-2">
+  <span *ngIf="user.photoUrl; else defaultPic" class="m-2">
     <a mat-icon-button [matMenuTriggerFor]="menu">
-      <img [src]="photoURL" alt="" class="figure-img img-fluid rounded">
+      <img [src]="user.photoUrl" class="header-login__user-image" alt="User profile image">
+      <span class="m-2">{{ user.displayName }}</span>
     </a>
   </span>
   <ng-template #defaultPic>
     <a mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>verified_user</mat-icon>
+      <span class="m-2">{{ user.displayName }}</span>
     </a>
   </ng-template>
   <mat-menu #menu="matMenu">

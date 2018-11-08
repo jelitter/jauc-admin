@@ -1,8 +1,8 @@
 <h1>Car overview</h1>
 
-<div *ngIf="userService.authenticated | async">
+<div *ngIf="userService.authentication | async as user">
     User is here. <br>
-    {{userService.currentUser.email}}
+    {{user.email}}
 </div>
 
 <mat-tab-group *ngIf="user$ | async as user">

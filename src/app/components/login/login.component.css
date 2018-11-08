@@ -5,3 +5,9 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
 }
+
+.header-login__user-image {
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+}

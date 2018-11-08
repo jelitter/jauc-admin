@@ -17,4 +17,8 @@ export class LoginDialogComponent implements OnInit {
     loginWithGoogle() {
         this.userService.loginWithGoogle();
     }
+
+    logout() {
+        this.userService.logout();
+    }
 }
