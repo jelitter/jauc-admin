@@ -1,0 +1,49 @@
+#title {
+  color: lightgreen;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  line-height: 3em;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+#profilePic {
+  height: 40px;
+  width: 40px;
+  border-radius: 25%;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 1);
+  margin-left: 20px;
+  background: rgba(0, 0, 0, 0.5);
+}
+#profilePic:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 1);
+}
+
+a.mat-button {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.5);
+  min-width: 100px;
+  height: 4.5em;
+  line-height: 4.5em;
+  border-radius: 2px;
+  margin-left: 10px;
+}
+
+a.mat-button:hover {
+  background-color: transparent;
+  color: white;
+}
+
+.mat-button-toggle-checked {
+  background-color: transparent;
+  color: white !important;
+  margin-bottom: 0;
+  border-bottom: 4px solid white;
+  border-radius: 0 !important;
+}
+
+mat-toolbar-row {
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+}
