@@ -36,34 +36,36 @@ import { CarMapComponent } from '../cars/car-map/car-map.component';
 import { LoginComponent } from '../login/login.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ReportsComponent } from '../reports/reports.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [
-    AddCarComponent,
-    AppComponent,
-    BookingsComponent,
-    CarsComponent,
-    CarListComponent,
-    CarMapComponent,
-    LoginComponent,
-    NavbarComponent,
-    ReportsComponent
-  ],
-  imports: [
-    AngularFireAuthModule,
-    AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    CommonModule,
-    FormsModule,
-    PrimeNgModule,
-    MaterialModule,
-    NgbModule,
-    ReactiveFormsModule
-  ],
-  providers: [UserService, CarService, MapService, ToasterService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AddCarComponent,
+        AppComponent,
+        BookingsComponent,
+        CarsComponent,
+        CarListComponent,
+        CarMapComponent,
+        LoginComponent,
+        NavbarComponent,
+        ReportsComponent,
+        DashboardComponent,
+    ],
+    imports: [
+        AngularFireAuthModule,
+        AngularFireDatabaseModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        CommonModule,
+        FormsModule,
+        PrimeNgModule,
+        MaterialModule,
+        NgbModule,
+        ReactiveFormsModule,
+    ],
+    providers: [UserService, CarService, MapService, ToasterService],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
