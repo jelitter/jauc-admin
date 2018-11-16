@@ -1,4 +1,4 @@
 export class Review {
-    rating: number;
-    comment?: string;
+  rating: number;
+  comment?: string;
 }

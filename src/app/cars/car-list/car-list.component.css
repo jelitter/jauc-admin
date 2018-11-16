@@ -1,0 +1,36 @@
+table {
+  width: 100%;
+}
+
+.table td.fit,
+.table th.fit {
+  white-space: nowrap;
+  width: 1%;
+}
+
+td {
+  margin: 0;
+  vertical-align: middle;
+}
+
+td .location-badge {
+  border: solid 1px lightgrey;
+  padding: 4px 8px;
+  font-family: monospace;
+  text-align: center;
+  margin-right: 10px;
+}
+
+td.text-center div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 4px;
+}
+
+#actions {
+  width: 110px;
+}
+
+.action-column {
+  padding: 0px 10px !important;
+}

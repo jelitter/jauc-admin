@@ -1,21 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
-/* @import '~@angular/material/prebuilt-themes/indigo-pink.css'; */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '../node_modules/leaflet/dist/leaflet.css';
-@import '../node_modules/ngx-toastr/toastr.css';
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
+/* According to the Material design spec button text has to be capitalized */
+button {
+  text-transform: capitalize;
 }
 
-#track-map {
-  height: 100%;
-}
-
-.clearfix {
-  overflow: auto;
-}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

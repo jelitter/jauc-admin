@@ -1,0 +1,30 @@
+<p-dialog header="JAUC Sign in" [(visible)]="display" [width]="300" class="ui-fluid">
+  Please choose a sign in method
+  <p-footer>
+    <div class="ui-g">
+      <p-button
+        styleClass="btn btn-block m-1 ui-button-raised"
+        icon="fab fa-google"
+        iconPos="left"
+        label="Login with Google"
+        (onClick)="user.loginWithGoogle()"
+      ></p-button>
+      <p-button
+        styleClass="btn btn-block m-1 ui-button-raised"
+        icon="fab fa-facebook-f"
+        iconPos="left"
+        label="Login with Facebook"
+        (onClick)="user.loginWithFacebook()"
+      ></p-button>
+      <p-button
+        styleClass="btn btn-block m-1 ui-button-raised"
+        icon="far fa-envelope"
+        iconPos="left"
+        label="Login with Email"
+        disabled
+      ></p-button>
+    </div>
+  </p-footer>
+</p-dialog>
+
+<p-button label="Sign in" (onClick)="handleSignin()"></p-button>

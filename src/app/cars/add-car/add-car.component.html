@@ -1,0 +1,78 @@
+<form id="add-car-container" class="example-form" #carForm="ngForm" (ngSubmit)="onSubmit(carForm)">
+    <mat-card layout-align="center center">
+        <mat-card-title> Add Car </mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="carService.selectedCar.$key" />
+            <mat-form-field>
+                <input
+                    matInput
+                    autocomplete="off"
+                    placeholder="Car Name"
+                    [errorStateMatcher]="matcher"
+                    name="name"
+                    #name="ngModel"
+                    [(ngModel)]="carService.selectedCar.name"
+                />
+
+                <mat-error
+                    *ngIf="
+                        carNameFormControl.hasError('carNameFormControl') && !carNameFormControl.hasError('required')
+                    "
+                >
+                    Please enter a car name
+                </mat-error>
+                <mat-error *ngIf="carNameFormControl.hasError('required')">
+                    Car Name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <br />
+
+            <mat-form-field>
+                <input
+                    matInput
+                    autocomplete="off"
+                    capitalize="on"
+                    placeholder="Car Plate"
+                    [errorStateMatcher]="matcher"
+                    name="plate"
+                    #name="ngModel"
+                    [(ngModel)]="carService.selectedCar.plate"
+                />
+
+                <mat-error
+                    *ngIf="
+                        carPlateFormControl.hasError('carPlateFormControl') && !carPlateFormControl.hasError('required')
+                    "
+                >
+                    Please enter a car plate
+                </mat-error>
+                <mat-error *ngIf="carPlateFormControl.hasError('required')">
+                    Car Plate is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <br />
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+            <button
+                mat-button
+                color="primary"
+                [disabled]="!carService.selectedCar.name && !carService.selectedCar.plate"
+                (click)="resetForm(carForm)"
+            >
+                RESET FORM
+            </button>
+            <button
+                mat-raised-button
+                color="primary"
+                [disabled]="!carService.selectedCar.name || !carService.selectedCar.plate"
+                class="btn btn-success"
+                type="submit"
+            >
+                {{ carService.selectedCar.$key ? 'UPDATE' : 'ADD' }}
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</form>

@@ -1,0 +1,14 @@
+#add-car-container {
+    height: 100%;
+    min-height: 182px;
+    text-align: center;
+}
+
+mat-card-content {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+mat-card-actions {
+    text-align: right;
+}
