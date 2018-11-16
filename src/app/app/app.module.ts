@@ -34,22 +34,24 @@ import { CarsComponent } from '../cars/cars.component';
 import { CarListComponent } from '../cars/car-list/car-list.component';
 import { CarMapComponent } from '../cars/car-map/car-map.component';
 import { LoginComponent } from '../login/login.component';
-import { NavbarComponent } from '../navbar/navbar.component';
 import { ReportsComponent } from '../reports/reports.component';
-import { DashboardComponent } from '../dashboard/dashboard.component';
+import { DashboardComponent } from 'src/_sample-components/dashboard/dashboard.component';
+import { TableComponent } from 'src/_sample-components/table/table.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @NgModule({
     declarations: [
         AddCarComponent,
         AppComponent,
+        NavbarComponent,
         BookingsComponent,
         CarsComponent,
         CarListComponent,
         CarMapComponent,
         LoginComponent,
-        NavbarComponent,
         ReportsComponent,
         DashboardComponent,
+        TableComponent,
     ],
     imports: [
         AngularFireAuthModule,
