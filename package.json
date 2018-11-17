@@ -39,6 +39,7 @@
     "promise-polyfill": "^8.1.0",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
+    "rythm.js": "^2.2.4",
     "ts-node": "^7.0.1",
     "zone.js": "~0.8.26"
   },
