@@ -32,7 +32,7 @@ import Rythm from 'rythm.js';
                         <mat-chip *ngIf="(user.isAdmin | async)" color="primary" selected class="rythm-bass">
                             <i class="fas fa-hammer rythm-medium" matTooltip="Administrator"></i>
                         </mat-chip>
-                        {{ user.displayName }}
+                        <span class="display-name"> {{ user.displayName }} </span>
                     </mat-chip-list>
                 </div>
                 <div *ngIf="(user.uid | async) as uid; else: login" matTooltip="Logged In">
@@ -95,6 +95,19 @@ export class NavbarComponent implements OnInit {
         this.rythm.addRythm('leaflet-marker-icon', 'color', 0, 10, {
             from: [0, 0, 255],
             to: [255, 0, 255],
+        });
+        this.rythm.addRythm('display-name', 'swing', 0, 5, {
+            direction: 'left',
+            curve: 'down',
+        });
+        this.rythm.addRythm('header-name', 'swing', 0, 5, {
+            direction: 'left',
+        });
+        this.rythm.addRythm('header-plate', 'swing', 0, 5, {
+            curve: 'up',
+        });
+        this.rythm.addRythm('header-location', 'swing', 0, 5, {
+            direction: 'right',
         });
     }
 
