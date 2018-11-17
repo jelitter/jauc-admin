@@ -21,6 +21,7 @@ import { MaterialModule } from './material.module';
 import { PrimeNgModule } from './primeng.module';
 
 // Services
+import { BookingService } from './../services/booking.service';
 import { CarService } from '../services/car.service';
 import { MapService } from './../services/map.service';
 import { ToasterService } from '../services/toaster.service';
@@ -67,7 +68,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
         NgbModule,
         ReactiveFormsModule,
     ],
-    providers: [UserService, CarService, MapService, ToasterService],
+    providers: [UserService, CarService, BookingService, MapService, ToasterService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

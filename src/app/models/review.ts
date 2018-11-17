@@ -1,4 +1,6 @@
 export class Review {
-  rating: number;
-  comment?: string;
+    $key: string;
+    bookingId: string;
+    rating: number;
+    comment?: string;
 }
