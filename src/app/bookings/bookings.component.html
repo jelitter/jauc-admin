@@ -1,3 +1,83 @@
-<p>
-  bookings works!
-</p>
+<h3>BOOKINGS REALTIME LIST</h3>
+
+<div class="mat-elevation-z8">
+    <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
+        <ng-container matColumnDef="carId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Car Id</th>
+            <td mat-cell *matCellDef="let booking">{{ booking.carId }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="userId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>User Id</th>
+            <td mat-cell *matCellDef="let booking">{{ booking.userId }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="approvedBy">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Approved by</th>
+            <td mat-cell *matCellDef="let booking">{{ booking.approvedBy }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="invoiceId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Id</th>
+            <td mat-cell *matCellDef="let booking">{{ booking.invoiceId }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="origin">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Origin</th>
+            <td mat-cell *matCellDef="let booking">
+                <span class="location-badge ">{{ booking.origin.lat }}</span>
+                <span class="location-badge ">{{ booking.origin.lat }}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="destination">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Destination</th>
+            <td mat-cell *matCellDef="let booking">
+                <span class="location-badge ">{{ booking.destination.lat }}</span>
+                <span class="location-badge ">{{ booking.destination.lon }}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td class="action-column rythm-bass" mat-cell *matCellDef="let booking">
+                <div *ngIf="!booking.approvedBy">
+                    <button
+                        mat-icon-button
+                        color="primary"
+                        (click)="onApprove(booking)"
+                        class="approve-button"
+                        matTooltip="Approve booking"
+                        matTooltipPosition="above"
+                    >
+                        <mat-icon>thumb_up</mat-icon>
+                    </button>
+                </div>
+                <div *ngIf="booking.approvedBy">
+                    <button
+                        mat-icon-button
+                        color="primary"
+                        (click)="onUnapprove(booking)"
+                        class="approve-button"
+                        matTooltip="Unapprove booking"
+                        matTooltipPosition="above"
+                    >
+                        <mat-icon color="accent">thumb_down</mat-icon>
+                    </button>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let booking; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+        #paginator
+        [length]="dataSource?.bookings?.length"
+        [pageIndex]="0"
+        [pageSize]="10"
+        [pageSizeOptions]="[10, 25, 50, 100]"
+    >
+    </mat-paginator>
+</div>
