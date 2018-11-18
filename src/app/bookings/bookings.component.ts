@@ -3,6 +3,7 @@ import { BookingService } from './../services/booking.service';
 import { Booking } from './../models/booking';
 import { BookingDataSource } from './bookings-datasource';
 import { MatPaginator, MatSort } from '@angular/material';
+import { UserService } from '../services/user.service';
 
 @Component({
     selector: 'app-bookings',
@@ -13,9 +14,9 @@ export class BookingsComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     dataSource: BookingDataSource;
-    displayedColumns = ['carId', 'userId', 'approvedBy', 'invoiceId'];
+    displayedColumns = ['actions', 'carId', 'userId', 'approvedBy', 'invoiceId', 'origin', 'destination'];
 
-    constructor(private bookingService: BookingService) {}
+    constructor(private bookingService: BookingService, private userService: UserService) {}
     bookings: Array<Booking>;
 
     ngOnInit() {
@@ -29,8 +30,19 @@ export class BookingsComponent implements OnInit {
                     b['$key'] = element.key;
                     this.bookings.push(b as Booking);
                 });
-                console.log(`Bookings received`, this.bookings);
                 this.dataSource = new BookingDataSource(this.paginator, this.sort, this.bookings);
             });
+    }
+
+    onApprove(booking: Booking) {
+        this.userService.uid
+            .take(1)
+            .toPromise()
+            .then(uid => {
+                this.bookingService.approveBooking(booking, uid);
+            });
+    }
+    onUnapprove(booking: Booking) {
+        this.bookingService.approveBooking(booking, '');
     }
 }

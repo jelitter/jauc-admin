@@ -5,11 +5,8 @@ import { MatPaginator, MatSort } from '@angular/material';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
 export class BookingDataSource extends DataSource<Booking> {
-    bookings: Array<Booking>;
-
-    constructor(private paginator: MatPaginator, private sort: MatSort, public preBookings: Array<Booking>) {
+    constructor(private paginator: MatPaginator, private sort: MatSort, public bookings: Array<Booking>) {
         super();
-        this.bookings = [...preBookings];
     }
 
     connect(): Observable<Booking[]> {

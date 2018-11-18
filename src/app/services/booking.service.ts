@@ -16,7 +16,9 @@ export class BookingService {
     }
 
     approveBooking(booking: Booking, adminId: string) {
+        const key = booking.$key;
+        delete booking.$key;
         booking.approvedBy = adminId;
-        this.bookings.update(booking.$key, booking);
+        this.bookings.update(key, booking);
     }
 }
