@@ -38,6 +38,10 @@ export class BookingDataSource extends DataSource<Booking> {
                     return compare(a.carId, b.carId, isAsc);
                 case 'userId':
                     return compare(+a.userId, +b.userId, isAsc);
+                case 'approvedBy':
+                    return compare(+a.approvedBy, +b.approvedBy, isAsc);
+                case 'invoiceId':
+                    return compare(+a.invoiceId, +b.invoiceId, isAsc);
                 default:
                     return 0;
             }

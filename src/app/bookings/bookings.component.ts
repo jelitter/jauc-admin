@@ -13,11 +13,11 @@ import { UserService } from '../services/user.service';
 export class BookingsComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
+    bookings: Array<Booking>;
     dataSource: BookingDataSource;
     displayedColumns = ['actions', 'carId', 'userId', 'approvedBy', 'invoiceId', 'origin', 'destination'];
 
     constructor(private bookingService: BookingService, private userService: UserService) {}
-    bookings: Array<Booking>;
 
     ngOnInit() {
         this.bookingService
@@ -39,7 +39,8 @@ export class BookingsComponent implements OnInit {
             .take(1)
             .toPromise()
             .then(uid => {
-                this.bookingService.approveBooking(booking, uid);
+                console.log(this.userService.displayName);
+                this.bookingService.approveBooking(booking, this.userService.displayName);
             });
     }
     onUnapprove(booking: Booking) {
