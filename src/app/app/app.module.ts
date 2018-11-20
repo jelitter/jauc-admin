@@ -37,7 +37,7 @@ import { CarMapComponent } from '../cars/car-map/car-map.component';
 import { LoginComponent } from '../login/login.component';
 import { ReportsComponent } from '../reports/reports.component';
 import { DashboardComponent } from 'src/_sample-components/dashboard/dashboard.component';
-import { TableComponent } from 'src/_sample-components/table/table.component';
+import { ReviewTableComponent } from '../reports/review/review-table/reviewtable.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 @NgModule({
@@ -52,7 +52,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
         LoginComponent,
         ReportsComponent,
         DashboardComponent,
-        TableComponent,
+        ReviewTableComponent,
     ],
     imports: [
         AngularFireAuthModule,
