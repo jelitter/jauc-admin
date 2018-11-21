@@ -1,14 +1,14 @@
 <mat-card class="gauge">
-    <mat-card-header> <mat-card-title> Stats </mat-card-title> </mat-card-header>
+    <mat-card-header> <mat-card-title class="rythm-high"> Stats </mat-card-title> </mat-card-header>
     <mat-card-content>
         <div class="gauges">
-            <div>
+            <div class="rythm-medium">
                 <kendo-arcgauge #arc [value]="arcValue">
                     <ng-template kendoArcGaugeCenterTemplate let-arcValue="value"> {{ arcValue }} </ng-template>
                 </kendo-arcgauge>
                 <h4>Car Utilisation</h4>
             </div>
-            <div>
+            <div class="rythm-bass">
                 <kendo-radialgauge #radial [pointer]="{ value: avgSpeed }"> </kendo-radialgauge>
                 <h3>
                     <b>{{ avgSpeed }} kmh</b>
