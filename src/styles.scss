@@ -3,8 +3,14 @@
 
 /* According to the Material design spec button text has to be capitalized */
 button {
-  text-transform: capitalize;
+    text-transform: capitalize;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

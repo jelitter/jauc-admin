@@ -14,3 +14,14 @@ td .location-badge {
     text-align: center;
     margin-right: 10px;
 }
+
+.bookings-title {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    grid-gap: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+$accent: #ff69b4;
+
+@import '~@progress/kendo-theme-material/scss/all';
