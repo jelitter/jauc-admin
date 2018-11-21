@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "jauc-admin-primeng": {
+        "jauc-admin": {
             "root": "",
             "sourceRoot": "src",
             "projectType": "application",
@@ -17,7 +17,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/jauc-admin-primeng",
+                        "outputPath": "dist/jauc-admin",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
@@ -57,18 +57,18 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "jauc-admin-primeng:build"
+                        "browserTarget": "jauc-admin:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "jauc-admin-primeng:build:production"
+                            "browserTarget": "jauc-admin:build:production"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "jauc-admin-primeng:build"
+                        "browserTarget": "jauc-admin:build"
                     }
                 },
                 "test": {
@@ -103,7 +103,7 @@
                 }
             }
         },
-        "jauc-admin-primeng-e2e": {
+        "jauc-admin-e2e": {
             "root": "e2e/",
             "projectType": "application",
             "architect": {
@@ -111,11 +111,11 @@
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
                         "protractorConfig": "e2e/protractor.conf.js",
-                        "devServerTarget": "jauc-admin-primeng:serve"
+                        "devServerTarget": "jauc-admin:serve"
                     },
                     "configurations": {
                         "production": {
-                            "devServerTarget": "jauc-admin-primeng:serve:production"
+                            "devServerTarget": "jauc-admin:serve:production"
                         }
                     }
                 },
@@ -129,7 +129,7 @@
             }
         }
     },
-    "defaultProject": "jauc-admin-primeng",
+    "defaultProject": "jauc-admin",
     "schematics": {
         "@schematics/angular:component": {
             "styleext": "scss"

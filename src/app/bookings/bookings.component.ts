@@ -62,7 +62,7 @@ export class BookingsComponent implements OnInit {
 
     public openCars() {
         const window: WindowRef = this.windowService.open({
-            title: 'My Window',
+            title: 'Cars',
             content: CarsComponent,
             width: 1000,
             height: 800,
@@ -70,7 +70,7 @@ export class BookingsComponent implements OnInit {
 
         window.result.subscribe(result => {
             if (result instanceof WindowCloseResult) {
-                console.log('Window was closed!');
+                console.log('Cars window was closed.');
             }
         });
     }
