@@ -5,10 +5,14 @@ import { BookingDataSource } from './bookings-datasource';
 import { MatPaginator, MatSort } from '@angular/material';
 import { UserService } from '../services/user.service';
 
+import { WindowService, WindowRef, WindowCloseResult } from '@progress/kendo-angular-dialog';
+import { DialogService, DialogRef, DialogCloseResult } from '@progress/kendo-angular-dialog';
+import { CarsComponent } from '../cars/cars.component';
+
 @Component({
     selector: 'app-bookings',
     templateUrl: './bookings.component.html',
-    styleUrls: ['./bookings.component.css'],
+    styleUrls: ['./bookings.component.scss'],
 })
 export class BookingsComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -17,7 +21,16 @@ export class BookingsComponent implements OnInit {
     dataSource: BookingDataSource;
     displayedColumns = ['actions', 'carId', 'userId', 'approvedBy', 'invoiceId', 'origin', 'destination'];
 
-    constructor(private bookingService: BookingService, private userService: UserService) {}
+    public result;
+    // public dialogOpened = false;
+    // public windowOpened = false;
+
+    constructor(
+        private bookingService: BookingService,
+        private userService: UserService,
+        private windowService: WindowService,
+        private dialogService: DialogService
+    ) {}
 
     ngOnInit() {
         this.bookingService
@@ -45,5 +58,41 @@ export class BookingsComponent implements OnInit {
     }
     onUnapprove(booking: Booking) {
         this.bookingService.approveBooking(booking, '');
+    }
+
+    public openCars() {
+        const window: WindowRef = this.windowService.open({
+            title: 'Cars',
+            content: CarsComponent,
+            width: 1000,
+            height: 800,
+        });
+
+        window.result.subscribe(result => {
+            if (result instanceof WindowCloseResult) {
+                console.log('Cars window was closed.');
+            }
+        });
+    }
+
+    public openDialog() {
+        const dialog: DialogRef = this.dialogService.open({
+            title: 'Please confirm',
+            content: 'Are you sure?',
+            actions: [{ text: 'No' }, { text: 'Yes', primary: true }],
+            width: 450,
+            height: 200,
+            minWidth: 250,
+        });
+
+        dialog.result.subscribe(result => {
+            if (result instanceof DialogCloseResult) {
+                console.log('close');
+            } else {
+                console.log('action', result);
+            }
+
+            this.result = JSON.stringify(result);
+        });
     }
 }

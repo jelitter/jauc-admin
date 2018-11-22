@@ -40,6 +40,12 @@ import { DashboardComponent } from 'src/_sample-components/dashboard/dashboard.c
 import { TableComponent } from 'src/_sample-components/table/table.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 
+// Kendo
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { GaugesModule } from '@progress/kendo-angular-gauges';
+import { CarStatsComponent } from '../cars/car-stats/car-stats.component';
+
 @NgModule({
     declarations: [
         AddCarComponent,
@@ -53,6 +59,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
         ReportsComponent,
         DashboardComponent,
         TableComponent,
+        CarStatsComponent,
     ],
     imports: [
         AngularFireAuthModule,
@@ -67,8 +74,12 @@ import { NavbarComponent } from '../navbar/navbar.component';
         MaterialModule,
         NgbModule,
         ReactiveFormsModule,
+        DialogsModule,
+        ButtonsModule,
+        GaugesModule,
     ],
     providers: [UserService, CarService, BookingService, MapService, ToasterService],
+    entryComponents: [CarsComponent],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
