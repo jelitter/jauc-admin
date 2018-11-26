@@ -20,12 +20,16 @@ import { MaterialModule } from './material.module';
 // PrimeNG
 import { PrimeNgModule } from './primeng.module';
 
+// Charts
+import { ChartsModule } from '@progress/kendo-angular-charts';
+
 // Services
 import { BookingService } from './../services/booking.service';
 import { CarService } from '../services/car.service';
 import { MapService } from './../services/map.service';
 import { ToasterService } from '../services/toaster.service';
 import { UserService } from '../services/user.service';
+import { ReviewService } from '../services/review.service';
 
 // Components
 import { AddCarComponent } from '../cars/add-car/add-car.component';
@@ -37,7 +41,10 @@ import { CarMapComponent } from '../cars/car-map/car-map.component';
 import { LoginComponent } from '../login/login.component';
 import { ReportsComponent } from '../reports/reports.component';
 import { DashboardComponent } from 'src/_sample-components/dashboard/dashboard.component';
-import { ReviewTableComponent } from '../reports/review/review-table/reviewtable.component';
+import { ReviewOverviewComponent } from 'src/app/reports/review/review-overview/review-overview.component';
+import { ReviewTableComponent } from 'src/app/reports/review/review-table/reviewtable.component';
+import { ReviewDetailComponent } from 'src/app/reports/review/review-detail/review-detail.component';
+import { ReviewChartComponent } from 'src/app/reports/review/review-chart/review-chart.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 @NgModule({
@@ -52,6 +59,9 @@ import { NavbarComponent } from '../navbar/navbar.component';
         LoginComponent,
         ReportsComponent,
         DashboardComponent,
+        ReviewOverviewComponent,
+        ReviewDetailComponent,
+        ReviewChartComponent,
         ReviewTableComponent,
     ],
     imports: [
@@ -61,6 +71,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
         AppRoutingModule,
         BrowserAnimationsModule,
         BrowserModule,
+        ChartsModule,
         CommonModule,
         FormsModule,
         PrimeNgModule,
@@ -68,7 +79,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
         NgbModule,
         ReactiveFormsModule,
     ],
-    providers: [UserService, CarService, BookingService, MapService, ToasterService],
+    providers: [UserService, CarService, BookingService, MapService, ReviewService, ToasterService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

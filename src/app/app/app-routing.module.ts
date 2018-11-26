@@ -5,6 +5,8 @@ import { BookingsComponent } from '../bookings/bookings.component';
 import { ReportsComponent } from '../reports/reports.component';
 import { DashboardComponent } from 'src/_sample-components/dashboard/dashboard.component';
 import { ReviewTableComponent } from 'src/app/reports/review/review-table/reviewtable.component';
+import { ReviewOverviewComponent } from 'src/app/reports/review/review-overview/review-overview.component';
+import { ReviewDetailComponent } from 'src/app/reports/review/review-detail/review-detail.component';
 
 const routes: Routes = [
     {
@@ -20,11 +22,16 @@ const routes: Routes = [
         component: ReportsComponent,
     },
     {
+        path: 'reports/reviews',
+        component: ReviewOverviewComponent,
+        children: [{ path: ':reviewId', component: ReviewDetailComponent }],
+    },
+    {
         path: 'test dashboard',
         component: DashboardComponent,
     },
     {
-        path: 'test table',
+        path: 'test  table',
         component: ReviewTableComponent,
     },
     {
