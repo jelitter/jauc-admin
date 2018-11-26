@@ -19,16 +19,19 @@ export class ReviewChartComponent implements OnInit {
         this.reviews
             .getReviews()
             .snapshotChanges()
-            .subscribe(item => {
+            .subscribe(update => {
                 this.reviewList = [];
-                item.forEach(element => {
+                update.forEach(element => {
                     const rev = element.payload.toJSON();
                     rev['$key'] = element.key;
                     this.reviewList.push(rev as Review);
                 });
 
-                this.emotions = this.getEmotions(this.reviewList);
+				this.emotions = this.getEmotions(this.reviewList)
+				console.log("DEBUG:", this.reviewList);
+				console.log("DEBUG:", this.emotions);
             });
+
     }
 
     getEmotions(reviews: Review[]) {
@@ -37,10 +40,10 @@ export class ReviewChartComponent implements OnInit {
         for (let i = 0; i < reviews.length; i++) {
             const currentEmoji = reviews[i].rating;
 
-            if (!emoList.filter(emote => emote === currentEmoji)) {
-                const count = emoList.filter(emote => emote.rating === currentEmoji).length;
-                console.log('DEBUG: Emoji', currentEmoji);
-                console.log('DEBUG: Emoji C', count);
+			// if we don't find `currentEmoji` in our emote array,
+			// add and count
+            if (emoList.filter(emote => emote.rating === currentEmoji).length === 0) {
+                const count = reviews.filter(emote => emote.rating === currentEmoji).length;
                 emoList.push({
                     rating: currentEmoji,
                     value: count,
