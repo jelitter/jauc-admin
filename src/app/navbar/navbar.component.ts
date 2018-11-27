@@ -7,7 +7,7 @@ import Rythm from 'rythm.js';
     selector: 'app-navbar',
     // templateUrl: './navbar.component.html',
     template: `
-        <mat-toolbar color="primary">
+        <mat-toolbar class="background-primary-muted">
             <mat-toolbar-row #toolbarRow>
                 <a class="nav-button" mat-button [routerLink]="['/']"> <h3 id="title">JAUC Admin</h3> </a>
                 <a

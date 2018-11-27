@@ -24,28 +24,32 @@ import { PrimeNgModule } from './primeng.module';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 
 // Services
-import { BookingService } from './../services/booking.service';
-import { CarService } from '../services/car.service';
-import { MapService } from './../services/map.service';
-import { ToasterService } from '../services/toaster.service';
-import { UserService } from '../services/user.service';
-import { ReviewService } from '../services/review.service';
+import { BookingService } from 'src/app/services/booking.service';
+import { CarService } from 'src/app/services/car.service';
+import { MapService } from 'src/app/services/map.service';
+import { ToasterService } from 'src/app/services/toaster.service';
+import { UserService } from 'src/app/services/user.service';
+import { ReviewService } from 'src/app/services/review.service';
 
 // Components
-import { AddCarComponent } from '../cars/add-car/add-car.component';
+import { AddCarComponent } from 'src/app/cars/add-car/add-car.component';
 import { AppComponent } from './app.component';
-import { BookingsComponent } from '../bookings/bookings.component';
-import { CarsComponent } from '../cars/cars.component';
-import { CarListComponent } from '../cars/car-list/car-list.component';
-import { CarMapComponent } from '../cars/car-map/car-map.component';
-import { LoginComponent } from '../login/login.component';
-import { ReportsComponent } from '../reports/reports.component';
+import { BookingsComponent } from 'src/app/bookings/bookings.component';
+import { CarsComponent } from 'src/app/cars/cars.component';
+import { CarDetailComponent } from 'src/app/cars/car-detail/car-detail.component';
+import { CarEditComponent } from 'src/app/cars/car-edit/car-edit.component';
+import { CarListComponent } from 'src/app/cars/car-list/car-list.component';
+import { CarMapComponent } from 'src/app/cars/car-map/car-map.component';
+import { FooterComponent } from 'src/app/footer/footer/footer.component';
+import { LoginComponent } from 'src/app/login/login.component';
+import { ReportsComponent } from 'src/app/reports/reports.component';
 import { DashboardComponent } from 'src/_sample-components/dashboard/dashboard.component';
 import { ReviewOverviewComponent } from 'src/app/reports/review/review-overview/review-overview.component';
 import { ReviewTableComponent } from 'src/app/reports/review/review-table/reviewtable.component';
 import { ReviewDetailComponent } from 'src/app/reports/review/review-detail/review-detail.component';
+import { ReviewEmoteDetailComponent } from 'src/app/reports/review/review-emote-detail/review-emote-detail.component';
 import { ReviewChartComponent } from 'src/app/reports/review/review-chart/review-chart.component';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { NavbarComponent } from 'src/app/navbar/navbar.component';
 
 @NgModule({
     declarations: [
@@ -55,12 +59,16 @@ import { NavbarComponent } from '../navbar/navbar.component';
         BookingsComponent,
         CarsComponent,
         CarListComponent,
+        CarDetailComponent,
+        CarEditComponent,
         CarMapComponent,
+				FooterComponent,
         LoginComponent,
         ReportsComponent,
         DashboardComponent,
         ReviewOverviewComponent,
         ReviewDetailComponent,
+        ReviewEmoteDetailComponent,
         ReviewChartComponent,
         ReviewTableComponent,
     ],

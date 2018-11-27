@@ -1,21 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReviewChartComponent } from './review-chart.component';
-import * as d3 from 'd3';
+import { CarEditComponent } from './car-edit.component';
 
-describe('ReviewChartComponent', () => {
-  let component: ReviewChartComponent;
-  let fixture: ComponentFixture<ReviewChartComponent>;
+describe('CarEditComponent', () => {
+  let component: CarEditComponent;
+  let fixture: ComponentFixture<CarEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReviewChartComponent ]
+      declarations: [ CarEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReviewChartComponent);
+    fixture = TestBed.createComponent(CarEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

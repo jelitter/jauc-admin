@@ -22,13 +22,20 @@ export class ReviewTableComponent implements OnInit {
         this.reviews
             .getReviews()
             .snapshotChanges()
-            .subscribe(item => {
-                this.reviewList = [];
-                item.forEach(element => {
-                    const rev = element.payload.toJSON();
-                    rev['$key'] = element.key;
-                    this.reviewList.push(rev as Review);
-                });
+            .subscribe(update => {
+                this.reviewList = this.getReviews(update);
             });
+    }
+
+    getReviews(fireBaseData) {
+        const data = [];
+
+        fireBaseData.forEach(element => {
+            const review = element.payload.toJSON();
+            review['$key'] = element.key;
+            data.push(review as Review);
+        });
+
+        return data;
     }
 }

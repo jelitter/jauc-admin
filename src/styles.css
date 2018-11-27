@@ -1,10 +1,52 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '../node_modules/leaflet/dist/leaflet.css';
 
-/* According to the Material design spec button text has to be capitalized */
-button {
-  text-transform: capitalize;
+:root {
+    --color-prim: #79cccd;
+    --color-prim-light: #e0f2f1;
+    --color-prim-muted: #527f7f;
+    --color-sec: #6acf96;
+    --color-confirm: #65c97d;
+    --color-cancel: #bc3333;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* According to the Material design spec button text has to be capitalized */
+button {
+    text-transform: capitalize;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+body {
+    all: unset;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+/* Flex */
+
+.flex-container {
+    display: flex;
+}
+
+.flex-container.flex-container-column {
+    flex-direction: column;
+}
+
+.flex-container.flex-container-row {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 1em;
+    padding-bottom: 1em;
+}
+
+/* Colourista */
+
+.background-primary {
+  background: var(--color-prim);
+}
+.background-primary-muted {
+  background: var(--color-prim-muted);
+}

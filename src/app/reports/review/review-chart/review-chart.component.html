@@ -1,8 +1,12 @@
-<kendo-chart>
-    <kendo-chart-title text="Reviews"></kendo-chart-title>
-    <kendo-chart-legend position="right" orientation="horizontal"></kendo-chart-legend>
-    <kendo-chart-series>
-        <kendo-chart-series-item type="pie" [data]="emotions" field="value" categoryField="rating">
-        </kendo-chart-series-item>
-    </kendo-chart-series>
-</kendo-chart>
+<div>
+    <kendo-chart>
+        <kendo-chart-area height="195%" [margin]="30"></kendo-chart-area>
+        <kendo-chart-legend position="right" orientation="horizontal"></kendo-chart-legend>
+        <kendo-chart-series>
+            <kendo-chart-series-item type="pie" [data]="emotions" field="value" categoryField="rating">
+            </kendo-chart-series-item>
+        </kendo-chart-series>
+    </kendo-chart>
+</div>
+
+<router-outlet></router-outlet>

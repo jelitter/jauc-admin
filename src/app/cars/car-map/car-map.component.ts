@@ -6,7 +6,7 @@ import { MapService } from 'src/app/services/map.service';
     template: `
         <mat-card id="map-container" class="car-map"> <div id="track-map"></div> </mat-card>
     `,
-    styles: ['#map-container { height: 100%; } ', '#track-map { height: 100%; }'],
+    styles: ['#map-container { height: 350px; } ', '#track-map { height: 100%; }'],
 })
 export class CarMapComponent implements OnInit {
     constructor(private map: MapService) {}

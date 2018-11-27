@@ -1,4 +1,4 @@
-<div class="mat-elevation-z8">
+<div>
   <table mat-table class="full-width-table" [dataSource]="reviewList" matSort aria-label="Elements">
 
     <ng-container matColumnDef="$key">
@@ -30,10 +30,10 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator #paginator
+  <!-- <mat-paginator #paginator
       [length]="reviewList.length"
       [pageIndex]="0"
       [pageSize]="50"
       [pageSizeOptions]="[25, 50, 100, 250]">
-  </mat-paginator>
+  </mat-paginator> -->
 </div>
