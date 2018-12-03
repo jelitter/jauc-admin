@@ -62,7 +62,7 @@ import { NavbarComponent } from 'src/app/navbar/navbar.component';
         CarDetailComponent,
         CarEditComponent,
         CarMapComponent,
-				FooterComponent,
+        FooterComponent,
         LoginComponent,
         ReportsComponent,
         DashboardComponent,
