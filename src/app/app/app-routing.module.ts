@@ -18,14 +18,15 @@ const routes: Routes = [
             {
                 path: ':carId',
                 component: CarDetailComponent,
-            },{
-				path: ':carId/edit',
-				component: CarEditComponent
-			}, {
-				path: 'new',
-				component: AddCarComponent
-			}
-
+            },
+            {
+                path: ':carId/edit',
+                component: CarEditComponent,
+            },
+            {
+                path: 'new',
+                component: AddCarComponent,
+            },
         ],
     },
     {
@@ -35,16 +36,16 @@ const routes: Routes = [
     {
         path: 'reports',
         component: ReportsComponent,
-		children: [
-			{
-		        path: 'reviews',
-		        component: ReviewOverviewComponent,
-		        children: [
-		            { path: ':reviewId', component: ReviewDetailComponent },
-		            { path: 'emotes/:emoteId', component: ReviewEmoteDetailComponent },
-		        ],
-    		},
-		]
+        children: [
+            {
+                path: 'reviews',
+                component: ReviewOverviewComponent,
+                children: [
+                    { path: ':reviewId', component: ReviewDetailComponent },
+                    { path: 'emotes/:emoteId', component: ReviewEmoteDetailComponent },
+                ],
+            },
+        ],
     },
     {
         path: '**',

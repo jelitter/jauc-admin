@@ -25,7 +25,7 @@ export class ReviewChartComponent implements OnInit {
     }
 
     getReviews(fireBaseData) {
-        let data = [];
+        const data = [];
 
         fireBaseData.forEach(element => {
             const review = element.payload.toJSON();
@@ -33,7 +33,7 @@ export class ReviewChartComponent implements OnInit {
             data.push(review as Review);
         });
 
-		return data;
+        return data;
     }
 
     getEmotions(reviews: Review[]) {
