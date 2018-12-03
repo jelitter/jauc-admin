@@ -8,6 +8,7 @@
     --color-sec: #6acf96;
     --color-confirm: #65c97d;
     --color-cancel: #bc3333;
+    --color-dark: #555555;
 }
 
 /* According to the Material design spec button text has to be capitalized */
@@ -49,4 +50,7 @@ body {
 }
 .background-primary-muted {
   background: var(--color-prim-muted);
+}
+.background-dark {
+  background: var(--color-dark);
 }
