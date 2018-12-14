@@ -49,7 +49,7 @@
         "rxjs-compat": "^6.3.3",
         "rythm.js": "^2.2.4",
         "ts-node": "^7.0.1",
-        "zone.js": "~0.8.26"
+        "zone.js": "~0.8.26",
         "@progress/kendo-theme-default": "latest"
     },
     "devDependencies": {
