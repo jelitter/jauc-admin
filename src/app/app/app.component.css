@@ -13,7 +13,7 @@
 } */
 
 @media (max-width: 480px) {
-    main {
+    #main {
         padding: 1em;
     }
 }
