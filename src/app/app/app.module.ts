@@ -20,9 +20,6 @@ import { MaterialModule } from './material.module';
 // PrimeNG
 import { PrimeNgModule } from './primeng.module';
 
-// Charts
-import { ChartsModule } from '@progress/kendo-angular-charts';
-
 // Services
 import { BookingService } from 'src/app/services/booking.service';
 import { CarService } from 'src/app/services/car.service';
@@ -39,6 +36,7 @@ import { CarsComponent } from 'src/app/cars/cars.component';
 import { CarDetailComponent } from 'src/app/cars/car-detail/car-detail.component';
 import { CarEditComponent } from 'src/app/cars/car-edit/car-edit.component';
 import { CarListComponent } from 'src/app/cars/car-list/car-list.component';
+import { CarStatsComponent } from '../cars/car-stats/car-stats.component';
 import { CarMapComponent } from 'src/app/cars/car-map/car-map.component';
 import { FooterComponent } from 'src/app/footer/footer/footer.component';
 import { LoginComponent } from 'src/app/login/login.component';
@@ -55,7 +53,8 @@ import { NavbarComponent } from 'src/app/navbar/navbar.component';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { GaugesModule } from '@progress/kendo-angular-gauges';
-import { CarStatsComponent } from '../cars/car-stats/car-stats.component';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import 'hammerjs';
 
 @NgModule({
     declarations: [
@@ -68,6 +67,7 @@ import { CarStatsComponent } from '../cars/car-stats/car-stats.component';
         CarDetailComponent,
         CarEditComponent,
         CarMapComponent,
+        CarStatsComponent,
         FooterComponent,
         LoginComponent,
         ReportsComponent,
@@ -85,12 +85,15 @@ import { CarStatsComponent } from '../cars/car-stats/car-stats.component';
         AppRoutingModule,
         BrowserAnimationsModule,
         BrowserModule,
+        ButtonsModule,
         ChartsModule,
         CommonModule,
+        DialogsModule,
         FormsModule,
-        PrimeNgModule,
+        GaugesModule,
         MaterialModule,
         NgbModule,
+        PrimeNgModule,
         ReactiveFormsModule,
         DialogsModule,
         ButtonsModule,
