@@ -16,22 +16,6 @@ button {
     text-transform: capitalize;
 }
 
-html,
-body {
-    height: 100%;
-    width: 100%;
-}
-body {
-    all: unset;
-    font-family: Roboto, 'Helvetica Neue', sans-serif;
-}
-
-/* Flex */
-
-.flex-container {
-    display: flex;
-}
-
 .flex-container.flex-container-column {
     flex-direction: column;
 }

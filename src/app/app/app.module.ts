@@ -51,6 +51,12 @@ import { ReviewEmoteDetailComponent } from 'src/app/reports/review/review-emote-
 import { ReviewChartComponent } from 'src/app/reports/review/review-chart/review-chart.component';
 import { NavbarComponent } from 'src/app/navbar/navbar.component';
 
+// Kendo
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { GaugesModule } from '@progress/kendo-angular-gauges';
+import { CarStatsComponent } from '../cars/car-stats/car-stats.component';
+
 @NgModule({
     declarations: [
         AddCarComponent,
@@ -86,6 +92,9 @@ import { NavbarComponent } from 'src/app/navbar/navbar.component';
         MaterialModule,
         NgbModule,
         ReactiveFormsModule,
+        DialogsModule,
+        ButtonsModule,
+        GaugesModule,
     ],
     providers: [UserService, CarService, BookingService, MapService, ReviewService, ToasterService],
     bootstrap: [AppComponent],

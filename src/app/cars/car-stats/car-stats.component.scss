@@ -1,0 +1,23 @@
+.gauge {
+    height: 100%;
+}
+
+.gauges {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5em;
+}
+
+.gauges h3 {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 10%;
+    left: 67%;
+}
+
+.gauges h4 {
+    margin: 0;
+    padding: 0;
+}
