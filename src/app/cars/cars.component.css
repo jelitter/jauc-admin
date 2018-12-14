@@ -1,1 +1,25 @@
+.cars-left,
+.cars-right {
+    height: 100%;
+}
 
+#cars-grid {
+    height: calc(100vh - 7em);
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+}
+
+.cars-left {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 2fr auto;
+}
+.cars-right {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+}

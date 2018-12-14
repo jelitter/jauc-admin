@@ -8,8 +8,24 @@
     </mat-grid-list>
 -->
 
-<div class="flex-container flex-container-column">
-    <app-car-map></app-car-map>
-    <app-car-list></app-car-list>
+<div id="cars-grid">
+    <div class="cars-left">
+        <app-add-car></app-add-car>
+        <app-car-stats></app-car-stats>
+        <a href="mailto:jauc-project@gmail.com">
+            <mat-card>
+                <h4 class="rythm-bass">
+                    <span class="fa-stack rythm-medium">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <b>JAUC Cars</b>
+                </h4>
+            </mat-card>
+        </a>
+    </div>
+    <div class="cars-right">
+        <app-car-map></app-car-map>
+        <app-car-list></app-car-list>
+    </div>
 </div>
-    <router-outlet></router-outlet>
