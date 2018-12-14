@@ -1,0 +1,21 @@
+footer {
+    display: flex;
+    color: #fff;
+    justify-content: space-between;
+
+    padding: 2em;
+    box-sizing: border-box;
+}
+footer section {
+    min-width: 20%;
+    max-width: 25%;
+}
+
+@media (max-width: 480px) {
+    footer {
+        display: block;
+    }
+    footer section {
+        width: 100%;
+    }
+}

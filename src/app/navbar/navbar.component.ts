@@ -5,51 +5,7 @@ import { UserService } from '../services/user.service';
 import Rythm from 'rythm.js';
 @Component({
     selector: 'app-navbar',
-    // templateUrl: './navbar.component.html',
-    template: `
-        <mat-toolbar color="primary">
-            <mat-toolbar-row #toolbarRow>
-                <a class="nav-button" mat-button [routerLink]="['/']"> <h3 id="title">JAUC Admin</h3> </a>
-                <a
-                    class="nav-button"
-                    mat-button
-                    *ngFor="let link of links"
-                    [routerLink]="link.routerLink"
-                    [routerLinkActive]="['mat-button-toggle-checked', 'active-route']"
-                    #rla="routerLinkActive"
-                >
-                    {{ link.label }}
-                </a>
-
-                <a mat-button (click)="toggleMusic()" class="rythm-bass">
-                    <i class="{{ !rythm.stopped ? 'fas fa-volume-up' : 'fas fa-volume-mute' }}" matTooltip="Music!"></i>
-                </a>
-
-                <div class="spacer"></div>
-
-                <div *ngIf="user.displayName as displayName">
-                    <mat-chip-list>
-                        <mat-chip *ngIf="(user.isAdmin | async)" color="primary" selected class="rythm-bass">
-                            <i class="fas fa-hammer rythm-medium" matTooltip="Administrator"></i>
-                        </mat-chip>
-                        <span class="display-name"> {{ user.displayName }} </span>
-                    </mat-chip-list>
-                </div>
-                <div *ngIf="(user.uid | async) as uid; else: login" matTooltip="Logged In">
-                    <p-menu #menu [popup]="true" [model]="menuItems"></p-menu>
-                    <img
-                        id="profilePic"
-                        [src]="user.photoURL"
-                        alt="photo"
-                        (click)="menu.toggle($event)"
-                        class="rythm-high"
-                    />
-                </div>
-
-                <ng-template #login> <app-login></app-login> </ng-template>
-            </mat-toolbar-row>
-        </mat-toolbar>
-    `,
+    templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {

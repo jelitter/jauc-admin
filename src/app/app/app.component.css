@@ -1,0 +1,24 @@
+.page-wrapper {
+    width: 100%;
+    min-height: 80%;
+
+    background: var(--color-prim); /* Fallback if gradients are not available */
+    background: -moz-linear-gradient(-45deg, var(--color-prim) 0%, var(--color-sec) 100%);
+    background: -webkit-linear-gradient(-45deg, var(--color-prim) 0%, var(--color-sec) 100%);
+    background: linear-gradient(135deg, var(--color-prim) 0%, var(--color-sec) 100%);
+}
+
+/* main {
+  padding: 2em;
+} */
+
+@media (max-width: 480px) {
+    #main {
+        padding: 1em;
+    }
+}
+
+#main,
+router-outlet {
+    height: 100%;
+}

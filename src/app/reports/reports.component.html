@@ -1,3 +1,12 @@
-<p>
-  reports works!
-</p>
+<div class="flex-container flex-container-row">
+	<div class="report-navigation">
+		<ul>
+			<li><a routerLink="/reports"  routerLinkActive="active">Dashboard</a></li>
+			<li><a routerLink="./reviews"  routerLinkActive="active">Reviews</a></li>
+		</ul>
+	</div>
+
+	<div id="report-viewer">
+		<router-outlet></router-outlet>
+	</div>
+</div>
