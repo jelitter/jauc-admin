@@ -1,5 +1,5 @@
 {
-    "name": "jauc-admin-primeng",
+    "name": "jauc-admin",
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
@@ -32,25 +32,24 @@
         "@progress/kendo-angular-charts": "^3.5.2",
         "@progress/kendo-angular-dialog": "^3.9.0",
         "@progress/kendo-angular-gauges": "^2.4.1",
-        "@progress/kendo-angular-intl": "^1.4.0",
-        "@progress/kendo-angular-l10n": "^1.1.0",
-        "@progress/kendo-drawing": "^1.1.2",
+        "@progress/kendo-angular-intl": "^1.6.0",
+        "@progress/kendo-angular-l10n": "^1.3.0",
+        "@progress/kendo-drawing": "^1.5.7",
         "@progress/kendo-theme-material": "^1.5.0",
         "bluebird": "^3.5.2",
         "core-js": "^2.5.4",
-        "d3": "^5.7.0",
         "firebase": "^5.5.4",
         "follow-redirects": "^1.5.9",
-        "hammerjs": "^2.0.0",
+        "hammerjs": "^2.0.8",
         "leaflet": "^1.3.4",
         "primeicons": "^1.0.0",
         "primeng": "^6.1.6",
         "promise-polyfill": "^8.1.0",
         "rxjs": "^6.3.3",
-        "rxjs-compat": "^6.0.0",
+        "rxjs-compat": "^6.3.3",
         "rythm.js": "^2.2.4",
         "ts-node": "^7.0.1",
-        "zone.js": "~0.8.26",
+        "zone.js": "~0.8.26"
         "@progress/kendo-theme-default": "latest"
     },
     "devDependencies": {

@@ -56,6 +56,12 @@ import { GaugesModule } from '@progress/kendo-angular-gauges';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import 'hammerjs';
 
+// Kendo
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { GaugesModule } from '@progress/kendo-angular-gauges';
+import { CarStatsComponent } from '../cars/car-stats/car-stats.component';
+
 @NgModule({
     declarations: [
         AddCarComponent,
@@ -100,6 +106,7 @@ import 'hammerjs';
         GaugesModule,
     ],
     providers: [UserService, CarService, BookingService, MapService, ReviewService, ToasterService],
+    entryComponents: [CarsComponent],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

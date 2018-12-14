@@ -11,6 +11,18 @@
     --color-dark: #555555;
 }
 
+
+html,
+body {
+    all: unset;
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+
 /* According to the Material design spec button text has to be capitalized */
 button {
     text-transform: capitalize;
@@ -37,4 +49,3 @@ button {
 }
 .background-dark {
   background: var(--color-dark);
-}
