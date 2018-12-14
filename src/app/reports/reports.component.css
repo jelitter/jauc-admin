@@ -1,17 +1,17 @@
 .report-navigation {
     display: block;
-	width: 20%;
-	min-width: 250px;
+    width: 20%;
+    min-width: 250px;
     height: 100%;
 }
 .report-navigation ul {
-   all: unset;
+    all: unset;
 }
 .report-navigation ul li {
-	list-style: none;
+    list-style: none;
 
-	padding: 1em;
-	border-bottom: 1px solid black;
+    padding: 1em;
+    border-bottom: 1px solid black;
 }
 
 #report-viewer {
