@@ -1,11 +1,6 @@
 .page-wrapper {
     width: 100%;
-    min-height: 80%;
-
-    background: var(--color-prim); /* Fallback if gradients are not available */
-    background: -moz-linear-gradient(-45deg, var(--color-prim) 0%, var(--color-sec) 100%);
-    background: -webkit-linear-gradient(-45deg, var(--color-prim) 0%, var(--color-sec) 100%);
-    background: linear-gradient(135deg, var(--color-prim) 0%, var(--color-sec) 100%);
+    height: 100%;
 }
 
 /* main {
@@ -18,7 +13,14 @@
     }
 }
 
-#main,
+/* #main,
 router-outlet {
     height: 100%;
+} */
+
+#main {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 4.7em 0px auto 9.3em;
+    grid-gap: 0;
 }

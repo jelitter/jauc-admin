@@ -19,7 +19,10 @@ td .location-badge {
     display: grid;
     grid-template-columns: 1fr auto auto;
     grid-gap: 0.5em;
-    margin-bottom: 0.5em;
+    padding: 0.5em;
+    h3 {
+        margin: auto 0;
+    }
 }
 
 $accent: #ff69b4;

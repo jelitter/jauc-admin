@@ -11,7 +11,6 @@
     --color-dark: #555555;
 }
 
-
 html,
 body {
     all: unset;
@@ -20,8 +19,9 @@ body {
 body {
     margin: 0;
     font-family: Roboto, 'Helvetica Neue', sans-serif;
+    background: var(--color-prim);
+    background: linear-gradient(135deg, var(--color-prim) 0%, var(--color-sec) 100%);
 }
-
 
 /* According to the Material design spec button text has to be capitalized */
 button {
@@ -42,11 +42,12 @@ button {
 /* Colourista */
 
 .background-primary {
-  background: var(--color-prim);
+    background: var(--color-prim);
 }
 .background-primary-muted {
-  background: var(--color-prim-muted);
+    background: var(--color-prim-muted);
 }
 .background-dark {
-  background: var(--color-dark);
+    // background: var(--color-dark);
+    background: rgba(0, 0, 0, 0.3);
 }

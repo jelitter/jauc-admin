@@ -1,0 +1,11 @@
+* {
+    font-size: 0.7em;
+}
+
+p-footer {
+    font-size: 2.2em;
+}
+
+:host /deep/ span.ui-button-text {
+    margin-left: 1em;
+}

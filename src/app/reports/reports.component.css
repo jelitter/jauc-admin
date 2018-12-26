@@ -1,9 +1,8 @@
-.report-navigation {
-    display: block;
-    width: 20%;
-    min-width: 250px;
-    height: 100%;
+.reports-container {
+    display: grid;
+    grid-template-columns: 200px auto;
 }
+
 .report-navigation ul {
     all: unset;
 }
@@ -12,8 +11,4 @@
 
     padding: 1em;
     border-bottom: 1px solid black;
-}
-
-#report-viewer {
-    width: 78%;
 }

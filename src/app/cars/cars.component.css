@@ -4,6 +4,7 @@
 }
 
 #cars-grid {
+    padding: 1em;
     height: 100%;
     display: grid;
     grid-gap: 1em;
