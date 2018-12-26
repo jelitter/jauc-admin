@@ -22,8 +22,6 @@ export class BookingsComponent implements OnInit {
     displayedColumns = ['actions', 'carId', 'userId', 'approvedBy', 'invoiceId', 'origin', 'destination'];
 
     public result;
-    // public dialogOpened = false;
-    // public windowOpened = false;
 
     constructor(
         private bookingService: BookingService,
@@ -56,16 +54,22 @@ export class BookingsComponent implements OnInit {
                 this.bookingService.approveBooking(booking, this.userService.displayName);
             });
     }
+
     onUnapprove(booking: Booking) {
-        this.bookingService.approveBooking(booking, '');
+        this.bookingService.unapproveBooking(booking);
     }
 
+    onDelete(booking: Booking) {
+        this.bookingService.deleteBooking(booking);
+    }
+
+    // Cars floating window
     public openCars() {
         const window: WindowRef = this.windowService.open({
             title: 'Cars',
             content: CarsComponent,
             width: 1000,
-            height: 800,
+            height: 600,
         });
 
         window.result.subscribe(result => {

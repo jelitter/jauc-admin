@@ -15,6 +15,17 @@ td .location-badge {
     margin-right: 10px;
 }
 
+.action-column div {
+    margin: 0;
+    padding: 0;
+}
+
+.action-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0;
+}
+
 .bookings-title {
     display: grid;
     grid-template-columns: 1fr auto auto;
@@ -23,6 +34,10 @@ td .location-badge {
     h3 {
         margin: auto 0;
     }
+}
+
+.bookings-container {
+    padding: 1em;
 }
 
 $accent: #ff69b4;

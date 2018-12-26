@@ -55,7 +55,7 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { GaugesModule } from '@progress/kendo-angular-gauges';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import 'hammerjs';
-
+import { InvoiceService } from '../services/invoice.service';
 
 @NgModule({
     declarations: [
@@ -100,7 +100,7 @@ import 'hammerjs';
         ButtonsModule,
         GaugesModule,
     ],
-    providers: [UserService, CarService, BookingService, MapService, ReviewService, ToasterService],
+    providers: [UserService, CarService, BookingService, InvoiceService, MapService, ReviewService, ToasterService],
     entryComponents: [CarsComponent],
     bootstrap: [AppComponent],
 })

@@ -1,27 +1,10 @@
 <div class="bookings-title">
-    <!--
-        <button kendoButton *ngIf="!dialogOpened && !windowOpened" (click)="open('dialog')">Open dialog</button>
-        <button kendoButton *ngIf="!dialogOpened && !windowOpened" (click)="open('window')">Open window</button>
-        <kendo-dialog title="Please confirm" *ngIf="dialogOpened" (close)="close('dialog')" [minWidth]="250" [width]="450">
-            <p style="margin: 30px; text-align: center;">Are you sure you want to continue?</p>
-            <kendo-dialog-actions>
-                <button kendoButton (click)="action('no')">No</button>
-                <button kendoButton (click)="action('yes')" primary="true">Yes</button>
-            </kendo-dialog-actions>
-        </kendo-dialog>
-
-        <kendo-window [minWidth]="600" [minHeight]="300" title="About" *ngIf="windowOpened" (close)="close('window')">
-            <p style="text-align: center;">Additional info</p>
-        </kendo-window>
-    -->
     <h3>BOOKINGS REALTIME LIST</h3>
     <button mat-stroked-button color="primary" (click)="openCars()">Cars</button>
     <button mat-stroked-button color="primary" (click)="openDialog()">Dialog</button>
 </div>
-<div kendoWindowContainer></div>
-<div kendoDialogContainer></div>
 
-<div class="mat-elevation-z8">
+<div class="bookings-container mat-elevation-z8">
     <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
         <ng-container matColumnDef="carId">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Car Id</th>
@@ -47,7 +30,7 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Origin</th>
             <td mat-cell *matCellDef="let booking">
                 <span class="location-badge ">{{ booking.origin.lat }}</span>
-                <span class="location-badge ">{{ booking.origin.lat }}</span>
+                <span class="location-badge ">{{ booking.origin.lon }}</span>
             </td>
         </ng-container>
 
@@ -86,6 +69,16 @@
                         <mat-icon color="accent">thumb_down</mat-icon>
                     </button>
                 </div>
+                <button
+                    mat-icon-button
+                    color="primary"
+                    (click)="onDelete(booking)"
+                    class="approve-button"
+                    matTooltip="Delete booking"
+                    matTooltipPosition="above"
+                >
+                    <mat-icon color="error">delete</mat-icon>
+                </button>
             </td>
         </ng-container>
 
