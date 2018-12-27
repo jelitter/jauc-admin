@@ -45,6 +45,14 @@ const routes: Routes = [
                     { path: 'emotes/:emoteId', component: ReviewEmoteDetailComponent },
                 ],
             },
+            {
+                path: 'bookings',
+                component: ReviewOverviewComponent,
+                children: [
+                    { path: ':reviewId', component: ReviewDetailComponent },
+                    { path: 'emotes/:emoteId', component: ReviewEmoteDetailComponent },
+                ],
+            },
         ],
     },
     {

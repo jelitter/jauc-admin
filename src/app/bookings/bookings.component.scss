@@ -4,11 +4,11 @@
 
 .mat-header-cell {
     font-size: 1.1em;
-    color: cornflowerblue;
+    color: var(--color-prim-muted);
 }
 
 td .location-badge {
-    border: solid 1px lightgrey;
+    border: solid 1px var(--color-prim-muted);
     padding: 2px 6px;
     font-family: monospace;
     text-align: center;
@@ -38,6 +38,19 @@ td .location-badge {
 
 .bookings-container {
     padding: 1em;
+}
+
+table {
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+tr.mat-row {
+    height: 40px;
+}
+
+.mat-header-row,
+.mat-paginator {
+    background-color: var(--color-prim-light);
 }
 
 $accent: #ff69b4;

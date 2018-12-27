@@ -1,6 +1,8 @@
 .reports-container {
     display: grid;
     grid-template-columns: 200px auto;
+    grid-gap: 1em;
+    padding: 1em;
 }
 
 .report-navigation ul {
@@ -10,5 +12,15 @@
     list-style: none;
 
     padding: 1em;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+}
+
+.report-navigation ul li:last-child {
+    border-bottom: none;
+}
+
+.report-navigation a {
+    color: white;
+    font-size: 1.2em;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
