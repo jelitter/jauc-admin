@@ -9,6 +9,7 @@ import { ReportsComponent } from 'src/app/reports/reports.component';
 import { ReviewOverviewComponent } from 'src/app/reports/review/review-overview/review-overview.component';
 import { ReviewDetailComponent } from 'src/app/reports/review/review-detail/review-detail.component';
 import { ReviewEmoteDetailComponent } from 'src/app/reports/review/review-emote-detail/review-emote-detail.component';
+import { InvoiceReportComponent } from '../reports/invoice-report/invoice-report.component';
 
 const routes: Routes = [
     {
@@ -46,12 +47,8 @@ const routes: Routes = [
                 ],
             },
             {
-                path: 'bookings',
-                component: ReviewOverviewComponent,
-                children: [
-                    { path: ':reviewId', component: ReviewDetailComponent },
-                    { path: 'emotes/:emoteId', component: ReviewEmoteDetailComponent },
-                ],
+                path: 'invoices',
+                component: InvoiceReportComponent,
             },
         ],
     },

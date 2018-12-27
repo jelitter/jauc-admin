@@ -1,0 +1,58 @@
+.full-width-table {
+    width: 100%;
+}
+
+.mat-header-cell {
+    font-size: 1.1em;
+    color: var(--color-prim-muted);
+}
+
+td .location-badge {
+    border: solid 1px var(--color-prim-muted);
+    padding: 2px 6px;
+    font-family: monospace;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.action-column div {
+    margin: 0;
+    padding: 0;
+}
+
+.action-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0;
+}
+
+.bookings-title {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    grid-gap: 0.5em;
+    padding: 0.5em;
+    h3 {
+        margin: auto 0;
+    }
+}
+
+.bookings-container {
+    padding: 1em;
+}
+
+table {
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+tr.mat-row {
+    height: 40px;
+}
+
+.mat-header-row,
+.mat-paginator {
+    background-color: var(--color-prim-light);
+}
+
+$accent: #ff69b4;
+
+@import '~@progress/kendo-theme-material/scss/all';

@@ -3,6 +3,7 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Booking } from '../models/booking';
 import { Injectable, OnInit } from '@angular/core';
 import { Invoice } from '../models/invoice';
+import { getDistance } from './shared';
 
 @Injectable()
 export class InvoiceService {
@@ -10,10 +11,6 @@ export class InvoiceService {
 
     constructor(private firebase: AngularFireDatabase) {
         this.getInvoices();
-        // .valueChanges()
-        // .subscribe(invs => {
-        //     console.log(`Invoices`, invs);
-        // });
     }
 
     getInvoices() {
@@ -26,7 +23,16 @@ export class InvoiceService {
 
     createInvoice(booking: Booking) {
         // TODO: Replace hardcoded price with estimation from Google Maps API
-        const invoice = new Invoice(booking.$key, 15.0);
+
+        const distance = getDistance(booking.origin, booking.destination);
+        let price = Math.round((distance / 1000) * 100) / 100;
+        if (price < 10) {
+            price = 10;
+        }
+
+        console.log({ distance, price });
+
+        const invoice = new Invoice(booking.$key, price);
         invoice.settlements = [];
         return this.addInvoice(invoice);
     }

@@ -19,7 +19,7 @@ export class BookingsComponent implements OnInit {
     @ViewChild(MatSort) sort: MatSort;
     bookings: Array<Booking>;
     dataSource: BookingDataSource;
-    displayedColumns = ['actions', 'carId', 'userId', 'approvedBy', 'invoiceId', 'origin', 'destination'];
+    displayedColumns = ['actions', 'carId', 'userId', 'approvedBy', 'invoiceId', 'origin', 'destination', 'date'];
 
     public result;
 
@@ -37,9 +37,15 @@ export class BookingsComponent implements OnInit {
             .subscribe(item => {
                 this.bookings = [];
                 item.forEach(element => {
-                    const b = element.payload.toJSON();
+                    const b = element.payload.toJSON() as Booking;
                     b['$key'] = element.key;
-                    this.bookings.push(b as Booking);
+
+                    b.userName = 'test ' + b.userId;
+                    // this.userService.uid.forEach(users => {
+                    //     console.log('users', users);
+                    // });
+
+                    this.bookings.push(b);
                 });
                 this.dataSource = new BookingDataSource(this.paginator, this.sort, this.bookings);
             });
@@ -51,7 +57,8 @@ export class BookingsComponent implements OnInit {
             .toPromise()
             .then(uid => {
                 console.log(this.userService.displayName);
-                this.bookingService.approveBooking(booking, this.userService.displayName);
+                const assignedCar = this.bookingService.approveBooking(booking, this.userService.displayName);
+                console.log({ assignedCar });
             });
     }
 

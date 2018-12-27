@@ -1,19 +1,21 @@
 <div class="bookings-title">
     <h3>BOOKINGS REALTIME LIST</h3>
-    <button mat-stroked-button color="primary" (click)="openCars()">Cars</button>
-    <button mat-stroked-button color="primary" (click)="openDialog()">Dialog</button>
+    <!--
+        <button mat-stroked-button color="primary" (click)="openCars()">Cars</button>
+        <button mat-stroked-button color="primary" (click)="openDialog()">Dialog</button>
+    -->
 </div>
 
 <div class="bookings-container mat-elevation-z8">
     <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
         <ng-container matColumnDef="carId">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Car Id</th>
-            <td mat-cell *matCellDef="let booking">{{ booking.carId }}</td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Car</th>
+            <td mat-cell *matCellDef="let booking">{{ booking.carName }}</td>
         </ng-container>
 
         <ng-container matColumnDef="userId">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>User Id</th>
-            <td mat-cell *matCellDef="let booking">{{ booking.userId }}</td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>User</th>
+            <td mat-cell *matCellDef="let booking">{{ booking.userName }}</td>
         </ng-container>
 
         <ng-container matColumnDef="approvedBy">
@@ -40,6 +42,11 @@
                 <span class="location-badge ">{{ booking.destination.lat }}</span>
                 <span class="location-badge ">{{ booking.destination.lon }}</span>
             </td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+            <td mat-cell *matCellDef="let booking">{{ booking.date | date }}</td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
