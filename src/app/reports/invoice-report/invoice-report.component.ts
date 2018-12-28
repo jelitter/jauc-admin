@@ -32,4 +32,8 @@ export class InvoiceReportComponent implements OnInit {
                 this.dataSource = new InvoiceDataSource(this.paginator, this.sort, this.invoices);
             });
     }
+
+    totalInvoices() {
+        return 500;
+    }
 }

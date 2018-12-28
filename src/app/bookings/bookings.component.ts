@@ -40,10 +40,8 @@ export class BookingsComponent implements OnInit {
                     const b = element.payload.toJSON() as Booking;
                     b['$key'] = element.key;
 
-                    b.userName = 'test ' + b.userId;
-                    // this.userService.uid.forEach(users => {
-                    //     console.log('users', users);
-                    // });
+                    const searchedUser = this.userService.getUserById(b.userId);
+                    b.userName = searchedUser ? searchedUser.displayName : b.userId;
 
                     this.bookings.push(b);
                 });

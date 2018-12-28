@@ -28,7 +28,7 @@
         </div>
         <div *ngIf="(user.uid | async) as uid; else: login" matTooltip="Logged In">
             <p-menu #menu [popup]="true" [model]="menuItems"></p-menu>
-            <img id="profilePic" [src]="user.photoURL" alt="photo" (click)="menu.toggle($event)" class="rythm-high" />
+            <img id="profilePic" [src]="user.photoURL" alt="photo" (click)="menu.toggle($event)" />
         </div>
 
         <ng-template #login> <app-login></app-login> </ng-template>

@@ -3,14 +3,20 @@ import { of as observableOf, Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { map, switchMap } from 'rxjs/operators';
 import { auth } from 'firebase';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { User } from '../models/user';
 
 @Injectable({
     providedIn: 'root',
 })
 export class UserService {
-    displayName;
-    photoURL;
+    userList: AngularFireList<any>;
+    userArray: User[] = [];
+
+    displayName = null;
+    photoURL = null;
+    email = null;
+    key = null;
 
     uid = this.afAuth.authState.pipe(
         map(authState => {
@@ -19,6 +25,10 @@ export class UserService {
             }
             this.displayName = authState.displayName;
             this.photoURL = authState.photoURL;
+            this.email = authState.email;
+            this.key = authState.uid;
+            this.addOrUpdateUser();
+
             return authState.uid;
         })
     );
@@ -33,7 +43,19 @@ export class UserService {
         })
     );
 
-    constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) {}
+    constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) {
+        this.userList = this.db.list('users');
+
+        this.userList.snapshotChanges().subscribe(users => {
+            this.userArray = [];
+            users.forEach(el => {
+                const u = el.payload.toJSON() as User;
+                // car['$key'] = el.key;
+                this.userArray.push(u);
+            });
+            console.log('User Array', this.userArray);
+        });
+    }
 
     loginWithGoogle = () => {
         this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
@@ -45,5 +67,23 @@ export class UserService {
 
     logout = () => {
         this.afAuth.auth.signOut();
+    }
+
+    private addOrUpdateUser() {
+        const user = new User(this.key, this.displayName, this.email, this.photoURL);
+
+        const key = user.key;
+        // delete user.key;
+
+        const searchUser = this.getUserById(key);
+
+        if (!searchUser) {
+            console.log(`New user added`, user);
+            this.userList.update(key, user);
+        }
+    }
+
+    getUserById(key: string) {
+        return this.userArray.find(u => u.key === key);
     }
 }

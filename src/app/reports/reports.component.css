@@ -1,4 +1,5 @@
 .reports-container {
+    height: 100%;
     display: grid;
     grid-template-columns: 200px auto;
     grid-gap: 1em;
