@@ -1,5 +1,12 @@
 <div class="mat-typography page-wrapper" id="main">
     <app-navbar></app-navbar>
-		<router-outlet></router-outlet>
-		<app-footer></app-footer>
+    <router-outlet *ngIf="(user.isAdmin | async); else: visitor"></router-outlet>
+
+    <app-footer></app-footer>
 </div>
+
+<ng-template #visitor>
+    <div></div>
+    <div *ngIf="!user.displayName"><h2>Please sign in</h2></div>
+    <div *ngIf="user.displayName"><h2>Your user have no administrator privileges</h2></div>
+</ng-template>

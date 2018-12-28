@@ -2,7 +2,7 @@
     <section>
         <h4>JAUC</h4>
         <p>Here is a description of what we do around here.</p>
-        <p *ngIf="user" (click)="us.logout()">Logout</p>
+        <p *ngIf="user.displayName" (click)="user.logout()">Logout</p>
     </section>
 
     <section>

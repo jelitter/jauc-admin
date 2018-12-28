@@ -67,6 +67,10 @@ export class UserService {
 
     logout = () => {
         this.afAuth.auth.signOut();
+        this.displayName = null;
+        this.photoURL = null;
+        this.email = null;
+        this.key = null;
     }
 
     private addOrUpdateUser() {

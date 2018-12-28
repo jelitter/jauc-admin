@@ -7,11 +7,7 @@ import { UserService } from 'src/app/services/user.service';
     styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent implements OnInit {
-    user = null;
-
-    constructor(public us: UserService) {
-        this.user = this.us.uid;
-    }
+    constructor(public user: UserService) {}
 
     ngOnInit() {}
 }
