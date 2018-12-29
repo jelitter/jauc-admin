@@ -33,8 +33,6 @@ import { UserService } from 'src/app/services/user.service';
 import { AddCarComponent } from 'src/app/cars/add-car/add-car.component';
 import { AppComponent } from './app.component';
 import { BookingsComponent } from 'src/app/bookings/bookings.component';
-import { CarDetailComponent } from 'src/app/cars/car-detail/car-detail.component';
-import { CarEditComponent } from 'src/app/cars/car-edit/car-edit.component';
 import { CarListComponent } from 'src/app/cars/car-list/car-list.component';
 import { CarMapComponent } from 'src/app/cars/car-map/car-map.component';
 import { CarsComponent } from 'src/app/cars/cars.component';
@@ -65,8 +63,6 @@ import 'hammerjs';
         BookingsComponent,
         CarsComponent,
         CarListComponent,
-        CarDetailComponent,
-        CarEditComponent,
         CarMapComponent,
         CarStatsComponent,
         FooterComponent,

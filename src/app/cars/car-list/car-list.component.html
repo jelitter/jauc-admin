@@ -24,7 +24,7 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef id="actions"></th>
         <td class="action-column rythm-bass" mat-cell *matCellDef="let car">
-            <div>
+            <div *ngIf="!car.name.toLowerCase().match('arduino')">
                 <button
                     mat-icon-button
                     color="primary"
@@ -45,6 +45,9 @@
                 >
                     <mat-icon>delete</mat-icon>
                 </button>
+            </div>
+            <div *ngIf="car.name.toLowerCase().match('arduino')">
+                <img src="../../../assets/img/logo-green.png" alt="" matTooltip="System car" />
             </div>
         </td>
     </ng-container>

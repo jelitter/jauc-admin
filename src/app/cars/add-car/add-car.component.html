@@ -68,11 +68,21 @@
             <button
                 mat-raised-button
                 color="primary"
-                [disabled]="!carService.selectedCar.name || !carService.selectedCar.plate"
+                [disabled]="
+                    !carService.selectedCar.name ||
+                    !carService.selectedCar.plate ||
+                    (carService.selectedCar.$key && carService.selectedCar.name.toLowerCase().match('arduino'))
+                "
                 class="btn btn-success rythm-bass"
                 type="submit"
             >
-                {{ carService.selectedCar.$key ? 'UPDATE' : 'ADD' }}
+                {{
+                    carService.selectedCar.$key
+                        ? carService.selectedCar.name.toLowerCase().match('arduino')
+                            ? 'Arduino car cannot be edited'
+                            : 'UPDATE'
+                        : 'ADD'
+                }}
             </button>
         </mat-card-actions>
     </mat-card>
