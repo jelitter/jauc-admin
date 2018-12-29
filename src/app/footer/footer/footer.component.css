@@ -5,7 +5,12 @@ footer {
     justify-content: space-between;
     padding: 1em 0 0 0.5em;
     box-sizing: border-box;
+    /*
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%);
+    border-top: solid 3px var(--color-prim-light);
+    margin-top: -3px; */
 }
+
 footer section {
     min-width: 20%;
     max-width: 25%;
