@@ -39,7 +39,6 @@ import { CarListComponent } from 'src/app/cars/car-list/car-list.component';
 import { CarMapComponent } from 'src/app/cars/car-map/car-map.component';
 import { CarsComponent } from 'src/app/cars/cars.component';
 import { CarStatsComponent } from '../cars/car-stats/car-stats.component';
-import { DashboardComponent } from 'src/_sample-components/dashboard/dashboard.component';
 import { FooterComponent } from 'src/app/footer/footer/footer.component';
 import { InvoiceReportComponent } from '../reports/invoice-report/invoice-report.component';
 import { LoginComponent } from 'src/app/login/login.component';
@@ -74,7 +73,6 @@ import 'hammerjs';
         LoginComponent,
         InvoiceReportComponent,
         ReportsComponent,
-        DashboardComponent,
         ReviewOverviewComponent,
         ReviewDetailComponent,
         ReviewEmoteDetailComponent,
