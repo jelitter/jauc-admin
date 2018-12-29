@@ -1,6 +1,11 @@
 <mat-toolbar class="background-dark">
     <mat-toolbar-row #toolbarRow>
-        <a class="nav-button" mat-button [routerLink]="['/']"><h3 id="title">JAUC Admin</h3></a>
+        <a class="nav-button" mat-button [routerLink]="['/']">
+            <div class="logo-title">
+                <img src="../../assets/img/logo.png" alt="" height="40" />
+                <h3 id="title">JAUC Admin</h3>
+            </div>
+        </a>
 
         <div *ngIf="(user.isAdmin | async)">
             <a
