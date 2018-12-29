@@ -2,7 +2,7 @@
     <mat-toolbar-row #toolbarRow>
         <a class="nav-button" mat-button [routerLink]="['/']">
             <div class="logo-title">
-                <img src="../../assets/img/logo.png" alt="" height="40" />
+                <img src="../../assets/img/logo-green.png" alt="" height="40" />
                 <h3 id="title">JAUC Admin</h3>
             </div>
         </a>
@@ -28,7 +28,7 @@
 
         <div *ngIf="user.displayName as displayName">
             <mat-chip-list>
-                <mat-chip *ngIf="(user.isAdmin | async)" color="primary" selected class="rythm-bass">
+                <mat-chip *ngIf="(user.isAdmin | async)" selected class="admin-icon rythm-bass">
                     <i class="fas fa-hammer rythm-medium" matTooltip="Administrator"></i>
                 </mat-chip>
                 <span class="display-name"> {{ user.displayName }} </span>

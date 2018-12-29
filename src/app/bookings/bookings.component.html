@@ -1,10 +1,4 @@
-<div class="bookings-title">
-    <h3>BOOKINGS REALTIME LIST</h3>
-    <!--
-        <button mat-stroked-button color="primary" (click)="openCars()">Cars</button>
-        <button mat-stroked-button color="primary" (click)="openDialog()">Dialog</button>
-    -->
-</div>
+<div class="bookings-title"><h3>Bookings - Real time list</h3></div>
 
 <div class="bookings-container mat-elevation-z8">
     <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
@@ -69,11 +63,11 @@
                         mat-icon-button
                         color="primary"
                         (click)="onUnapprove(booking)"
-                        class="approve-button"
+                        class="unapprove-button"
                         matTooltip="Unapprove booking"
                         matTooltipPosition="above"
                     >
-                        <mat-icon color="accent">thumb_down</mat-icon>
+                        <mat-icon>thumb_down</mat-icon>
                     </button>
                 </div>
                 <div>
@@ -81,11 +75,11 @@
                         mat-icon-button
                         color="primary"
                         (click)="onDelete(booking)"
-                        class="approve-button"
+                        class="delete-button"
                         matTooltip="Delete booking"
                         matTooltipPosition="above"
                     >
-                        <mat-icon color="error">delete</mat-icon>
+                        <mat-icon>delete</mat-icon>
                     </button>
                 </div>
             </td>

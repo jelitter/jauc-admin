@@ -1,5 +1,5 @@
 #title {
-    color: lightgreen;
+    color: var(--color-confirm);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     line-height: 3em;
 }
@@ -13,6 +13,8 @@
 
 .logo-title img {
     margin: auto;
+    box-shadow: 0px 0px 10px var(--color-confirm);
+    border-radius: 50%;
 }
 
 .spacer {
@@ -43,8 +45,8 @@ a.mat-button {
 }
 
 a.mat-button:first-child {
-    margin: 0;
-    padding: 0;
+    margin: 0 10px 0 0;
+    padding: 0 10px;
 }
 
 a.mat-button:hover {
@@ -62,4 +64,10 @@ a.mat-button:hover {
 
 mat-toolbar-row {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.admin-icon {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    height: 34px;
+    width: 34px;
 }

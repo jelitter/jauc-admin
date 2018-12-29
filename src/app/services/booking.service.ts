@@ -9,6 +9,7 @@ import { CarService } from './car.service';
 import { UserService } from './user.service';
 import { tap } from 'rxjs/operators';
 import { getDistance } from './shared';
+import { ToasterService } from './toaster.service';
 
 @Injectable()
 export class BookingService {
@@ -19,6 +20,7 @@ export class BookingService {
     selectedBooking: Car = new Car();
 
     constructor(
+        private toastr: ToasterService,
         private firebase: AngularFireDatabase,
         private carService: CarService,
         private invoiceService: InvoiceService,
@@ -29,6 +31,7 @@ export class BookingService {
             .getCars()
             .snapshotChanges()
             .subscribe(cars => {
+                this.carList = [];
                 cars.forEach(el => {
                     const car = el.payload.toJSON();
                     car['$key'] = el.key;
@@ -48,21 +51,30 @@ export class BookingService {
         // Assign the closest car
         let closestCarId = null;
         let closestDistance = Infinity;
-        this.carList
-            .filter(c => !c.currentBookingId)
-            .forEach(car => {
-                const distance = getDistance(booking.origin, car.location);
-                // console.log('distance', distance);
+        const availableCars = this.carList.filter(c => !c.currentBookingId);
+        console.log(`🚕 Searching in ${availableCars.length} available cars...`);
 
-                if (distance < closestDistance) {
-                    closestDistance = distance;
-                    closestCarId = car.$key;
-                }
-            });
+        availableCars.forEach(car => {
+            const distance = getDistance(booking.origin, car.location);
+            // console.log('distance', distance);
+
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestCarId = car.$key;
+            }
+        });
         assignedCar = this.carList.find(car => car.$key === closestCarId);
         if (assignedCar) {
+            this.toastr.showToast(
+                `✅ Booking approved! Assigned closest car '${assignedCar.name}' found ${Math.round(
+                    (closestDistance / 1000) * 100
+                ) / 100} km. away`,
+                'JAUC Cars',
+                5000
+            );
+
             console.log(
-                `Closest car '${assignedCar.name}' found at ${Math.round((closestDistance / 1000) * 100) / 100} km.`
+                `Closest car '${assignedCar.name}' found ${Math.round((closestDistance / 1000) * 100) / 100} km.`
             );
 
             booking.approvedBy = adminId;
@@ -75,9 +87,11 @@ export class BookingService {
                 booking.invoiceId = inv.key;
                 delete booking.$key;
                 this.bookings.update(key, booking);
+                this.carService.updateCarToDB(assignedCar);
             });
         } else {
             console.error('No cars available for this booking');
+            this.toastr.showToast(`❌ Booking was NOT approved! All cars are currently busy.`, 'JAUC Cars', 5000);
         }
         return assignedCar;
     }

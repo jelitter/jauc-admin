@@ -33,6 +33,8 @@ td .location-badge {
     padding: 0.5em;
     h3 {
         margin: auto 0;
+        color: var(--color-prim-light);
+        text-shadow: 1px 1px 2px var(--color-prim-muted);
     }
 }
 
@@ -46,6 +48,16 @@ table {
 
 tr.mat-row {
     height: 40px;
+}
+
+.approve-button {
+    color: var(--color-confirm);
+}
+.unapprove-button {
+    color: var(--color-prim-muted);
+}
+.delete-button {
+    color: var(--color-cancel);
 }
 
 .mat-header-row,

@@ -2,20 +2,20 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../services/user.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  display = false;
+    display = false;
 
-  constructor(public user: UserService) {}
+    constructor(public user: UserService) {}
 
-  ngOnInit() {}
+    ngOnInit() {}
 
-  handleSignin(): void {
-    this.display = true;
+    handleSignin(): void {
+        this.display = true;
 
-    console.log('Login clicked');
-  }
+        // console.log('Login clicked');
+    }
 }

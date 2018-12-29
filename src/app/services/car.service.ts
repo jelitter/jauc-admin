@@ -39,6 +39,13 @@ export class CarService {
         this.carList.update(car.$key, updatedCar);
     }
 
+    updateCarToDB(car: Car) {
+        const key = car.$key;
+        delete car.$key;
+
+        this.carList.update(key, car);
+    }
+
     deleteCar(car: Car) {
         this.carList.remove(car.$key);
     }

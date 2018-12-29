@@ -53,7 +53,7 @@ export class UserService {
                 // car['$key'] = el.key;
                 this.userArray.push(u);
             });
-            console.log('User Array', this.userArray);
+            // console.log('User Array', this.userArray);
         });
     }
 
@@ -82,7 +82,7 @@ export class UserService {
         const searchUser = this.getUserById(key);
 
         if (!searchUser) {
-            console.log(`New user added`, user);
+            // console.log(`New user added`, user);
             this.userList.update(key, user);
         }
     }
