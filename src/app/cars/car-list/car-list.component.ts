@@ -37,6 +37,10 @@ export class CarListComponent implements OnInit {
         this.carService.selectedCar = Object.assign({}, car); // disabling double data binding
         this.map.panTo(this.carService.selectedCar);
         this.map.openPopup(this.carService.selectedCar);
+
+        this.map.addRoute(this.carService.selectedCar.location, { lat: 51.8981696, lon: -8.4869786 });
+        //       private defaultLat = 51.8981696;
+        // private defaultLon = -8.4869786;
     }
 
     onDelete(car: Car) {

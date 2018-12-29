@@ -17,6 +17,8 @@ import { CarsComponent } from '../cars/cars.component';
 export class BookingsComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
+    opened = false;
+    selectedBooking = null;
     bookings: Array<Booking>;
     dataSource: BookingDataSource;
     displayedColumns = ['actions', 'carId', 'userId', 'approvedBy', 'invoiceId', 'origin', 'destination', 'date'];
@@ -66,6 +68,24 @@ export class BookingsComponent implements OnInit {
 
     onDelete(booking: Booking) {
         this.bookingService.deleteBooking(booking);
+    }
+
+    onView(booking: Booking) {
+        this.selectedBooking = booking;
+        this.displayedColumns = ['actions', 'carId', 'origin', 'destination'];
+    }
+    hideMap() {
+        this.selectedBooking = null;
+        this.displayedColumns = [
+            'actions',
+            'carId',
+            'userId',
+            'approvedBy',
+            'invoiceId',
+            'origin',
+            'destination',
+            'date',
+        ];
     }
 
     // Cars floating window

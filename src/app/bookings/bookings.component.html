@@ -1,100 +1,122 @@
-<div class="bookings-title"><h3>Bookings - Real time list</h3></div>
+<mat-sidenav-container class="main-container">
+    <mat-sidenav #sidenav mode="side" [(opened)]="selectedBooking" class="map-container">
+        <app-car-map [booking]="selectedBooking"></app-car-map>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="bookings-container mat-elevation-z8">
+            <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
+                <ng-container matColumnDef="carId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Car</th>
+                    <td mat-cell *matCellDef="let booking">{{ booking.carName }}</td>
+                </ng-container>
 
-<div class="bookings-container mat-elevation-z8">
-    <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
-        <ng-container matColumnDef="carId">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Car</th>
-            <td mat-cell *matCellDef="let booking">{{ booking.carName }}</td>
-        </ng-container>
+                <ng-container matColumnDef="userId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>User</th>
+                    <td mat-cell *matCellDef="let booking">{{ booking.userName }}</td>
+                </ng-container>
 
-        <ng-container matColumnDef="userId">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>User</th>
-            <td mat-cell *matCellDef="let booking">{{ booking.userName }}</td>
-        </ng-container>
+                <ng-container matColumnDef="approvedBy">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Approved by</th>
+                    <td mat-cell *matCellDef="let booking">{{ booking.approvedBy }}</td>
+                </ng-container>
 
-        <ng-container matColumnDef="approvedBy">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Approved by</th>
-            <td mat-cell *matCellDef="let booking">{{ booking.approvedBy }}</td>
-        </ng-container>
+                <ng-container matColumnDef="invoiceId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Id</th>
+                    <td mat-cell *matCellDef="let booking">{{ booking.invoiceId }}</td>
+                </ng-container>
 
-        <ng-container matColumnDef="invoiceId">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Id</th>
-            <td mat-cell *matCellDef="let booking">{{ booking.invoiceId }}</td>
-        </ng-container>
+                <ng-container matColumnDef="origin">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Origin</th>
+                    <td mat-cell *matCellDef="let booking">
+                        <span class="location-badge ">{{ booking.origin.lat }}</span>
+                        <span class="location-badge ">{{ booking.origin.lon }}</span>
+                    </td>
+                </ng-container>
 
-        <ng-container matColumnDef="origin">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Origin</th>
-            <td mat-cell *matCellDef="let booking">
-                <span class="location-badge ">{{ booking.origin.lat }}</span>
-                <span class="location-badge ">{{ booking.origin.lon }}</span>
-            </td>
-        </ng-container>
+                <ng-container matColumnDef="destination">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Destination</th>
+                    <td mat-cell *matCellDef="let booking">
+                        <span class="location-badge ">{{ booking.destination.lat }}</span>
+                        <span class="location-badge ">{{ booking.destination.lon }}</span>
+                    </td>
+                </ng-container>
 
-        <ng-container matColumnDef="destination">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Destination</th>
-            <td mat-cell *matCellDef="let booking">
-                <span class="location-badge ">{{ booking.destination.lat }}</span>
-                <span class="location-badge ">{{ booking.destination.lon }}</span>
-            </td>
-        </ng-container>
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                    <td mat-cell *matCellDef="let booking">{{ booking.date | date }}</td>
+                </ng-container>
 
-        <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
-            <td mat-cell *matCellDef="let booking">{{ booking.date | date }}</td>
-        </ng-container>
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <!-- <button mat-button (click)="sidenav.toggle()"><mat-icon>visibility</mat-icon></button> -->
+                        <button mat-button (click)="hideMap()"><mat-icon>visibility</mat-icon></button>
+                    </th>
+                    <td class="action-column rythm-bass" mat-cell *matCellDef="let booking">
+                        <div>
+                            <button
+                                mat-icon-button
+                                color="primary"
+                                (click)="onView(booking)"
+                                class="view-button"
+                                matTooltip="View booking"
+                                matTooltipPosition="above"
+                            >
+                                <mat-icon>visibility</mat-icon>
+                            </button>
+                        </div>
+                        <div *ngIf="!booking.approvedBy">
+                            <button
+                                mat-icon-button
+                                color="primary"
+                                (click)="onApprove(booking)"
+                                class="approve-button"
+                                matTooltip="Approve booking"
+                                matTooltipPosition="above"
+                            >
+                                <mat-icon>thumb_up</mat-icon>
+                            </button>
+                        </div>
+                        <div *ngIf="booking.approvedBy">
+                            <button
+                                mat-icon-button
+                                color="primary"
+                                (click)="onUnapprove(booking)"
+                                class="unapprove-button"
+                                matTooltip="Unapprove booking"
+                                matTooltipPosition="above"
+                            >
+                                <mat-icon>thumb_down</mat-icon>
+                            </button>
+                        </div>
+                        <div>
+                            <button
+                                mat-icon-button
+                                color="primary"
+                                (click)="onDelete(booking)"
+                                class="delete-button"
+                                matTooltip="Delete booking"
+                                matTooltipPosition="above"
+                            >
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </td>
+                </ng-container>
 
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td class="action-column rythm-bass" mat-cell *matCellDef="let booking">
-                <div *ngIf="!booking.approvedBy">
-                    <button
-                        mat-icon-button
-                        color="primary"
-                        (click)="onApprove(booking)"
-                        class="approve-button"
-                        matTooltip="Approve booking"
-                        matTooltipPosition="above"
-                    >
-                        <mat-icon>thumb_up</mat-icon>
-                    </button>
-                </div>
-                <div *ngIf="booking.approvedBy">
-                    <button
-                        mat-icon-button
-                        color="primary"
-                        (click)="onUnapprove(booking)"
-                        class="unapprove-button"
-                        matTooltip="Unapprove booking"
-                        matTooltipPosition="above"
-                    >
-                        <mat-icon>thumb_down</mat-icon>
-                    </button>
-                </div>
-                <div>
-                    <button
-                        mat-icon-button
-                        color="primary"
-                        (click)="onDelete(booking)"
-                        class="delete-button"
-                        matTooltip="Delete booking"
-                        matTooltipPosition="above"
-                    >
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </div>
-            </td>
-        </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let booking; columns: displayedColumns"></tr>
+            </table>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let booking; columns: displayedColumns"></tr>
-    </table>
+            <mat-paginator
+                #paginator
+                [length]="dataSource?.bookings?.length"
+                [pageIndex]="0"
+                [pageSize]="10"
+                [pageSizeOptions]="[10, 25, 50, 100]"
+            >
+            </mat-paginator>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
 
-    <mat-paginator
-        #paginator
-        [length]="dataSource?.bookings?.length"
-        [pageIndex]="0"
-        [pageSize]="10"
-        [pageSizeOptions]="[10, 25, 50, 100]"
-    >
-    </mat-paginator>
-</div>
+<!-- ===================================== -->

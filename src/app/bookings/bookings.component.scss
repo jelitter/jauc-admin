@@ -22,7 +22,7 @@ td .location-badge {
 
 .action-column {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 0;
 }
 
@@ -38,8 +38,23 @@ td .location-badge {
     }
 }
 
+.main-container {
+    height: 100%;
+}
+
+.map-container {
+    background: var(--color-sec);
+    background: linear-gradient(45deg, var(--color-sec) 0%, var(--color-prim) 100%);
+    min-width: 400px;
+    width: 50%;
+}
+
 .bookings-container {
+    min-width: 50%;
+    height: 100%;
     padding: 1em;
+    background: var(--color-prim);
+    background: linear-gradient(45deg, var(--color-prim) 0%, var(--color-sec) 100%);
 }
 
 table {
@@ -48,6 +63,10 @@ table {
 
 tr.mat-row {
     height: 40px;
+}
+
+.view-button {
+    color: var(--color-prim);
 }
 
 .approve-button {

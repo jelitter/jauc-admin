@@ -1,8 +1,15 @@
 import { Injectable, OnInit } from '@angular/core';
-import L from 'leaflet';
 import { environment } from 'src/environments/environment';
 import { CarService } from './car.service';
 import { Car } from '../models/car';
+import { Location } from '../models/location';
+
+// import L from 'leaflet';
+import * as L from 'leaflet';
+import 'leaflet-routing-machine';
+import { Booking } from '../models/booking';
+// import 'leaflet-easybutton';
+// declare var L: any;
 
 @Injectable({
     providedIn: 'root',
@@ -12,8 +19,10 @@ export class MapService implements OnInit {
     private defaultLat = 51.8981696;
     private defaultLon = -8.4869786;
     icon: any;
+    iconArduino: any;
     map: any;
     carMarkerList: Array<any>;
+    route: any;
 
     constructor(private carService: CarService) {
         this.carMarkerList = [];
@@ -28,12 +37,22 @@ export class MapService implements OnInit {
             .getCars()
             .snapshotChanges()
             .subscribe(item => {
+                if (this.route) {
+                    this.map.removeLayer(this.route);
+                }
+                this.route = null;
+                this.carMarkerList.forEach(cm => {
+                    // cm.marker.remove();
+                    this.map.removeLayer(cm.marker);
+                });
+                this.carMarkerList = [];
+
                 item.forEach(element => {
                     const car: Car = <Car>element.payload.toJSON();
                     car['$key'] = element.key;
 
                     const marker = L.marker([car.location.lat, car.location.lon], {
-                        icon: this.icon,
+                        icon: car.name.toLowerCase().match('arduino') ? this.iconArduino : this.icon,
                         riseOnHover: true,
                     });
                     marker.bindPopup(`<b>${car.name}</b><br>${car.plate}`);
@@ -49,10 +68,18 @@ export class MapService implements OnInit {
             });
     }
 
-    initializeMap() {
+    initializeMap(booking: Booking = null) {
+        console.log(`Initialize Map with Booking`, booking);
+
         const { mapboxKey } = environment.mapbox;
         this.icon = L.icon({
             iconUrl: '/assets/car.png',
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+            popupAnchor: [0, -16],
+        });
+        this.iconArduino = L.icon({
+            iconUrl: '/assets/car-arduino.png',
             iconSize: [32, 32],
             iconAnchor: [16, 16],
             popupAnchor: [0, -16],
@@ -81,30 +108,6 @@ export class MapService implements OnInit {
         this.carMarkerList.forEach(c => {
             c.marker.setLatLng([c.car.location.lat, c.car.location.lon]);
         });
-
-        // this.carMarkerList = this.carMarkerList.map(c => {
-        //     if (c.marker) {
-        //         c.marker.remove();
-        //     }
-        //     c.marker = L.marker([c.car.location.lat, c.car.location.lon], { icon: this.icon, riseOnHover: true });
-        //     c.marker.bindPopup(`<b>${c.car.name}</b><br>${c.car.plate}`);
-        //     c.marker.addTo(this.map);
-        // });
-
-        // this.carMarkerList.forEach(c => {
-        // if (c.marker === null) {
-        //     // c.marker = L.marker([c.car.location.lat, c.car.location.lon], { icon: this.icon, riseOnHover: true });
-        //     // c.marker.bindPopup(`<b>${c.car.name}</b><br>${c.car.plate}`);
-        //     // c.marker.addTo(this.map);
-        // } else {
-        //     c.marker.remove();
-        //     // c.marker = L.marker([c.car.location.lat, c.car.location.lon], { icon: this.icon, riseOnHover: true });
-        //     // console.log('marker moved');
-        // }
-        //     c.marker = L.marker([c.car.location.lat, c.car.location.lon], { icon: this.icon, riseOnHover: true });
-        //     c.marker.bindPopup(`<b>${c.car.name}</b><br>${c.car.plate}`);
-        //     c.marker.addTo(this.map);
-        // });
     }
 
     openPopup(car: Car): any {
@@ -129,5 +132,21 @@ export class MapService implements OnInit {
         // this.carMarkerList.find(cm => cm.car.$key === car.$key).marker.remove();
         this.closePopup(car);
         this.carMarkerList = this.carMarkerList.filter(cm => cm.car.$key !== car.$key);
+    }
+
+    addRoute(origin: Location, destination: Location) {
+        if (this.route) {
+            this.map.removeLayer(this.route);
+
+            // L.Routing.control(this.route).addTo(this.map);
+            L.Routing.control().setWaypoints([]);
+        }
+
+        this.route = {
+            waypoints: [L.latLng(origin.lat, origin.lon), L.latLng(destination.lat, destination.lon)],
+            routeWhileDragging: true,
+        };
+
+        L.Routing.control(this.route).addTo(this.map);
     }
 }
