@@ -12,6 +12,7 @@ export class MapService implements OnInit {
     private defaultLat = 51.8981696;
     private defaultLon = -8.4869786;
     icon: any;
+    iconArduino: any;
     map: any;
     carMarkerList: Array<any>;
 
@@ -28,12 +29,18 @@ export class MapService implements OnInit {
             .getCars()
             .snapshotChanges()
             .subscribe(item => {
+                this.carMarkerList.forEach(cm => {
+                    // cm.marker.remove();
+                    this.map.removeLayer(cm.marker);
+                });
+                this.carMarkerList = [];
+
                 item.forEach(element => {
                     const car: Car = <Car>element.payload.toJSON();
                     car['$key'] = element.key;
 
                     const marker = L.marker([car.location.lat, car.location.lon], {
-                        icon: this.icon,
+                        icon: car.name.toLowerCase().match('arduino') ? this.iconArduino : this.icon,
                         riseOnHover: true,
                     });
                     marker.bindPopup(`<b>${car.name}</b><br>${car.plate}`);
@@ -53,6 +60,12 @@ export class MapService implements OnInit {
         const { mapboxKey } = environment.mapbox;
         this.icon = L.icon({
             iconUrl: '/assets/car.png',
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+            popupAnchor: [0, -16],
+        });
+        this.iconArduino = L.icon({
+            iconUrl: '/assets/car-arduino.png',
             iconSize: [32, 32],
             iconAnchor: [16, 16],
             popupAnchor: [0, -16],
