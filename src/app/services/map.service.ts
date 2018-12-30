@@ -37,10 +37,10 @@ export class MapService implements OnInit {
             .getCars()
             .snapshotChanges()
             .subscribe(item => {
-                if (this.route) {
-                    this.map.removeLayer(this.route);
-                }
-                this.route = null;
+                // if (this.route) {
+                //     this.map.removeLayer(this.route);
+                // }
+                // this.route = null;
                 this.carMarkerList.forEach(cm => {
                     // cm.marker.remove();
                     this.map.removeLayer(cm.marker);
@@ -129,7 +129,6 @@ export class MapService implements OnInit {
     }
 
     removeCar(car: Car): any {
-        // this.carMarkerList.find(cm => cm.car.$key === car.$key).marker.remove();
         this.closePopup(car);
         this.carMarkerList = this.carMarkerList.filter(cm => cm.car.$key !== car.$key);
     }
@@ -137,9 +136,6 @@ export class MapService implements OnInit {
     addRoute(origin: Location, destination: Location) {
         if (this.route) {
             this.map.removeLayer(this.route);
-
-            // L.Routing.control(this.route).addTo(this.map);
-            L.Routing.control().setWaypoints([]);
         }
 
         this.route = {
@@ -148,5 +144,6 @@ export class MapService implements OnInit {
         };
 
         L.Routing.control(this.route).addTo(this.map);
+        this.map.panTo(origin);
     }
 }

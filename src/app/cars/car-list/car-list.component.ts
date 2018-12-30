@@ -11,7 +11,7 @@ import { ToasterService } from 'src/app/services/toaster.service';
 })
 export class CarListComponent implements OnInit {
     carList: Car[];
-    displayedColumns: string[] = ['actions', 'name', 'plate', 'location'];
+    displayedColumns: string[] = ['actions', 'name', 'plate', 'location', 'booking'];
 
     constructor(private carService: CarService, private toastr: ToasterService, private map: MapService) {}
 

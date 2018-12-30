@@ -20,13 +20,16 @@ export class CarMapComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
         const booking: SimpleChange = changes.booking;
-        console.log('prev value: ', booking.previousValue);
-        console.log('got booking: ', booking.currentValue);
+        // console.log('booking change: ', booking);
+
+        // console.log(this.booking);
 
         const currentBooking = booking.currentValue as Booking;
 
         if (currentBooking && currentBooking.origin) {
-            this.map.addRoute(currentBooking.origin, currentBooking.destination);
+            // console.log(`displaying booking`, this.booking.$key);
+
+            this.map.addRoute(this.booking.origin, this.booking.destination);
         }
     }
 }

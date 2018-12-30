@@ -20,6 +20,12 @@
         </td>
     </ng-container>
 
+    <!-- booking Column -->
+    <ng-container matColumnDef="booking">
+        <th class="header-plate" mat-header-cell *matHeaderCellDef>Current Booking</th>
+        <td class="rythm-bass" mat-cell *matCellDef="let car">{{ car.currentBookingId }}</td>
+    </ng-container>
+
     <!-- actions Column -->
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef id="actions"></th>

@@ -101,13 +101,7 @@ export class BookingService {
         delete booking.$key;
         booking.approvedBy = null;
 
-        const assignedCar = this.carList.find(car => car.$key === booking.carId);
-        if (assignedCar) {
-            assignedCar.currentBookingId = null;
-            console.error('Unapprove - Car removed from booking');
-        } else {
-            console.error('Unapprove - No car found for this booking');
-        }
+        this.removeCarFromBooking(booking);
         booking.carId = null;
         booking.carName = null;
 
@@ -117,6 +111,18 @@ export class BookingService {
     }
 
     deleteBooking(booking: Booking) {
+        this.removeCarFromBooking(booking);
         this.bookings.remove(booking.$key);
+    }
+
+    private removeCarFromBooking(booking: Booking) {
+        const assignedCar = this.carList.find(car => car.$key === booking.carId);
+        if (assignedCar) {
+            assignedCar.currentBookingId = null;
+            this.carService.updateCarToDB(assignedCar);
+            console.error('Unapprove - Car removed from booking');
+        } else {
+            console.error('Unapprove - No car found for this booking');
+        }
     }
 }
