@@ -7,6 +7,8 @@ import { UserService } from 'src/app/services/user.service';
     styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent implements OnInit {
+    today: number = Date.now();
+
     constructor(public user: UserService) {}
 
     ngOnInit() {}

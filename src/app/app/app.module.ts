@@ -28,6 +28,7 @@ import { MapService } from 'src/app/services/map.service';
 import { ReviewService } from 'src/app/services/review.service';
 import { ToasterService } from 'src/app/services/toaster.service';
 import { UserService } from 'src/app/services/user.service';
+import { SupportService } from '../services/support.service';
 
 // Components
 import { AddCarComponent } from 'src/app/cars/add-car/add-car.component';
@@ -47,12 +48,15 @@ import { ReviewDetailComponent } from 'src/app/reports/review/review-detail/revi
 import { ReviewEmoteDetailComponent } from 'src/app/reports/review/review-emote-detail/review-emote-detail.component';
 import { ReviewOverviewComponent } from 'src/app/reports/review/review-overview/review-overview.component';
 import { ReviewTableComponent } from 'src/app/reports/review/review-table/reviewtable.component';
+import { SupportComponent } from '../support/support.component';
 
 // Kendo
-import { DialogsModule } from '@progress/kendo-angular-dialog';
-import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { GaugesModule } from '@progress/kendo-angular-gauges';
 import { ChartsModule } from '@progress/kendo-angular-charts';
+
+// Quill
+import { QuillModule } from 'ngx-quill';
+
 import 'hammerjs';
 
 @NgModule({
@@ -74,6 +78,7 @@ import 'hammerjs';
         ReviewEmoteDetailComponent,
         ReviewChartComponent,
         ReviewTableComponent,
+        SupportComponent,
     ],
     imports: [
         AngularFireAuthModule,
@@ -82,21 +87,26 @@ import 'hammerjs';
         AppRoutingModule,
         BrowserAnimationsModule,
         BrowserModule,
-        ButtonsModule,
         ChartsModule,
         CommonModule,
-        DialogsModule,
         FormsModule,
         GaugesModule,
         MaterialModule,
         NgbModule,
         PrimeNgModule,
+        QuillModule,
         ReactiveFormsModule,
-        DialogsModule,
-        ButtonsModule,
-        GaugesModule,
     ],
-    providers: [UserService, CarService, BookingService, InvoiceService, MapService, ReviewService, ToasterService],
+    providers: [
+        BookingService,
+        CarService,
+        InvoiceService,
+        MapService,
+        ReviewService,
+        SupportService,
+        ToasterService,
+        UserService,
+    ],
     entryComponents: [CarsComponent],
     bootstrap: [AppComponent],
 })

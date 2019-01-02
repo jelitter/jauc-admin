@@ -1,0 +1,50 @@
+<div class="support-container">
+    <div class="message-list">
+        <mat-list>
+            <mat-list-item
+                [ngClass]="{ selected: selectedMessage.$key === message.$key }"
+                *ngFor="let message of messages"
+                (click)="messageClicked(message)"
+            >
+                <img matListAvatar [src]="message.photoUrl" alt="photo" />
+                <h3 matLine>
+                    <span [ngClass]="{ unopened: !message.read }"> {{ message.userName }}</span>
+                </h3>
+                <p matLine>
+                    <span [ngClass]="{ unopened: !message.read }"> {{ message.date | date: 'medium' }} </span>
+                </p>
+            </mat-list-item>
+        </mat-list>
+    </div>
+    <div class="message-body">
+        <mat-card class="example-card" *ngIf="selectedMessage">
+            <mat-card-header>
+                <img mat-card-avatar [src]="selectedMessage.photoUrl" alt="Photo" />
+                <mat-card-title>{{ selectedMessage.userName }}</mat-card-title>
+                <mat-card-subtitle>{{ selectedMessage.email }}</mat-card-subtitle>
+                <mat-card-subtitle class="message-date">{{ selectedMessage.date | date: 'medium' }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="message-content">
+                    <p>{{ selectedMessage.body }}</p>
+                </div>
+            </mat-card-content>
+            <mat-card-footer>
+                <div></div>
+                <div *ngIf="!showResponse" class="message-actions">
+                    <button mat-raised-button class="send-button" (click)="onRespond()">Respond</button>
+                </div>
+
+                <div *ngIf="showResponse">
+                    <quill-editor [(ngModel)]="response"></quill-editor>
+                    <div class="message-actions">
+                        <button mat-raised-button class="cancel-button">Cancel</button>
+                        <button mat-raised-button class="send-button" (click)="sendResponse(selectedMessage)">
+                            Send
+                        </button>
+                    </div>
+                </div>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+</div>

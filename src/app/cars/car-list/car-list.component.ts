@@ -28,7 +28,6 @@ export class CarListComponent implements OnInit {
                     this.carList.push(c as Car);
                 });
                 this.map.loadCars();
-                this.welcomeToast();
             });
     }
 
@@ -58,10 +57,5 @@ export class CarListComponent implements OnInit {
             }
             this.map.center();
         }, 200);
-    }
-
-    welcomeToast() {
-        // this.toastr.success(
-        this.toastr.showToast('Welcome to the Admin Panel', 'JAUC Cars');
     }
 }

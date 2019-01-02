@@ -49,9 +49,9 @@ export class UserService {
         this.userList.snapshotChanges().subscribe(users => {
             this.userArray = [];
             users.forEach(el => {
-                const u = el.payload.toJSON() as User;
+                const u = el.payload.toJSON();
                 // car['$key'] = el.key;
-                this.userArray.push(u);
+                this.userArray.push(u as User);
             });
             // console.log('User Array', this.userArray);
         });

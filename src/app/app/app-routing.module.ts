@@ -8,6 +8,7 @@ import { ReviewOverviewComponent } from 'src/app/reports/review/review-overview/
 import { ReviewDetailComponent } from 'src/app/reports/review/review-detail/review-detail.component';
 import { ReviewEmoteDetailComponent } from 'src/app/reports/review/review-emote-detail/review-emote-detail.component';
 import { InvoiceReportComponent } from '../reports/invoice-report/invoice-report.component';
+import { SupportComponent } from '../support/support.component';
 
 const routes: Routes = [
     {
@@ -41,6 +42,10 @@ const routes: Routes = [
                 component: InvoiceReportComponent,
             },
         ],
+    },
+    {
+        path: 'support',
+        component: SupportComponent,
     },
     {
         path: '**',

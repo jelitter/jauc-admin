@@ -2,12 +2,10 @@ import 'rxjs/add/operator/take';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Booking } from '../models/booking';
 import { Car } from '../models/car';
-import { Location } from '../models/location';
+// import { Location } from '../models/location';
 import { Injectable } from '@angular/core';
 import { InvoiceService } from './invoice.service';
 import { CarService } from './car.service';
-import { UserService } from './user.service';
-import { tap } from 'rxjs/operators';
 import { getDistance } from './shared';
 import { ToasterService } from './toaster.service';
 
@@ -23,8 +21,7 @@ export class BookingService {
         private toastr: ToasterService,
         private firebase: AngularFireDatabase,
         private carService: CarService,
-        private invoiceService: InvoiceService,
-        private userService: UserService
+        private invoiceService: InvoiceService
     ) {
         this.bookings = this.firebase.list('bookings');
         this.carService
