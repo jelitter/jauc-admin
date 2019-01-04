@@ -1,4 +1,5 @@
 export interface Message {
+    $key: string;
     userId: string;
     father: string;
     date: string;

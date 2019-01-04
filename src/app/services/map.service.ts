@@ -22,7 +22,7 @@ export class MapService implements OnInit {
     iconArduino: any;
     map: any;
     carMarkerList: Array<any>;
-    route: any;
+    routingControl: any = null;
 
     constructor(private carService: CarService) {
         this.carMarkerList = [];
@@ -37,15 +37,13 @@ export class MapService implements OnInit {
             .getCars()
             .snapshotChanges()
             .subscribe(item => {
-                // if (this.route) {
-                //     this.map.removeLayer(this.route);
-                // }
-                // this.route = null;
                 this.carMarkerList.forEach(cm => {
-                    // cm.marker.remove();
                     this.map.removeLayer(cm.marker);
                 });
                 this.carMarkerList = [];
+
+                const boundA: Location = new Location(Infinity, Infinity);
+                const boundB: Location = new Location(-180, -90);
 
                 item.forEach(element => {
                     const car: Car = <Car>element.payload.toJSON();
@@ -62,9 +60,21 @@ export class MapService implements OnInit {
                         car,
                         marker,
                     });
-                });
 
-                // this.updateMarkers();
+                    if (boundA.lat > car.location.lat) {
+                        boundA.lat = car.location.lat;
+                    }
+                    if (boundA.lon > car.location.lon) {
+                        boundA.lon = car.location.lon;
+                    }
+                    if (boundB.lat < car.location.lat) {
+                        boundB.lat = car.location.lat;
+                    }
+                    if (boundB.lon < car.location.lon) {
+                        boundB.lon = car.location.lon;
+                    }
+                });
+                this.map.fitBounds([[boundA.lat, boundA.lon], [boundB.lat, boundB.lon]]);
             });
     }
 
@@ -85,12 +95,14 @@ export class MapService implements OnInit {
             popupAnchor: [0, -16],
         });
 
-        const url = `https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=${mapboxKey}`;
+        // const url = `https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=${mapboxKey}`;
+        const url = `http://{s}.tile.osm.org/{z}/{x}/{y}.png`;
 
-        this.map = L.map('track-map', {
-            center: [this.defaultLat, this.defaultLon],
-            zoom: this.defaultZoom,
-        });
+        this.map = L.map('track-map');
+        // this.map = L.map('track-map', {
+        //     center: [this.defaultLat, this.defaultLon],
+        //     zoom: this.defaultZoom,
+        // }).setView([this.defaultLat, this.defaultLon], 16);
 
         L.tileLayer(url, {
             attribution: ``,
@@ -124,8 +136,8 @@ export class MapService implements OnInit {
         }
     }
 
-    panTo(car: Car) {
-        this.map.panTo([car.location.lat, car.location.lon]);
+    panTo(location: Location) {
+        this.map.panTo([location.lat, location.lon]);
     }
 
     removeCar(car: Car): any {
@@ -133,17 +145,32 @@ export class MapService implements OnInit {
         this.carMarkerList = this.carMarkerList.filter(cm => cm.car.$key !== car.$key);
     }
 
-    addRoute(origin: Location, destination: Location) {
-        if (this.route) {
-            this.map.removeLayer(this.route);
+    setRoute(origin: Location, destination: Location) {
+        const waypoints = [L.latLng(origin.lat, origin.lon), L.latLng(destination.lat, destination.lon)];
+        this.map.fitBounds([[origin.lat, origin.lon], [destination.lat, destination.lon]]);
+        this.map.panTo(origin);
+
+        if (this.routingControl) {
+            this.map.removeControl(this.routingControl);
+            this.routingControl = null;
+            // this.routingControl.getPlan().setWaypoints(waypoints);
         }
 
-        this.route = {
-            waypoints: [L.latLng(origin.lat, origin.lon), L.latLng(destination.lat, destination.lon)],
+        this.routingControl = L.Routing.control({
+            waypoints,
+            router: new L.Routing.osrmv1({
+                language: 'en',
+                profile: 'car',
+            }),
             routeWhileDragging: true,
-        };
+            // geocoder: L.Control.Geocoder.nominatim({}),
 
-        L.Routing.control(this.route).addTo(this.map);
-        this.map.panTo(origin);
+            // show: true,
+            // autoRoute: true,
+        });
+
+        this.routingControl.addTo(this.map);
+
+        // this.routingControl.setWaypoints([L.latLng(origin.lat, origin.lon), L.latLng(destination.lat, destination.lon)]);
     }
 }

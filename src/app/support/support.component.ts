@@ -35,10 +35,13 @@ export class SupportComponent implements OnInit {
                     const msg = element.payload.toJSON() as Message;
 
                     msg['$key'] = element.key;
-                    const searchUser = this.userService.getUserById(msg.userId);
-                    msg['userName'] = searchUser ? searchUser.displayName : msg.userId;
-                    msg['photoUrl'] = searchUser ? searchUser.photoUrl : null;
-                    msg['email'] = searchUser ? searchUser.email : null;
+
+                    if (!msg.userName) {
+                        const searchUser = this.userService.getUserById(msg.userId);
+                        msg['userName'] = searchUser ? searchUser.displayName : msg.userId;
+                        msg['photoUrl'] = searchUser ? searchUser.photoUrl : null;
+                        msg['email'] = searchUser ? searchUser.email : null;
+                    }
 
                     this.messages.push(msg as Message);
                 });
@@ -60,7 +63,15 @@ export class SupportComponent implements OnInit {
         this.showResponse = false;
         this.response = emailTemplate;
         message.read = true;
-        this.selectedMessage = message;
+        this.selectedMessage = { ...message };
+        // this.support.updateMessage(message).then(() => {
+        //     console.log(`New Selected Message`, this.selectedMessage);
+        // });
+    }
+
+    cancelResponse() {
+        this.showResponse = false;
+        this.response = emailTemplate;
     }
 
     sendResponse(message: Message) {

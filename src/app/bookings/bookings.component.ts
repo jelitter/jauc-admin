@@ -48,9 +48,9 @@ export class BookingsComponent implements OnInit {
             .take(1)
             .toPromise()
             .then(uid => {
-                console.log(this.userService.displayName);
+                // console.log(this.userService.displayName);
                 const assignedCar = this.bookingService.approveBooking(booking, this.userService.displayName);
-                console.log({ assignedCar });
+                // console.log({ assignedCar });
             });
     }
 

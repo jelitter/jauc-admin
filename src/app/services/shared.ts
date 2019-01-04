@@ -12,14 +12,10 @@ export const corkArea = {
     maxlon: -8.3,
 };
 
-export const randomCorkCoords = () => {
+export const randomCorkCoords = (): Location => {
     console.log('Random');
-
     const { minlat, maxlat, minlon, maxlon } = corkArea;
-    return {
-        lat: Number(randomFromInterval(minlat, maxlat)),
-        lon: Number(randomFromInterval(minlon, maxlon)),
-    };
+    return new Location(Number(randomFromInterval(minlat, maxlat)), Number(randomFromInterval(minlon, maxlon)));
 };
 
 export const getDistance = (origin: Location, destination: Location) => {

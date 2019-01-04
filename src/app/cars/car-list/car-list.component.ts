@@ -34,16 +34,14 @@ export class CarListComponent implements OnInit {
     onEdit(car: Car) {
         this.map.closePopup(this.carService.selectedCar);
         this.carService.selectedCar = Object.assign({}, car); // disabling double data binding
-        this.map.panTo(this.carService.selectedCar);
+        this.map.panTo(this.carService.selectedCar.location);
         this.map.openPopup(this.carService.selectedCar);
 
-        this.map.addRoute(this.carService.selectedCar.location, { lat: 51.8981696, lon: -8.4869786 });
-        //       private defaultLat = 51.8981696;
-        // private defaultLon = -8.4869786;
+        // this.map.addRoute(this.carService.selectedCar.location, { lat: 51.8981696, lon: -8.4869786 });
     }
 
     onDelete(car: Car) {
-        this.map.panTo(car);
+        this.map.panTo(car.location);
         this.map.openPopup(car);
         setTimeout(() => {
             if (confirm(`💀 Are you sure to remove '${car.name}'? `)) {

@@ -29,7 +29,7 @@ export class CarMapComponent implements OnInit, OnChanges {
         if (currentBooking && currentBooking.origin) {
             // console.log(`displaying booking`, this.booking.$key);
 
-            this.map.addRoute(this.booking.origin, this.booking.destination);
+            this.map.setRoute(this.booking.origin, this.booking.destination);
         }
     }
 }

@@ -30,13 +30,8 @@ export class CarService {
     }
 
     updateCar(car: Car) {
-        const { lat, lon } = randomCorkCoords();
-        const updatedCar = {
-            name: car.name,
-            plate: car.plate,
-            location: new Location(lat, lon),
-        };
-        this.carList.update(car.$key, updatedCar);
+        car.location = randomCorkCoords();
+        this.updateCarToDB(car);
     }
 
     updateCarToDB(car: Car) {

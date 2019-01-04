@@ -38,7 +38,7 @@
                 <div *ngIf="showResponse">
                     <quill-editor [(ngModel)]="response"></quill-editor>
                     <div class="message-actions">
-                        <button mat-raised-button class="cancel-button">Cancel</button>
+                        <button mat-raised-button class="cancel-button" (click)="cancelResponse()">Cancel</button>
                         <button mat-raised-button class="send-button" (click)="sendResponse(selectedMessage)">
                             Send
                         </button>

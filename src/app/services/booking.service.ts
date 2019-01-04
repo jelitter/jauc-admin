@@ -53,7 +53,6 @@ export class BookingService {
 
         availableCars.forEach(car => {
             const distance = getDistance(booking.origin, car.location);
-            // console.log('distance', distance);
 
             if (distance < closestDistance) {
                 closestDistance = distance;
@@ -109,6 +108,7 @@ export class BookingService {
 
     deleteBooking(booking: Booking) {
         this.removeCarFromBooking(booking);
+        this.invoiceService.deleteInvoice(booking.invoiceId);
         this.bookings.remove(booking.$key);
     }
 
