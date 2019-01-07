@@ -41,6 +41,8 @@ import { CarStatsComponent } from 'src/app/cars/car-stats/car-stats.component';
 import { DashboardComponent } from 'src/app/reports/dashboard/dashboard.component';
 import { FooterComponent } from 'src/app/footer/footer/footer.component';
 import { InvoiceReportComponent } from 'src/app/reports/invoice-report/invoice-report.component';
+import { TotalRevenueComponent } from 'src/app/reports/invoice/total-revenue/total-revenue.component';
+import { BookingsLast24Component } from 'src/app/reports/invoice/bookings-last24/bookings-last24.component';
 import { LoginComponent } from 'src/app/login/login.component';
 import { NavbarComponent } from 'src/app/navbar/navbar.component';
 import { ReportsComponent } from 'src/app/reports/reports.component';
@@ -72,6 +74,7 @@ import 'hammerjs';
         CarStatsComponent,
 				DashboardComponent,
         FooterComponent,
+				BookingsLast24Component,
         LoginComponent,
         InvoiceReportComponent,
         ReportsComponent,
@@ -81,6 +84,7 @@ import 'hammerjs';
         ReviewChartComponent,
         ReviewTableComponent,
         SupportComponent,
+				TotalRevenueComponent,
     ],
     imports: [
         AngularFireAuthModule,
