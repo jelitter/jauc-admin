@@ -5,14 +5,13 @@ import { Settlement } from 'src/app/models/settlement';
 import { Booking } from 'src/app/models/booking';
 
 @Component({
-  selector: 'app-total-revenue',
-  templateUrl: './total-revenue.component.html',
-  styleUrls: ['./total-revenue.component.scss']
+    selector: 'app-total-revenue',
+    templateUrl: './total-revenue.component.html',
+    styleUrls: ['./total-revenue.component.scss'],
 })
 export class TotalRevenueComponent implements OnInit {
-
     invoiceList: Array<Invoice>;
-		totalRevenue: number;
+    totalRevenue: number;
 
     constructor(private invoiceService: InvoiceService) {}
 
@@ -20,10 +19,9 @@ export class TotalRevenueComponent implements OnInit {
         this.invoiceService
             .getInvoices()
             .snapshotChanges()
-            .subscribe(
-							update => {
+            .subscribe(update => {
                 this.invoiceList = this.getInvoice(update);
-								this.totalRevenue = this.getRevenue(this.invoiceList);
+                this.totalRevenue = this.getRevenue(this.invoiceList);
             });
     }
 
@@ -39,14 +37,13 @@ export class TotalRevenueComponent implements OnInit {
         return data;
     }
 
-		getRevenue(invoices): number {
-			let total = 0;
+    getRevenue(invoices): number {
+        let total = 0;
 
-			invoices.forEach(element => {
-				total += element.price;
-			});
+        invoices.forEach(element => {
+            total += element.price;
+        });
 
-			return total;
-		}
-
+        return total;
+    }
 }

@@ -4,14 +4,13 @@ import { BookingService } from 'src/app/services/booking.service';
 import { element } from '@angular/core/src/render3';
 
 @Component({
-  selector: 'app-bookings-last24',
-  templateUrl: './bookings-last24.component.html',
-  styleUrls: ['./bookings-last24.component.scss']
+    selector: 'app-bookings-last24',
+    templateUrl: './bookings-last24.component.html',
+    styleUrls: ['./bookings-last24.component.scss'],
 })
 export class BookingsLast24Component implements OnInit {
-
-  	bookingList: Array<Booking>;
-		total: number = 0;
+    bookingList: Array<Booking>;
+    total = 0;
 
     constructor(private bookingService: BookingService) {}
 
@@ -19,10 +18,9 @@ export class BookingsLast24Component implements OnInit {
         this.bookingService
             .getBookings()
             .snapshotChanges()
-            .subscribe(
-							update => {
+            .subscribe(update => {
                 this.bookingList = this.getBooking(update);
-								this.calculateTotal(this.bookingList);
+                this.calculateTotal(this.bookingList);
             });
     }
 
@@ -38,19 +36,19 @@ export class BookingsLast24Component implements OnInit {
         return data;
     }
 
-		calculateTotal(list: Array<Booking>): void {
-			let count = 0;
+    calculateTotal(list: Array<Booking>): void {
+        let count = 0;
 
-			list.forEach((element) => {
-				const oneday = 60 * 60 * 24 * 1000; // milliseconds
-				const dateDiff = Math.abs(new Date().getTime() - new Date(element.date).getTime());
+        list.forEach(element => {
+            const oneday = 60 * 60 * 24 * 1000; // milliseconds
+            const dateDiff = Math.abs(new Date().getTime() - new Date(element.date).getTime());
 
-				if(dateDiff < oneday) { // if date is within 24h
-					count++;
-				}
-			});
+            if (dateDiff < oneday) {
+                // if date is within 24h
+                count++;
+            }
+        });
 
-			this.total = count;
-		}
-
+        this.total = count;
+    }
 }
