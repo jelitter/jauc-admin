@@ -46,6 +46,10 @@ const routes: Routes = [
                 path: 'invoices',
                 component: InvoiceReportComponent,
             },
+            {
+                path: '',
+                component: DashboardComponent,
+            },
         ],
     },
     {
