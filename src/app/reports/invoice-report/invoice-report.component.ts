@@ -33,7 +33,9 @@ export class InvoiceReportComponent implements OnInit {
             });
     }
 
-    totalInvoices() {
-        return 500;
+    totalInvoices(all = false) {
+        let sum = 0;
+        this.invoices.filter(inv => inv.paid || all).forEach(i => (sum += i.price));
+        return sum;
     }
 }

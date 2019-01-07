@@ -75,12 +75,8 @@ export class UserService {
 
     private addOrUpdateUser() {
         const user = new User(this.key, this.displayName, this.email, this.photoURL);
-
         const key = user.key;
-        // delete user.key;
-
         const searchUser = this.getUserById(key);
-
         if (!searchUser) {
             // console.log(`New user added`, user);
             this.userList.update(key, user);
