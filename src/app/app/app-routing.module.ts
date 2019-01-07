@@ -4,6 +4,7 @@ import { CarsComponent } from 'src/app/cars/cars.component';
 import { AddCarComponent } from 'src/app/cars/add-car/add-car.component';
 import { BookingsComponent } from 'src/app/bookings/bookings.component';
 import { ReportsComponent } from 'src/app/reports/reports.component';
+import { DashboardComponent } from 'src/app/reports/dashboard/dashboard.component';
 import { ReviewOverviewComponent } from 'src/app/reports/review/review-overview/review-overview.component';
 import { ReviewDetailComponent } from 'src/app/reports/review/review-detail/review-detail.component';
 import { ReviewEmoteDetailComponent } from 'src/app/reports/review/review-emote-detail/review-emote-detail.component';
@@ -29,6 +30,10 @@ const routes: Routes = [
         path: 'reports',
         component: ReportsComponent,
         children: [
+            {
+                path: 'dashboard',
+                component: DashboardComponent,
+            },
             {
                 path: 'reviews',
                 component: ReviewOverviewComponent,
