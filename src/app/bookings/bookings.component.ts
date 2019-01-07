@@ -70,8 +70,7 @@ export class BookingsComponent implements OnInit {
         this.displayedColumns = ['actions', 'carId', 'origin', 'destination'];
     }
 
-    showAllClicked(event) {
-        console.log(`Show all`, this.showAllBookings);
+    showAllClicked() {
         this.filterVisible();
     }
 

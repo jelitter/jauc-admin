@@ -106,9 +106,10 @@
                 <tr mat-row *matRowDef="let booking; when: showAllBookings; columns: displayedColumns"></tr>
             </table>
 
-            <mat-checkbox color="primary" [(ngModel)]="showAllBookings" (click)="showAllClicked($event)"
-                >Show all bookings</mat-checkbox
-            >
+            <mat-checkbox color="primary" [(ngModel)]="showAllBookings" (click)="showAllClicked()">
+                <span *ngIf="showAllBookings">Showing All bookings</span>
+                <span *ngIf="!showAllBookings">Showing Unapproved bookings</span>
+            </mat-checkbox>
             <mat-paginator
                 #paginator
                 [length]="dataSource?.bookings?.length"
