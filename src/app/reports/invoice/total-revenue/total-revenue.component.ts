@@ -44,6 +44,6 @@ export class TotalRevenueComponent implements OnInit {
             total += element.price;
         });
 
-        return total;
+        return Math.round(total * 100) / 100; // JS no good in maths
     }
 }

@@ -30,7 +30,7 @@ const routes: Routes = [
         path: 'reports',
         component: ReportsComponent,
         children: [
-							{
+            {
                 path: 'dashboard',
                 component: DashboardComponent,
             },

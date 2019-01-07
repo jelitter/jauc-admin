@@ -27,9 +27,9 @@ export class BookingsLast24Component implements OnInit {
     getBooking(fireBaseData) {
         const data = [];
 
-        fireBaseData.forEach(element => {
-            const booking = element.payload.toJSON();
-            booking['$key'] = element.key;
+        fireBaseData.forEach(dataElement => {
+            const booking = dataElement.payload.toJSON();
+            booking['$key'] = dataElement.key;
             data.push(booking as Booking);
         });
 
@@ -39,9 +39,9 @@ export class BookingsLast24Component implements OnInit {
     calculateTotal(list: Array<Booking>): void {
         let count = 0;
 
-        list.forEach(element => {
+        list.forEach(booking => {
             const oneday = 60 * 60 * 24 * 1000; // milliseconds
-            const dateDiff = Math.abs(new Date().getTime() - new Date(element.date).getTime());
+            const dateDiff = Math.abs(new Date().getTime() - new Date(booking.date).getTime());
 
             if (dateDiff < oneday) {
                 // if date is within 24h
