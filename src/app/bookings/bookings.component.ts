@@ -4,7 +4,6 @@ import { Booking } from './../models/booking';
 import { BookingDataSource } from './bookings-datasource';
 import { MatPaginator, MatSort } from '@angular/material';
 import { UserService } from '../services/user.service';
-import { CarsComponent } from '../cars/cars.component';
 
 @Component({
     selector: 'app-bookings',
@@ -16,6 +15,7 @@ export class BookingsComponent implements OnInit {
     @ViewChild(MatSort) sort: MatSort;
     opened = false;
     selectedBooking = null;
+    showAllBookings = false;
     bookings: Array<Booking>;
     dataSource: BookingDataSource;
     displayedColumns = ['actions', 'carId', 'userId', 'approvedBy', 'invoiceId', 'origin', 'destination', 'date'];
@@ -25,6 +25,7 @@ export class BookingsComponent implements OnInit {
     constructor(private bookingService: BookingService, private userService: UserService) {}
 
     ngOnInit() {
+        this.showAllBookings = false;
         this.bookingService
             .getBookings()
             .snapshotChanges()
@@ -39,7 +40,11 @@ export class BookingsComponent implements OnInit {
 
                     this.bookings.push(b);
                 });
-                this.dataSource = new BookingDataSource(this.paginator, this.sort, this.bookings);
+                this.dataSource = new BookingDataSource(
+                    this.paginator,
+                    this.sort,
+                    this.bookings.filter(b => !b.approvedBy)
+                );
             });
     }
 
@@ -48,9 +53,7 @@ export class BookingsComponent implements OnInit {
             .take(1)
             .toPromise()
             .then(uid => {
-                // console.log(this.userService.displayName);
-                const assignedCar = this.bookingService.approveBooking(booking, this.userService.displayName);
-                // console.log({ assignedCar });
+                this.bookingService.approveBooking(booking, this.userService.displayName);
             });
     }
 
@@ -66,6 +69,20 @@ export class BookingsComponent implements OnInit {
         this.selectedBooking = booking;
         this.displayedColumns = ['actions', 'carId', 'origin', 'destination'];
     }
+
+    showAllClicked(event) {
+        console.log(`Show all`, this.showAllBookings);
+        this.filterVisible();
+    }
+
+    filterVisible() {
+        this.dataSource = new BookingDataSource(
+            this.paginator,
+            this.sort,
+            !this.showAllBookings ? this.bookings : this.bookings.filter(b => !b.approvedBy)
+        );
+    }
+
     hideMap() {
         this.selectedBooking = null;
         this.displayedColumns = [

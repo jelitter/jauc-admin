@@ -85,6 +85,12 @@ tr.mat-row {
     background-color: var(--color-prim-light);
 }
 
+mat-checkbox {
+    position: absolute;
+    margin-top: 1em;
+    margin-left: 2em;
+}
+
 $accent: #ff69b4;
 
 @import '~@progress/kendo-theme-material/scss/all';

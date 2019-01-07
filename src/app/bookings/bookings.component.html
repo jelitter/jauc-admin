@@ -48,7 +48,6 @@
 
                 <ng-container matColumnDef="actions">
                     <th mat-header-cell *matHeaderCellDef>
-                        <!-- <button mat-button (click)="sidenav.toggle()"><mat-icon>visibility</mat-icon></button> -->
                         <button mat-button (click)="hideMap()"><mat-icon>visibility</mat-icon></button>
                     </th>
                     <td class="action-column rythm-bass" mat-cell *matCellDef="let booking">
@@ -104,9 +103,12 @@
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let booking; columns: displayedColumns"></tr>
+                <tr mat-row *matRowDef="let booking; when: showAllBookings; columns: displayedColumns"></tr>
             </table>
 
+            <mat-checkbox color="primary" [(ngModel)]="showAllBookings" (click)="showAllClicked($event)"
+                >Show all bookings</mat-checkbox
+            >
             <mat-paginator
                 #paginator
                 [length]="dataSource?.bookings?.length"
@@ -118,5 +120,3 @@
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
-
-<!-- ===================================== -->
