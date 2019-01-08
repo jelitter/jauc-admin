@@ -11,7 +11,7 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
             <td mat-cell *matCellDef="let invoice">{{ invoice.price | currency: 'EUR' }}</td>
             <td mat-footer-cell *matFooterCellDef>
-                <strong>{{ totalInvoices(true) | currency: 'EUR' }}</strong> (Total)
+                <strong *ngIf="invoices?.length > 0">{{ totalInvoices(true) | currency: 'EUR' }}</strong> (Total)
             </td>
             <!-- <td mat-footer-cell *matFooterCellDef>{{ 250 | currency: 'EUR' }}</td> -->
         </ng-container>
@@ -20,7 +20,7 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Paid</th>
             <td mat-cell *matCellDef="let invoice">{{ invoice.paid || false }}</td>
             <td mat-footer-cell *matFooterCellDef>
-                <strong>{{ totalInvoices() | currency: 'EUR' }}</strong> (Paid)
+                <strong *ngIf="invoices?.length > 0">{{ totalInvoices() | currency: 'EUR' }}</strong> (Paid)
             </td>
         </ng-container>
 
