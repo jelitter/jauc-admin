@@ -43,7 +43,7 @@ export class BookingsComponent implements OnInit {
                 this.dataSource = new BookingDataSource(
                     this.paginator,
                     this.sort,
-                    this.bookings.filter(b => !b.approvedBy)
+                    this.bookings.filter(b => !b.approvedBy || this.showAllBookings)
                 );
             });
     }
