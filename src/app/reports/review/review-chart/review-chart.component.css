@@ -1,0 +1,7 @@
+.charts-container {
+    /* display: grid;
+    grid-template-rows: 50% auto;
+    grid-gap: 1em;
+    padding: 1em; */
+    background-color: chartreuse;
+}

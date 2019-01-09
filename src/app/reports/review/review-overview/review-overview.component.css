@@ -1,6 +1,18 @@
 .mat-card.half-width {
-  width: 49.5%;
+    width: 49.5%;
+    /* width: 100%; */
 }
 .mat-card.full-width {
-  width: 100%;
+    width: 100%;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.reviews-container {
+    display: grid;
+    grid-template-columns: 300px auto;
+    grid-gap: 1em;
+    padding: 1em;
 }

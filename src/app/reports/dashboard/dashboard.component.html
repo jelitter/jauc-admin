@@ -1,0 +1,49 @@
+<div class="grid-container">
+    <h1 class="mat-h1">Dashboard</h1>
+
+    <div class="flex-container flex-container-row">
+        <mat-card class="half-width">
+            <mat-card-header>
+                <mat-card-title>
+                    Review emotions
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" xPosition="before">
+                        <button mat-menu-item>Expand</button> <button mat-menu-item>Remove</button>
+                    </mat-menu>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="dashboard-card-content">
+                <div><app-review-emote-chart></app-review-emote-chart></div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+	<div class="flex-container flex-container-row">
+		<mat-card class="half-width">
+            <mat-card-header>
+                <mat-card-title>
+                    Total revenue
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="dashboard-card-content">
+                <div><app-total-revenue></app-total-revenue></div>
+            </mat-card-content>
+        </mat-card>
+
+
+		<mat-card class="half-width">
+            <mat-card-header>
+                <mat-card-title>
+                    Booking activity
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="dashboard-card-content">
+                <div><app-bookings-last24></app-bookings-last24></div>
+            </mat-card-content>
+        </mat-card>
+	</div>
+
+
+</div>

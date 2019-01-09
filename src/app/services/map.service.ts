@@ -50,7 +50,7 @@ export class MapService implements OnInit {
                     car['$key'] = element.key;
 
                     const marker = L.marker([car.location.lat, car.location.lon], {
-                        icon: car.name.toLowerCase().match('arduino') ? this.iconArduino : this.icon,
+                      icon: car.name && car.name.toLowerCase().match('arduino') ? this.iconArduino : this.icon,
                         riseOnHover: true,
                     });
                     marker.bindPopup(`<b>${car.name}</b><br>${car.plate}`);
