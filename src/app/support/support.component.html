@@ -28,21 +28,32 @@
                 <div class="message-content">
                     <p>{{ selectedMessage.body }}</p>
                 </div>
+                <div class="message-response" *ngIf="selectedMessage.response">
+                    <p [innerHTML]="selectedMessage.response | linkify"></p>
+                </div>
             </mat-card-content>
             <mat-card-footer>
                 <div></div>
                 <div *ngIf="!showResponse" class="message-actions">
-                    <button mat-raised-button class="send-button" (click)="onRespond()">Respond</button>
+                    <button mat-raised-button class="send-button" (click)="onRespond()">
+                        {{ selectedMessage.response ? 'Modify Response' : 'Respond' }}
+                    </button>
                 </div>
 
                 <div *ngIf="showResponse">
                     <quill-editor [(ngModel)]="response"></quill-editor>
                     <div class="message-actions">
                         <button mat-raised-button class="cancel-button" (click)="cancelResponse()">Cancel</button>
-                        <button mat-raised-button class="send-button" (click)="sendResponse(selectedMessage)">
+                        <button
+                            mat-raised-button
+                            class="send-button"
+                            (click)="sendResponse(selectedMessage)"
+                            [disabled]="!response"
+                        >
                             Send
                         </button>
                     </div>
+                    <!-- {{ response }} -->
                 </div>
             </mat-card-footer>
         </mat-card>

@@ -4,6 +4,7 @@ export interface Message {
     father: string;
     date: string;
     body: string;
+    response?: string;
     read?: boolean;
     userName?: string;
     email?: string;

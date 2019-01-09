@@ -29,25 +29,30 @@ export class SupportService implements OnInit {
                 });
                 console.log(`Message List`, this.messageList);
             });
-
-        // this.messages.snapshotChanges()
-        //   .subscribe(item => {
-        //     this.messageList = [];
-        //     item.forEach(element => {
-        //       const c = element.payload.toJSON();
-        //       c['$key'] = element.key;
-        //       this.carList.push(c as Car);
-        //     });
     }
 
     getMessages() {
         return this.messages;
     }
 
-    updateMessage(message: Message) {
+    // updateMessage(message: Message) {
+    //     const key = message.$key;
+    //     delete message.$key;
+    //     return this.messages.update(key, message);
+    //     console.log(`Updating message ${key}`, message);
+    // }
+
+    readMessage(message: Message) {
         const key = message.$key;
         delete message.$key;
-        return this.messages.update(key, message);
-        console.log(`Updating message ${key}`, message);
+        message.read = true;
+        console.log(`support service, reading msg...`, message);
+
+        this.firebase
+            .list('support')
+            .update(key, message)
+            .then(updatedMessage => {
+                console.log(`message updated`, updatedMessage);
+            });
     }
 }

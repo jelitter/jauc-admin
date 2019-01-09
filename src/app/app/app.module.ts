@@ -59,6 +59,7 @@ import { ChartsModule } from '@progress/kendo-angular-charts';
 
 // Quill
 import { QuillModule } from 'ngx-quill';
+import { LinkifyPipe } from '../support/linkify.pipe';
 
 import 'hammerjs';
 
@@ -85,6 +86,7 @@ import 'hammerjs';
         ReviewTableComponent,
         SupportComponent,
         TotalRevenueComponent,
+        LinkifyPipe,
     ],
     imports: [
         AngularFireAuthModule,

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { SupportService } from '../services/support.service';
 import { UserService } from '../services/user.service';
 import { Message } from '../models/message';
+import { LinkifyPipe } from './linkify.pipe';
 
 const emailTemplate = `
 <p>Dear customer,</p>
@@ -62,11 +63,11 @@ export class SupportComponent implements OnInit {
     openMessage(message: Message) {
         this.showResponse = false;
         this.response = emailTemplate;
-        message.read = true;
-        this.selectedMessage = { ...message };
-        // this.support.updateMessage(message).then(() => {
-        //     console.log(`New Selected Message`, this.selectedMessage);
-        // });
+        this.selectedMessage = message;
+
+        if (!message.read) {
+            this.support.readMessage(message);
+        }
     }
 
     cancelResponse() {
@@ -75,6 +76,9 @@ export class SupportComponent implements OnInit {
     }
 
     sendResponse(message: Message) {
-        console.log('Send response', this.response);
+        // this.response = emailTemplate;
+        message.response = this.response;
+        this.selectedMessage = message;
+        this.support.readMessage(message);
     }
 }
