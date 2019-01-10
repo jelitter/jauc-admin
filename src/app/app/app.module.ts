@@ -25,6 +25,7 @@ import { BookingService } from 'src/app/services/booking.service';
 import { CarService } from 'src/app/services/car.service';
 import { InvoiceService } from '../services/invoice.service';
 import { MapService } from 'src/app/services/map.service';
+import { NotificationService } from 'src/app/services/notification.service';
 import { ReviewService } from 'src/app/services/review.service';
 import { ToasterService } from 'src/app/services/toaster.service';
 import { UserService } from 'src/app/services/user.service';
@@ -110,6 +111,7 @@ import 'hammerjs';
         CarService,
         InvoiceService,
         MapService,
+        NotificationService,
         ReviewService,
         SupportService,
         ToasterService,

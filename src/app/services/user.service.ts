@@ -83,7 +83,7 @@ export class UserService {
         }
     }
 
-    getUserById(key: string) {
+    public getUserById(key: string) {
         return this.userArray.find(u => u.key === key);
     }
 }
