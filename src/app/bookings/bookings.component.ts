@@ -1,9 +1,11 @@
+import { User } from './../models/user';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BookingService } from './../services/booking.service';
 import { Booking } from './../models/booking';
 import { BookingDataSource } from './bookings-datasource';
 import { MatPaginator, MatSort } from '@angular/material';
 import { UserService } from '../services/user.service';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
     selector: 'app-bookings',
@@ -22,7 +24,11 @@ export class BookingsComponent implements OnInit {
 
     public result;
 
-    constructor(private bookingService: BookingService, private userService: UserService) {}
+    constructor(
+        private bookingService: BookingService,
+        private userService: UserService,
+        private nofiticationService: NotificationService
+    ) {}
 
     ngOnInit() {
         this.showAllBookings = false;
@@ -55,14 +61,23 @@ export class BookingsComponent implements OnInit {
             .then(uid => {
                 this.bookingService.approveBooking(booking, this.userService.displayName);
             });
+
+        const endUser: User = this.userService.getUserById(booking.userId);
+        this.nofiticationService.notify(endUser.key, 'Booking approved', 'Your car is on its way!');
     }
 
     onUnapprove(booking: Booking) {
         this.bookingService.unapproveBooking(booking);
+
+        const endUser: User = this.userService.getUserById(booking.userId);
+        this.nofiticationService.notify(endUser.key, 'Booking cancelled', 'You walk today!');
     }
 
     onDelete(booking: Booking) {
         this.bookingService.deleteBooking(booking);
+
+        const endUser: User = this.userService.getUserById(booking.userId);
+        this.nofiticationService.notify(endUser.key, 'Booking deleted', 'Booking deleted upon admin request!');
     }
 
     onView(booking: Booking) {
