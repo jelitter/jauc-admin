@@ -46,7 +46,7 @@ export class SupportComponent implements OnInit {
 
                     this.messages.push(msg as Message);
                 });
-                if (this.messages.length > 0) {
+                if (this.messages.length > 0 && !this.selectedMessage) {
                     this.openMessage(this.messages[0]);
                 }
             });
@@ -62,7 +62,7 @@ export class SupportComponent implements OnInit {
 
     openMessage(message: Message) {
         this.showResponse = false;
-        this.response = emailTemplate;
+        this.response = message.response || emailTemplate;
         this.selectedMessage = message;
 
         if (!message.read) {
@@ -80,5 +80,6 @@ export class SupportComponent implements OnInit {
         message.response = this.response;
         this.selectedMessage = message;
         this.support.readMessage(message);
+        this.showResponse = false;
     }
 }

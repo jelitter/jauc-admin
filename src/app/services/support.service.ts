@@ -1,11 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { Car } from '../models/car';
-import { Location } from '../models/location';
-import 'rxjs/add/operator/take';
-import { randomCorkCoords } from './shared';
 import { Message } from '../models/message';
-import { of } from 'rxjs';
+import 'rxjs/add/operator/take';
 
 @Injectable()
 export class SupportService implements OnInit {
@@ -35,24 +31,10 @@ export class SupportService implements OnInit {
         return this.messages;
     }
 
-    // updateMessage(message: Message) {
-    //     const key = message.$key;
-    //     delete message.$key;
-    //     return this.messages.update(key, message);
-    //     console.log(`Updating message ${key}`, message);
-    // }
-
     readMessage(message: Message) {
         const key = message.$key;
         delete message.$key;
         message.read = true;
-        console.log(`support service, reading msg...`, message);
-
-        this.firebase
-            .list('support')
-            .update(key, message)
-            .then(updatedMessage => {
-                console.log(`message updated`, updatedMessage);
-            });
+        this.firebase.list('support').update(key, message);
     }
 }
