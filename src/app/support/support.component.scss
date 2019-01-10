@@ -42,6 +42,14 @@ mat-card {
     margin-top: 1em;
 }
 
+mat-icon {
+    margin-right: -0.5em;
+    color: var(--color-confirm);
+}
+.answered {
+    color: var(--color-prim-muted);
+}
+
 mat-card-footer {
     padding: 1em;
 }

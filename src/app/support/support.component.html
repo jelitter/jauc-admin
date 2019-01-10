@@ -10,6 +10,12 @@
                 <h3 matLine>
                     <span [ngClass]="{ unopened: !message.read }"> {{ message.userName }}</span>
                 </h3>
+                <mat-icon
+                    [matTooltip]="message.response ? 'Request is Answered' : 'Request is Unanswered'"
+                    [ngClass]="{ answered: message.response }"
+                    >{{ message.response ? 'markunread_mailbox' : 'email' }}</mat-icon
+                >
+                <!-- <span>{{ message.response ? '(answered op)' : '(unanswered ✉)' }} </span> -->
                 <p matLine>
                     <span [ngClass]="{ unopened: !message.read }"> {{ message.date | date: 'medium' }} </span>
                 </p>
