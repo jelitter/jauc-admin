@@ -26,11 +26,9 @@ export class NotificationService {
 
         const payload = {
             to: `${userInfo.device}`,
-            message: {
-                notification: {
-                    title,
-                    body,
-                },
+            notification: {
+                title,
+                body,
             },
         };
 
