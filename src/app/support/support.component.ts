@@ -61,12 +61,21 @@ export class SupportComponent implements OnInit {
     }
 
     openMessage(message: Message) {
+        const key = message.$key;
+        this.selectedMessage = message;
         this.showResponse = false;
         this.response = message.response || emailTemplate;
-        this.selectedMessage = message;
 
         if (!message.read) {
-            this.support.readMessage(message);
+            this.support
+                .readMessage(message)
+                .then(msg => {
+                    this.selectedMessage.read = true;
+                    this.selectedMessage.$key = key;
+                })
+                .catch(reason => {
+                    console.log(`Error reading message`, reason);
+                });
         }
     }
 
@@ -74,7 +83,6 @@ export class SupportComponent implements OnInit {
         this.support
             .deleteMessage(message)
             .then(() => {
-                console.log(`Message deleted`);
                 this.selectedMessage = null;
             })
             .catch(reason => {
@@ -88,10 +96,17 @@ export class SupportComponent implements OnInit {
     }
 
     sendResponse(message: Message) {
-        // this.response = emailTemplate;
+        const key = this.selectedMessage.$key;
+
         message.response = this.response;
-        this.selectedMessage = message;
-        this.support.readMessage(message);
-        this.showResponse = false;
+        this.support
+            .sendResponse(message)
+            .then(() => {
+                this.showResponse = false;
+                this.selectedMessage.$key = key;
+            })
+            .catch(reason => {
+                console.log(`Error sending response`, reason);
+            });
     }
 }

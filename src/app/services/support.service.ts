@@ -23,7 +23,6 @@ export class SupportService implements OnInit {
                     m['$key'] = item.key;
                     this.messageList.push(m as Message);
                 });
-                console.log(`Message List`, this.messageList);
             });
     }
 
@@ -35,7 +34,13 @@ export class SupportService implements OnInit {
         const key = message.$key;
         delete message.$key;
         message.read = true;
-        this.firebase.list('support').update(key, message);
+        return this.firebase.list('support').update(key, message);
+    }
+
+    sendResponse(message: Message) {
+        const key = message.$key;
+        delete message.$key;
+        return this.firebase.list('support').update(key, message);
     }
 
     deleteMessage(message: Message) {
