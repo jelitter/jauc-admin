@@ -1,12 +1,20 @@
 <footer class="background-dark">
-    <section>
-        <h4>JAUC Cars</h4>
-        <p *ngIf="user.displayName" (click)="user.logout()">Logout</p>
-    </section>
+    <section><h4>JAUC Cars</h4></section>
 
     <section></section>
 
     <section>
         <h4>{{ today | date: 'fullDate' }}</h4>
+        <!-- <span *ngIf="user.displayName" (click)="user.logout()">Logout</span> -->
+
+        <mat-chip
+            *ngIf="user.displayName"
+            selected
+            class="admin-icon rythm-bass"
+            (click)="user.logout()"
+            matTooltip="Logout"
+        >
+            <i class="fas fa-sign-out-alt rythm-medium"></i>
+        </mat-chip>
     </section>
 </footer>

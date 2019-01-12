@@ -37,4 +37,8 @@ export class SupportService implements OnInit {
         message.read = true;
         this.firebase.list('support').update(key, message);
     }
+
+    deleteMessage(message: Message) {
+        return this.firebase.list('support').remove(message.$key);
+    }
 }

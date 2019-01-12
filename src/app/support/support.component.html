@@ -2,7 +2,7 @@
     <div class="message-list">
         <mat-list>
             <mat-list-item
-                [ngClass]="{ selected: selectedMessage.$key === message.$key }"
+                [ngClass]="{ selected: selectedMessage?.$key === message.$key }"
                 *ngFor="let message of messages"
                 (click)="messageClicked(message)"
             >
@@ -25,6 +25,12 @@
     <div class="message-body">
         <mat-card class="example-card" *ngIf="selectedMessage">
             <mat-card-header>
+                <mat-icon
+                    matTooltip="Delete message"
+                    class="delete-icon rythm-bass"
+                    (click)="deleteMessage(selectedMessage)"
+                    >delete</mat-icon
+                >
                 <img mat-card-avatar [src]="selectedMessage.photoUrl" alt="Photo" />
                 <mat-card-title>{{ selectedMessage.userName }}</mat-card-title>
                 <mat-card-subtitle>{{ selectedMessage.email }}</mat-card-subtitle>

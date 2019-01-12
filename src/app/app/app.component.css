@@ -12,7 +12,7 @@
 #main {
     height: 100%;
     display: grid;
-    grid-template-rows: 4.7em 0px auto 6.2em;
+    grid-template-rows: 4.7em 0px auto 4.2em;
     grid-gap: 0;
 }
 

@@ -70,6 +70,18 @@ export class SupportComponent implements OnInit {
         }
     }
 
+    deleteMessage(message: Message) {
+        this.support
+            .deleteMessage(message)
+            .then(() => {
+                console.log(`Message deleted`);
+                this.selectedMessage = null;
+            })
+            .catch(reason => {
+                console.log(`Error deleting message`, reason);
+            });
+    }
+
     cancelResponse() {
         this.showResponse = false;
         this.response = emailTemplate;

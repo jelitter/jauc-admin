@@ -3,12 +3,14 @@
     grid-template-columns: 300px auto;
     grid-gap: 0;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: none;
+    max-height: calc(100vh - 9em);
 }
 
-// .message-list {
-//     // background: rgba(255, 255, 255, 0.5) !important;
-// }
+.message-list {
+    // background: rgba(255, 255, 255, 0.5) !important;
+    overflow-y: scroll;
+}
 
 .message-body {
     padding: 1em;
@@ -88,6 +90,17 @@ img.avatar {
     margin-top: 10px;
     background: var(--color-prim);
     color: white;
+}
+.delete-icon {
+    background: var(--color-prim);
+    border-radius: 50%;
+    color: white;
+    height: 36px;
+    line-height: 36px;
+    position: absolute;
+    right: 1em;
+    text-align: center;
+    width: 36px;
 }
 .selected {
     // border: solid 2px red;
