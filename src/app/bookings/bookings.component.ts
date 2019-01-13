@@ -46,6 +46,13 @@ export class BookingsComponent implements OnInit {
 
                     this.bookings.push(b);
                 });
+
+                // Sort messages, newest first
+                this.bookings.sort(function(a: Booking, b: Booking) {
+                    return new Date(b.date).getTime() - new Date(a.date).getTime();
+                });
+                // this.bookings.reverse();
+
                 this.dataSource = new BookingDataSource(
                     this.paginator,
                     this.sort,

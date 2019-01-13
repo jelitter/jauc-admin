@@ -2,6 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Message } from '../models/message';
 import 'rxjs/add/operator/take';
+import { of } from 'rxjs/internal/observable/of';
 
 @Injectable()
 export class SupportService implements OnInit {

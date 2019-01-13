@@ -16,7 +16,16 @@
                 [routerLinkActive]="['mat-button-toggle-checked', 'active-route']"
                 #rla="routerLinkActive"
             >
-                {{ link.label }}
+                <span
+                    *ngIf="unreadMessages > 0 && link.label.toLowerCase() === 'support'; else: noBadge"
+                    [matBadge]="unreadMessages"
+                    matBadgeColor="warn"
+                    >{{ link.label }}
+                </span>
+                <ng-template #noBadge>{{ link.label }}</ng-template>
+                <!-- <span *ngIf="link.label.toLowerCase() !== 'support'"> {{ link.label }} </span> -->
+
+                <!-- <ng-template #other> {{ link.label }} </ng-template> -->
             </a>
 
             <a mat-button (click)="toggleMusic()" class="rythm-bass">

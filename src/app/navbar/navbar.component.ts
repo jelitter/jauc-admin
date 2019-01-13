@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import Rythm from 'rythm.js';
+import { SupportComponent } from '../support/support.component';
+import { SupportService } from '../services/support.service';
+import { Message } from '../models/message';
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+    unreadMessages = 0;
     rythm;
     links: MenuItem[];
     activeItem: MenuItem;
     menuItems: MenuItem[];
 
-    constructor(private router: Router, public user: UserService) {}
+    constructor(private router: Router, public user: UserService, private supportService: SupportService) {}
 
     ngOnInit() {
         this.links = [];
@@ -33,6 +37,26 @@ export class NavbarComponent implements OnInit {
             { label: 'Profile', icon: 'pi pi-fw pi-user-plus' },
         ];
         this.initializeMusic();
+
+        this.supportService
+            .getMessages()
+            .snapshotChanges()
+            .subscribe(items => {
+                this.unreadMessages = 0;
+                items.forEach(element => {
+                    const msg = element.payload.toJSON() as Message;
+                    if (!msg.read) {
+                        this.unreadMessages++;
+                    }
+                });
+            });
+
+        // this.supportService.unreadMessages.subscribe(val => {
+        //     this.unreadMessages = val;
+        //     console.log(`unread messages changed`);
+        //     console.log({ val });
+        //     console.log({ unreadMessages: this.unreadMessages });
+        // });
     }
 
     initializeMusic() {
