@@ -40,7 +40,7 @@ export class NotificationService {
             return new Error('No URL supplied, cannot execute fetch()');
         }
 
-        console.log(data);
+        // console.log(data);
 
         return fetch(url, {
             method: 'POST',

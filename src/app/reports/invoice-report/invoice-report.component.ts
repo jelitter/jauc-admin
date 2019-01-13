@@ -3,6 +3,7 @@ import { MatPaginator, MatSort } from '@angular/material';
 import { InvoiceService } from 'src/app/services/invoice.service';
 import { Invoice } from 'src/app/models/invoice';
 import { InvoiceDataSource } from './invoice-datasource';
+import { BookingService } from './../../services/booking.service';
 
 @Component({
     selector: 'app-invoice-report',
@@ -16,7 +17,7 @@ export class InvoiceReportComponent implements OnInit {
     dataSource: InvoiceDataSource;
     displayedColumns = ['bookingId', 'price', 'paid'];
 
-    constructor(private invoiceService: InvoiceService) {}
+    constructor(private invoiceService: InvoiceService, private bookingService: BookingService) {}
 
     ngOnInit() {
         this.invoiceService
@@ -28,6 +29,12 @@ export class InvoiceReportComponent implements OnInit {
                     const inv = element.payload.toJSON() as Invoice;
                     inv['$key'] = element.key;
                     this.invoices.push(inv);
+
+                    if (inv.paid) {
+                        // If invoice is paid, release car from booking
+                        console.log(`Booking ${inv.bookingId} has a paid invoice, releasing car.`);
+                        this.bookingService.releaseCarFromBooking(inv.bookingId);
+                    }
                 });
                 this.dataSource = new InvoiceDataSource(this.paginator, this.sort, this.invoices);
             });

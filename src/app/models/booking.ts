@@ -5,6 +5,7 @@ import { Invoice } from './invoice';
 
 export class Booking {
     $key: string;
+    bookingId?: string;
     userId: string;
     userName: string = null;
     carId: string = null;

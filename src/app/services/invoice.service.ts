@@ -8,9 +8,19 @@ import { getDistance } from './shared';
 @Injectable()
 export class InvoiceService {
     invoices: AngularFireList<any>;
+    invoiceList: Invoice[] = [];
 
     constructor(private firebase: AngularFireDatabase) {
-        this.getInvoices();
+        this.getInvoices()
+            .snapshotChanges()
+            .subscribe(invoices => {
+                this.invoiceList = [];
+                invoices.forEach(el => {
+                    const inv = el.payload.toJSON() as Invoice;
+                    inv['$key'] = el.key;
+                    this.invoiceList.push(inv as Invoice);
+                });
+            });
     }
 
     getInvoices() {
@@ -39,5 +49,16 @@ export class InvoiceService {
 
     deleteInvoice(key: string) {
         this.invoices.remove(key);
+    }
+
+    isInvoicePaid(invoiceId): Boolean {
+        const invoice = this.invoiceList.find(i => i.$key === invoiceId);
+        if (invoice) {
+            // console.log(`Invoice Id ${invoiceId} found, paid: ${invoice.paid}`);
+            return invoice.paid;
+        } else {
+            // console.log(`No invoice found with Id ${invoiceId}`);
+            return false;
+        }
     }
 }

@@ -3,7 +3,7 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Booking } from '../models/booking';
 import { Car } from '../models/car';
 // import { Location } from '../models/location';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { InvoiceService } from './invoice.service';
 import { CarService } from './car.service';
 import { getDistance } from './shared';
@@ -13,6 +13,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 @Injectable()
 export class BookingService {
     bookings: AngularFireList<any>;
+    cars: AngularFireList<any>;
     carList: Car[] = [];
     bookingList: Booking[] = [];
 
@@ -25,26 +26,45 @@ export class BookingService {
         private invoiceService: InvoiceService
     ) {
         this.bookings = this.firebase.list('bookings');
-        this.carService
-            .getCars()
-            .snapshotChanges()
-            .subscribe(cars => {
-                this.carList = [];
-                cars.forEach(el => {
-                    const car = el.payload.toJSON();
-                    car['$key'] = el.key;
-                    this.carList.push((car as unknown) as Car);
-                });
-            });
+        this.cars = this.firebase.list('cars');
+
+        this.getCarList();
+        this.getBookingList();
     }
 
     getBookings() {
         return this.bookings;
     }
 
+    getCarList() {
+        return this.cars.snapshotChanges().subscribe(cars => {
+            this.carList = [];
+            cars.forEach(el => {
+                const car = el.payload.toJSON();
+                car['$key'] = el.key;
+                car['carId'] = el.key;
+                this.carList.push(car as Car);
+            });
+            console.log(`🚗 Car List`, this.carList);
+        });
+    }
+
+    getBookingList() {
+        return this.bookings.snapshotChanges().subscribe(bookings => {
+            this.bookingList = [];
+            bookings.forEach(el => {
+                const booking = el.payload.toJSON();
+                booking['$key'] = el.key;
+                booking['bookingId'] = el.key;
+                this.bookingList.push(booking as Booking);
+            });
+            console.log(`📘 Booking List`, this.bookingList);
+        });
+    }
+
     approveBooking(booking: Booking, adminId: string): Car {
         const key = booking.$key;
-        let assignedCar = null;
+        let assignedCar: Car = null;
 
         // Assign the closest car
         let closestCarId = null;
@@ -62,29 +82,30 @@ export class BookingService {
         });
         assignedCar = this.carList.find(car => car.$key === closestCarId);
         if (assignedCar) {
-            this.toastr.showToast(
-                `✅ Booking approved! Assigned closest car '${assignedCar.name}' found ${Math.round(
-                    (closestDistance / 1000) * 100
-                ) / 100} km. away`,
-                'JAUC Cars',
-                5000
-            );
-
             console.log(
-                `Closest car '${assignedCar.name}' found ${Math.round((closestDistance / 1000) * 100) / 100} km.`
+                `Closest car '${assignedCar.name}' found ${Math.round((closestDistance / 1000) * 100) / 100} km.`,
+                assignedCar
             );
 
             booking.approvedBy = adminId;
-
-            assignedCar.currentBookingId = booking.$key;
-            booking.carId = closestCarId;
+            assignedCar.currentBookingId = key;
+            booking.carId = assignedCar.carId || assignedCar.$key || closestCarId || null;
             booking.carName = assignedCar.name;
+
             // Create Invoice
             this.invoiceService.createInvoice(booking).then(inv => {
                 booking.invoiceId = inv.key;
                 delete booking.$key;
-                this.bookings.update(key, booking);
-                this.carService.updateCarToDB(assignedCar);
+                this.bookings.update(key, booking).then(() => {
+                    this.toastr.showToast(
+                        `✅ Booking approved! Assigned closest car '${assignedCar.name}' found ${Math.round(
+                            (closestDistance / 1000) * 100
+                        ) / 100} km. away`,
+                        'JAUC Cars',
+                        7000
+                    );
+                    this.carService.updateCarToDB(assignedCar);
+                });
             });
         } else {
             console.error('No cars available for this booking');
@@ -113,14 +134,49 @@ export class BookingService {
         this.bookings.remove(booking.$key);
     }
 
+    releaseCarFromBooking(bookingId) {
+        const booking = this.bookingList.find(b => b.$key === bookingId);
+        if (booking) {
+            this.removeCarFromBooking(booking);
+        }
+    }
+
+    isBookingPaid(bookingId) {
+        // this.firebase
+        //   .list('bookings')
+        //   .snapshotChanges()
+        //   .take(1).toPromise().then()
+
+        this.firebase
+            .list('bookings')
+            .snapshotChanges()
+            .take(1)
+            .subscribe(bookings => {
+                this.bookingList = [];
+                bookings.forEach(el => {
+                    const booking = el.payload.toJSON() as Booking;
+                    booking['$key'] = el.key;
+                    this.bookingList.push(booking as Booking);
+                });
+                const foundBooking = this.bookingList.find(b => b.$key === bookingId);
+                if (foundBooking) {
+                    // console.log(`Booking Id ${foundBooking.$key} has invoice Id:`, foundBooking.invoiceId);
+                    return this.invoiceService.isInvoicePaid(foundBooking.invoiceId);
+                } else {
+                    // console.log(`No booking found with Id ${bookingId}`);
+                    return true;
+                }
+            });
+    }
+
     private removeCarFromBooking(booking: Booking) {
         const assignedCar = this.carList.find(car => car.$key === booking.carId);
         if (assignedCar) {
             assignedCar.currentBookingId = null;
             this.carService.updateCarToDB(assignedCar);
-            console.error('Unapprove - Car removed from booking');
+            console.log('📕 Unapprove - Car removed from booking');
         } else {
-            console.error('Unapprove - No car found for this booking');
+            console.log('📙 Unapprove - No car found for this booking');
         }
     }
 }

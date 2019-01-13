@@ -17,7 +17,7 @@ export class BookingsComponent implements OnInit {
     @ViewChild(MatSort) sort: MatSort;
     opened = false;
     selectedBooking = null;
-    showAllBookings = false;
+    showAllBookings: Boolean;
     bookings: Array<Booking>;
     dataSource: BookingDataSource;
     displayedColumns = ['actions', 'carId', 'userId', 'approvedBy', 'invoiceId', 'origin', 'destination', 'date'];
@@ -31,7 +31,7 @@ export class BookingsComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.showAllBookings = false;
+        this.showAllBookings = true;
         this.bookingService
             .getBookings()
             .snapshotChanges()
@@ -60,10 +60,11 @@ export class BookingsComponent implements OnInit {
             .toPromise()
             .then(uid => {
                 this.bookingService.approveBooking(booking, this.userService.displayName);
+                this.nofiticationService.notify(this.userService.key, 'Booking approved', 'Your car is on its way!');
             });
 
-        const endUser: User = this.userService.getUserById(booking.userId);
-        this.nofiticationService.notify(endUser.key, 'Booking approved', 'Your car is on its way!');
+        // const endUser: User = this.userService.getUserById(booking.userId);
+        // this.nofiticationService.notify(endUser.key, 'Booking approved', 'Your car is on its way!');
     }
 
     onUnapprove(booking: Booking) {
