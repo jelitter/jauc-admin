@@ -50,9 +50,7 @@ export class SupportComponent implements OnInit {
                                 console.log(`Error filling message metadata`, msg);
                             });
                     }
-
                     msg['$key'] = element.key;
-
                     this.messages.push(msg as Message);
                 });
 
@@ -61,8 +59,11 @@ export class SupportComponent implements OnInit {
                     return new Date(b.date).getTime() - new Date(a.date).getTime();
                 });
 
+                const firstReadMessage = this.messages.find(m => m.read);
+                console.log({ firstReadMessage });
+
                 if (this.messages.length > 0 && !this.selectedMessage) {
-                    this.selectedMessage = this.messages[0];
+                    this.selectedMessage = firstReadMessage || this.messages[0];
                     this.openMessage(this.selectedMessage);
                 }
             });
