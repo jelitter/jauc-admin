@@ -25,9 +25,9 @@ export class SupportComponent implements OnInit {
     public selectedMessage: Message = null;
     public showResponse = false;
 
-    constructor(private support: SupportService, private userService: UserService) {}
+    constructor(private supportService: SupportService, private userService: UserService) {}
     ngOnInit(): void {
-        this.support
+        this.supportService
             .getMessages()
             .snapshotChanges()
             .subscribe(items => {
@@ -46,8 +46,15 @@ export class SupportComponent implements OnInit {
 
                     this.messages.push(msg as Message);
                 });
+
+                // Sort messages, newest first
+                this.messages.sort(function(a: Message, b: Message) {
+                    return new Date(b.date).getDate() - new Date(a.date).getDate();
+                });
+
                 if (this.messages.length > 0 && !this.selectedMessage) {
-                    this.openMessage(this.messages[0]);
+                    this.selectedMessage = this.messages[0];
+                    this.openMessage(this.selectedMessage);
                 }
             });
     }
@@ -67,7 +74,7 @@ export class SupportComponent implements OnInit {
         this.response = message.response || emailTemplate;
 
         if (!message.read) {
-            this.support
+            this.supportService
                 .readMessage(message)
                 .then(msg => {
                     this.selectedMessage.read = true;
@@ -80,7 +87,7 @@ export class SupportComponent implements OnInit {
     }
 
     deleteMessage(message: Message) {
-        this.support
+        this.supportService
             .deleteMessage(message)
             .then(() => {
                 this.selectedMessage = null;
@@ -99,7 +106,7 @@ export class SupportComponent implements OnInit {
         const key = this.selectedMessage.$key;
 
         message.response = this.response;
-        this.support
+        this.supportService
             .sendResponse(message)
             .then(() => {
                 this.showResponse = false;

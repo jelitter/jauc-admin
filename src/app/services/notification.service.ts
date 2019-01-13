@@ -42,16 +42,18 @@ export class NotificationService {
 
         // console.log(data);
 
-        return fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `key=${this.serviceAuth}`,
-            },
-        })
-            .then(res => res.json)
-            .then(response => console.log('Notification success:', JSON.stringify(response)))
-            .catch(error => console.log('Error', error));
+        return (
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `key=${this.serviceAuth}`,
+                },
+            })
+                .then(res => res.json)
+                // .then(response => console.log('Notification success:', JSON.stringify(response)))
+                .catch(error => console.log('Error', error))
+        );
     }
 }

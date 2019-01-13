@@ -104,7 +104,9 @@ export class BookingService {
                         'JAUC Cars',
                         7000
                     );
-                    this.carService.updateCarToDB(assignedCar);
+                    // this.carService.updateCarToDB(assignedCar);
+                    delete assignedCar.$key;
+                    this.cars.update(booking.carId, assignedCar);
                 });
             });
         } else {
@@ -142,31 +144,39 @@ export class BookingService {
     }
 
     isBookingPaid(bookingId) {
-        // this.firebase
-        //   .list('bookings')
-        //   .snapshotChanges()
-        //   .take(1).toPromise().then()
+        if (this.bookingList.length === 0) {
+            return false;
+        }
 
-        this.firebase
-            .list('bookings')
-            .snapshotChanges()
-            .take(1)
-            .subscribe(bookings => {
-                this.bookingList = [];
-                bookings.forEach(el => {
-                    const booking = el.payload.toJSON() as Booking;
-                    booking['$key'] = el.key;
-                    this.bookingList.push(booking as Booking);
-                });
-                const foundBooking = this.bookingList.find(b => b.$key === bookingId);
-                if (foundBooking) {
-                    // console.log(`Booking Id ${foundBooking.$key} has invoice Id:`, foundBooking.invoiceId);
-                    return this.invoiceService.isInvoicePaid(foundBooking.invoiceId);
-                } else {
-                    // console.log(`No booking found with Id ${bookingId}`);
-                    return true;
-                }
-            });
+        const foundBooking = this.bookingList.find(b => b.$key === bookingId);
+        if (foundBooking) {
+            // console.log(`Booking Id ${foundBooking.$key} has invoice Id:`, foundBooking.invoiceId);
+            return this.invoiceService.isInvoicePaid(foundBooking.invoiceId);
+        } else {
+            // console.log(`No booking found with Id ${bookingId}`);
+            return true;
+        }
+
+        // this.firebase
+        //     .list('bookings')
+        //     .snapshotChanges()
+        //     .take(1)
+        //     .subscribe(bookings => {
+        //         this.bookingList = [];
+        //         bookings.forEach(el => {
+        //             const booking = el.payload.toJSON() as Booking;
+        //             booking['$key'] = el.key;
+        //             this.bookingList.push(booking as Booking);
+        //         });
+        //         const foundBooking = this.bookingList.find(b => b.$key === bookingId);
+        //         if (foundBooking) {
+        //             // console.log(`Booking Id ${foundBooking.$key} has invoice Id:`, foundBooking.invoiceId);
+        //             return this.invoiceService.isInvoicePaid(foundBooking.invoiceId);
+        //         } else {
+        //             // console.log(`No booking found with Id ${bookingId}`);
+        //             return true;
+        //         }
+        //     });
     }
 
     private removeCarFromBooking(booking: Booking) {
