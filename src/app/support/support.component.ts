@@ -60,8 +60,6 @@ export class SupportComponent implements OnInit {
                 });
 
                 const firstReadMessage = this.messages.find(m => m.read);
-                console.log({ firstReadMessage });
-
                 if (this.messages.length > 0 && !this.selectedMessage) {
                     this.selectedMessage = firstReadMessage || this.messages[0];
                     this.openMessage(this.selectedMessage);
