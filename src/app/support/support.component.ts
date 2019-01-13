@@ -35,14 +35,23 @@ export class SupportComponent implements OnInit {
                 items.forEach(element => {
                     const msg = element.payload.toJSON() as Message;
 
-                    msg['$key'] = element.key;
-
                     if (!msg.userName) {
                         const searchUser = this.userService.getUserById(msg.userId);
                         msg['userName'] = searchUser ? searchUser.displayName : msg.userId;
                         msg['photoUrl'] = searchUser ? searchUser.photoUrl : null;
                         msg['email'] = searchUser ? searchUser.email : null;
+                        this.supportService
+                            .getMessages()
+                            .update(element.key, msg)
+                            .then(() => {
+                                console.log(`Filled message metadata`, msg);
+                            })
+                            .catch(() => {
+                                console.log(`Error filling message metadata`, msg);
+                            });
                     }
+
+                    msg['$key'] = element.key;
 
                     this.messages.push(msg as Message);
                 });

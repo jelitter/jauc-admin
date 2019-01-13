@@ -1,8 +1,12 @@
 <div class="support-container">
     <div class="message-list">
         <mat-list>
+            <!-- [ngClass]="{ selected: selectedMessage?.$key === message.$key }" -->
             <mat-list-item
-                [ngClass]="{ selected: selectedMessage?.$key === message.$key }"
+                [ngClass]="{
+                    selected: selectedMessage?.$key === message.$key,
+                    unselected: selectedMessage?.$key !== message.$key
+                }"
                 *ngFor="let message of messages"
                 (click)="messageClicked(message)"
             >
