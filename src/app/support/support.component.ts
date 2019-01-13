@@ -49,7 +49,7 @@ export class SupportComponent implements OnInit {
 
                 // Sort messages, newest first
                 this.messages.sort(function(a: Message, b: Message) {
-                    return new Date(b.date).getDate() - new Date(a.date).getDate();
+                    return new Date(b.date).getTime() - new Date(a.date).getTime();
                 });
 
                 if (this.messages.length > 0 && !this.selectedMessage) {
