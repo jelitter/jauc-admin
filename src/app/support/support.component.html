@@ -31,7 +31,7 @@
                     (click)="deleteMessage(selectedMessage)"
                     >delete</mat-icon
                 >
-                <img mat-card-avatar [src]="selectedMessage.photoUrl" alt="Photo" />
+                <img class="avatar-picture" mat-card-avatar [src]="selectedMessage.photoUrl" alt="Photo" />
                 <mat-card-title>{{ selectedMessage.userName }}</mat-card-title>
                 <mat-card-subtitle>{{ selectedMessage.email }}</mat-card-subtitle>
                 <mat-card-subtitle class="message-date">{{ selectedMessage.date | date: 'medium' }}</mat-card-subtitle>
